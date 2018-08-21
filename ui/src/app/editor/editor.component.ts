@@ -18,6 +18,7 @@
 import {Component, EventEmitter, Input, Output, ViewChild} from "@angular/core";
 import {ApiDefinition, ApiEditorComponent} from "apicurio-design-studio";
 import {OtCommand} from "oai-ts-commands";
+import {DownloaderService} from "../services/downloader.service";
 
 @Component({
     moduleId: module.id,
@@ -40,23 +41,29 @@ export class EditorComponent {
 
     @Output() onClose: EventEmitter<void> = new EventEmitter<void>();
 
-    @ViewChild('_apiEditor') _apiEditor: ApiEditorComponent;
+    @ViewChild("apiEditor") apiEditor: ApiEditorComponent;
     dirty: boolean = false;
 
-    constructor() {}
+    constructor(private downloader: DownloaderService) {}
 
     public onUserSelection(selection: string): void {
-        console.log('User selection changed: ', selection);
+        console.log("User selection changed: ", selection);
     }
 
     public onUserChange(command: OtCommand): void {
-        console.log('Something happened! ' + JSON.stringify(command));
+        console.log("Something happened! " + JSON.stringify(command));
         this.dirty = true;
     }
 
     public save(): void {
-        // TODO implement downloading the API spec
-        alert("Save/Download not yet implemented.");
+        let spec: any = this.apiEditor.getValue().spec;
+        if (typeof spec === "object") {
+            spec = JSON.stringify(spec, null, 4);
+        }
+        let content: string = spec;
+        let ct: string = "application/json";
+        let filename = "openapi-spec.json";
+        this.downloader.downloadToFS(content, ct, filename);
     }
 
     public reset(): void {

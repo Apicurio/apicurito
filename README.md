@@ -1,2 +1,19 @@
-# apicurito
-A small/minimal version of Apicurio used for standalone editing of API designs.
+# Apicurito (Apicurio Lite)
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
+
+## Development server
+
+Before running the dev server you must install `node` and `yarn`.  Once these tools are installed
+you must run `yarn install` to download all fo the project's dependencies.
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically 
+reload if you change any of the source files.
+
+To run on a different port, try `ng serve --port 8888` for example.  And if you want AOT enabled, 
+you can run `ng serve --aot --port 8888`.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. 
+Use the `-prod` flag for a production build.

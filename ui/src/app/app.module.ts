@@ -26,6 +26,7 @@ import {WindowRef} from './window-ref';
 import {NavHeaderComponent} from "./nav/nav-header.component";
 import {EmptyStateComponent} from "./empty/empty-state.component";
 import {EditorComponent} from "./editor/editor.component";
+import {DownloaderService} from "./services/downloader.service";
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import {EditorComponent} from "./editor/editor.component";
     declarations: [
         AppComponent, NavHeaderComponent, EmptyStateComponent, EditorComponent
     ],
-    providers: [WindowRef],
+    providers: [WindowRef, DownloaderService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
