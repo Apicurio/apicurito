@@ -1,0 +1,26 @@
+.blank-slate-pf {
+  margin: 40px;
+}
+
+.blank-slate-pf.dragging {
+  border: 1px dashed #39a5dc;
+  background-color: #eef;
+  color: #666;
+}
+.blank-slate-pf.dragging .blank-slate-pf-icon .pficon {
+  color: #39a5dc;
+}
+.blank-slate-pf.dragging .blank-slate-pf-main-action .btn-new {
+  opacity: 0.2;
+}
+.blank-slate-pf.dragging .blank-slate-pf-main-action .btn-load {
+  border: 1px dashed #39a5dc;
+}
+.blank-slate-pf.dragging .blank-slate-pf-main-action .alert {
+  opacity: 0.2;
+}
+
+.alert {
+  display: inline-block;
+  margin-top: 10px;
+}

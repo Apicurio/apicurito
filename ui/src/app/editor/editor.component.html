@@ -1,0 +1,13 @@
+<div class="app-editor">
+    <div class="actionbar">
+        <button class="btn btn-lg btn-primary btn-save" [disabled]="!dirty" (click)="save()">Save</button>
+        <button class="btn btn-lg btn-default btn-reset" [disabled]="!dirty" (click)="reset()">Reset</button>
+        <span class="vertical-divider"></span>
+        <button class="btn btn-lg btn-default btn-generate" (click)="generate()">Generate Project</button>
+    </div>
+    <div class="editor">
+        <api-editor #apiEditor [api]="api" [embedded]="true"
+                    (onCommandExecuted)="onUserChange($event)"
+                    (onSelectionChanged)="onUserSelection($event)"></api-editor>
+    </div>
+</div>

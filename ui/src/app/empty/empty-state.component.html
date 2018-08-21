@@ -1,0 +1,31 @@
+<div class="blank-slate-pf" [class.dragging]="dragging"
+     (dragover)="onDragOver($event)" (drop)="onDrop($event)"
+     (dragend)="onDragEnd($event)" (dragexit)="onDragEnd($event)" (dragleave)="onDragEnd($event)">
+    <div class="blank-slate-pf-icon">
+        <span class="pficon pficon pficon-add-circle-o"></span>
+    </div>
+    <h1>
+        Welcome to Apicurito
+    </h1>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
+        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </p>
+    <p>
+        Learn more about the <a href="https://www.apicur.io/">Apicurito project</a>.
+    </p>
+    <div class="blank-slate-pf-main-action">
+        <button class="btn btn-primary btn-lg btn-new" (click)="createNewApi()">New API</button>
+        <button class="btn btn-default btn-lg btn-load" (click)="loadfile.click()">Load API</button>
+        <div>
+            <div class="alert alert-danger" *ngIf="error !== null">
+                <span class="pficon pficon-error-circle-o"></span>
+                <strong>Error Detected!</strong>
+                <span>{{ error }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="hidden">
+        <input #loadfile type="file" id="load-file" name="load-file" (change)="onFileLoaded($event)">
+    </div>
+</div>

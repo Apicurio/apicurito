@@ -1,0 +1,10 @@
+<div class="app-wrapper">
+    <div class="app-masthead">
+        <nav-header></nav-header>
+    </div>
+    <div class="app-body">
+        <empty-state *ngIf="apiDef === null" (onOpen)="openEditor($event)"></empty-state>
+        <editor *ngIf="apiDef !== null" (onClose)="apiDef = null" [api]="apiDef"></editor>
+    </div>
+</div>
+

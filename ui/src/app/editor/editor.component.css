@@ -1,0 +1,33 @@
+.app-editor {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.app-editor .actionbar {
+  border-bottom: 1px solid #ddd;
+  padding: 5px;
+  padding-right: 20px;
+  text-align: right;
+}
+.app-editor .actionbar .btn-save {
+  margin-right: 5px;
+}
+
+.app-editor .editor {
+  flex-grow: 1;
+  position: relative;
+}
+
+.app-editor .vertical-divider {
+  border-right: 1px solid #d1d1d1;
+  margin-right: 10px;
+  margin-left: 7px;
+  height: 22px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
