@@ -16,6 +16,7 @@
  */
 
 import {Component, OnInit} from "@angular/core";
+import {WindowRef} from "../window-ref";
 
 @Component({
     moduleId: module.id,
@@ -29,13 +30,13 @@ export class NavHeaderComponent implements OnInit {
     builtOn: Date = new Date();
     projectUrl: string = "http://www.apicur.io/";
 
-    constructor() {
-        let w: any = window;
-        if (w["ApicurioStudioInfo"]) {
-            console.info("[NavHeaderComponent] Found app info: %o", w["ApicurioStudioInfo"]);
-            this.version = w["ApicurioStudioInfo"].version;
-            this.builtOn = new Date(w["ApicurioStudioInfo"].builtOn);
-            this.projectUrl = w["ApicurioStudioInfo"].url;
+    constructor(window: WindowRef) {
+        let w: any = window.nativeWindow;
+        if (w["ApicuritoInfo"]) {
+            console.info("[NavHeaderComponent] Found app info: %o", w["ApicuritoInfo"]);
+            this.version = w["ApicuritoInfo"].version;
+            this.builtOn = new Date(w["ApicuritoInfo"].builtOn);
+            this.projectUrl = w["ApicuritoInfo"].url;
         } else {
             console.info("[NavHeaderComponent] App info not found.");
         }

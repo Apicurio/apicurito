@@ -67,11 +67,6 @@ export class EditorComponent {
     }
 
     public reset(): void {
-        alert("Reset not yet implemented (awaiting an Apicurio release).");
-        if ("" === "") {
-            return;
-        }
-
         let apiDef: ApiDefinition = new ApiDefinition();
         apiDef.createdBy = this.api.createdBy;
         apiDef.createdOn = this.api.createdOn;
@@ -81,8 +76,6 @@ export class EditorComponent {
         apiDef.spec = this._originalContent;
         this.api = apiDef;
         this.dirty = false;
-        // TODO uncomment this once a new version of apicurio has been released with this functionality.  Until then reset is broken.
-        //this._apiEditor.reset();
     }
 
     public generate(): void {
