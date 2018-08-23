@@ -27,12 +27,14 @@ import {NavHeaderComponent} from "./nav/nav-header.component";
 import {EmptyStateComponent} from "./empty/empty-state.component";
 import {EditorComponent} from "./editor/editor.component";
 import {DownloaderService} from "./services/downloader.service";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
+        HttpClientModule,
         ApicurioEditorModule,
         ApicurioCommonComponentsModule,
         ModalModule.forRoot(),

@@ -19,6 +19,9 @@
 import {Inject, Injectable} from "@angular/core";
 import {DOCUMENT} from "@angular/common";
 import {WindowRef} from "../window-ref";
+import {HttpClient} from "@angular/common/http";
+import {HttpHeaders} from "../../../node_modules/@angular/common/http/src/headers";
+import {HttpParams} from "../../../node_modules/@angular/common/http/src/params";
 
 /**
  * Implements a Downloader service that helps download content to the user's local file
@@ -27,7 +30,7 @@ import {WindowRef} from "../window-ref";
 @Injectable()
 export class DownloaderService {
 
-    constructor(@Inject(DOCUMENT) private document: any, private window: WindowRef) {}
+    constructor(@Inject(DOCUMENT) private document: any, private window: WindowRef, private http: HttpClient) {}
 
     /**
      * Called to download some content as a file to the user's local filesystem.
@@ -54,5 +57,40 @@ export class DownloaderService {
             let file = new File([content], filename, { type: 'application/force-download' });
             window.open(URL.createObjectURL(file));
         }
+    }
+
+    /**
+     * Called to generate a project and download the result.
+     * @param content
+     * @param filename
+     */
+    public generateAndDownload(content: string, filename: string): Promise<void> {
+        let generateApiUrl: string = "http://localhost:8080/api/v1/generate/camel-project.zip";
+        let window: any = this.window.nativeWindow;
+        return this.http.post(generateApiUrl, content, {
+            headers: {
+                "Content-Type": "application/json",
+                "Accept" : "application/octet-stream"
+            },
+            reportProgress: false,
+            responseType: "blob"
+        }).toPromise().then( data => {
+            if (window.chrome !== undefined) {
+                // Chrome version
+                let link = document.createElement('a');
+                let blob = data;
+                link.href = window.URL.createObjectURL(blob);
+                link.download = filename;
+                link.click();
+            } else if (window.navigator !== undefined && window.navigator.msSaveBlob !== undefined) {
+                // IE version
+                let blob = data;
+                window.navigator.msSaveBlob(blob, filename);
+            } else {
+                // Firefox version
+                let file = new File([data], filename, { type: 'application/force-download' });
+                window.open(URL.createObjectURL(file));
+            }
+        });
     }
 }

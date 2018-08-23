@@ -15,10 +15,11 @@
  * limitations under the License.
  */
 
-import {Component, EventEmitter, Input, Output, ViewChild} from "@angular/core";
+import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from "@angular/core";
 import {ApiDefinition, ApiEditorComponent} from "apicurio-design-studio";
 import {OtCommand} from "oai-ts-commands";
 import {DownloaderService} from "../services/downloader.service";
+import {NgForm} from "@angular/forms";
 
 @Component({
     moduleId: module.id,
@@ -43,6 +44,7 @@ export class EditorComponent {
 
     @ViewChild("apiEditor") apiEditor: ApiEditorComponent;
     dirty: boolean = false;
+    generating: boolean = false;
 
     constructor(private downloader: DownloaderService) {}
 
@@ -62,7 +64,7 @@ export class EditorComponent {
         }
         let content: string = spec;
         let ct: string = "application/json";
-        let filename = "openapi-spec.json";
+        let filename: string = "openapi-spec.json";
         this.downloader.downloadToFS(content, ct, filename);
     }
 
@@ -79,7 +81,17 @@ export class EditorComponent {
     }
 
     public generate(): void {
-        alert("Generate Project not yet implemented.")
+        console.info("Generating project");
+        let spec: any = this.apiEditor.getValue().spec;
+        if (typeof spec === "object") {
+            spec = JSON.stringify(spec, null, 4);
+        }
+        let content: string = spec;
+        let filename: string = "camel-project.zip";
+        this.generating = true;
+        this.downloader.generateAndDownload(content, filename).then( () => {
+            this.generating = false;
+        });
     }
 
 }

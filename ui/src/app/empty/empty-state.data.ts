@@ -26,7 +26,9 @@ export class NewApiTemplates {
     "version": "1.0"
   },
   "paths": {
-  }
+  },
+  "consumes": [ "application/json" ],
+  "produces": [ "application/json" ]
 }`;
 
 }
