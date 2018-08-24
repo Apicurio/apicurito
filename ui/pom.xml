@@ -171,6 +171,10 @@
                                                 <fileSet>
                                                     <directory>dist</directory>
                                                 </fileSet>
+                                                <fileSet>
+                                                    <directory>config</directory>
+                                                    <filtered>true</filtered>
+                                                </fileSet>
                                             </inline>
                                         </assembly>
                                         <dockerFile>${basedir}/docker/Dockerfile</dockerFile>
