@@ -33,11 +33,11 @@
                     <table>
                         <tr>
                             <td><strong>Version</strong></td>
-                            <td>{{ version }}</td>
+                            <td>{{ appInfo.version }}</td>
                         </tr>
                         <tr>
                             <td><strong>Built On</strong></td>
-                            <td>{{ builtOn | date }}</td>
+                            <td>{{ appInfo.builtOn | date }}</td>
                         </tr>
                         <tr>
                             <td><strong>Edition</strong></td>
@@ -45,7 +45,7 @@
                         </tr>
                         <tr>
                             <td><strong>Project URL</strong></td>
-                            <td><a href="{{ projectUrl }}" target="_blank">{{ projectUrl }} <span class="fa fa-external-link"></span></a></td>
+                            <td><a href="{{ appInfo.projectUrl }}" target="_blank">{{ appInfo.projectUrl }} <span class="fa fa-external-link"></span></a></td>
                         </tr>
                     </table>
                 </div>

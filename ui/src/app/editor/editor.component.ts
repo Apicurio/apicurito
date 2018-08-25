@@ -20,6 +20,7 @@ import {ApiDefinition, ApiEditorComponent} from "apicurio-design-studio";
 import {OtCommand} from "oai-ts-commands";
 import {DownloaderService} from "../services/downloader.service";
 import {NgForm} from "@angular/forms";
+import { ConfigService } from "../services/config.service";
 
 @Component({
     moduleId: module.id,
@@ -46,7 +47,7 @@ export class EditorComponent {
     dirty: boolean = false;
     generating: boolean = false;
 
-    constructor(private downloader: DownloaderService) {}
+    constructor(private downloader: DownloaderService, public config:ConfigService) {}
 
     public onUserSelection(selection: string): void {
         console.log("User selection changed: ", selection);

@@ -32,3 +32,9 @@ But if you want that configuration changed so that it uses local builds, run:
 And build the image using:
 
     mvn install -P image    
+
+And if you have deployed the (fuse-apicurito-generator)[https://github.com/jboss-fuse/fuse-apicurito-generator] 
+into the current project, then run the following to configure Apicurito to use it.
+
+	./enable-fuse-generator.sh 
+
