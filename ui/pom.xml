@@ -12,7 +12,7 @@
     <name>apicurito-ui</name>
 
     <properties>
-        <image.ui>apicurio/apicurito:%l</image.ui>
+        <image.ui>apicurio/apicurito-ui:%l</image.ui>
     </properties>
 
     <build>

@@ -17,3 +17,18 @@ you can run `ng serve --aot --port 8888`.
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. 
 Use the `-prod` flag for a production build.
+
+
+## Running On Openshift
+
+This will try to pull down the Apicurito image from container registries:
+
+    oc replace --force  -f openshift.yml
+
+But if you want that configuration changed so that it uses local builds, run:
+
+    ./openshift-dev.sh
+
+And build the image using:
+
+    mvn install -P image    

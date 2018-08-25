@@ -1,0 +1,132 @@
+apiVersion: v1
+kind: List
+items:
+
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    name: apicurito-ui
+    labels:
+      app: apicurito
+  spec:
+    tags:
+    - from:
+        kind: DockerImage
+        name: apicurito/apicurito-ui:latest
+      importPolicy:
+        scheduled: true
+      name: "latest"
+
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: apicurito-ui-config
+    labels:
+      app: apicurito
+  data:
+    config.json: |
+      {
+      }
+
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: apicurito-ui
+    labels:
+      app: apicurito
+  spec:
+    ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      app: apicurito
+      component: apicurito-ui
+
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    labels:
+      app: apicurito
+    annotations:
+      console.alpha.openshift.io/overview-app-route: "true"
+    name: apicurito
+  spec:
+    tls:
+      termination: edge
+    to:
+      kind: Service
+      name: apicurito-ui
+
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    labels:
+      app: apicurito
+      component: apicurito-ui
+    name: apicurito-ui
+  spec:
+    replicas: 1
+    selector:
+      app: apicurito
+      component: apicurito-ui
+    strategy:
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      resources:
+        limits:
+          memory: "256Mi"
+        requests:
+          memory: "20Mi"
+      type: Rolling
+    template:
+      metadata:
+        labels:
+          app: apicurito
+          component: apicurito-ui
+      spec:
+        containers:
+        - name: apicurito-ui
+          image: ' '
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: "/"
+              port: 8080
+            initialDelaySeconds: 30
+          readinessProbe:
+            httpGet:
+              path: "/"
+              port: 8080
+            initialDelaySeconds: 1
+          ports:
+          - containerPort: 8080
+          volumeMounts:
+          - mountPath: /usr/share/nginx/html/config
+            name: config-volume
+          # Set to burstable with a low memory footprint to start (50 Mi)
+          resources:
+            limits:
+              memory: 255Mi
+            requests:
+              memory: 50Mi
+        volumes:
+        - name: config-volume
+          configMap:
+            name: apicurito-ui-config          
+    triggers:
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - apicurito-ui
+        from:
+          kind: ImageStreamTag
+          name: apicurito-ui:latest
+          # namespace: ${IMAGE_STREAM_NAMESPACE}
+      type: ImageChange
+    - type: ConfigChange
+
