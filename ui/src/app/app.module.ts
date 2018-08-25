@@ -28,7 +28,7 @@ import {EmptyStateComponent} from "./empty/empty-state.component";
 import {EditorComponent} from "./editor/editor.component";
 import {DownloaderService} from "./services/downloader.service";
 import {HttpClientModule} from "@angular/common/http";
-
+import {ConfirmationModalComponent} from "./common/confirmation-modal.component";
 
 @NgModule({
     imports: [
@@ -41,7 +41,11 @@ import {HttpClientModule} from "@angular/common/http";
         BsDropdownModule.forRoot()
     ],
     declarations: [
-        AppComponent, NavHeaderComponent, EmptyStateComponent, EditorComponent
+        AppComponent, 
+        NavHeaderComponent, 
+        EmptyStateComponent, 
+        EditorComponent, 
+        ConfirmationModalComponent
     ],
     providers: [WindowRef, DownloaderService],
     bootstrap: [AppComponent]

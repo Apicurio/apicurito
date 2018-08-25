@@ -69,15 +69,7 @@ export class EditorComponent {
     }
 
     public reset(): void {
-        let apiDef: ApiDefinition = new ApiDefinition();
-        apiDef.createdBy = this.api.createdBy;
-        apiDef.createdOn = this.api.createdOn;
-        apiDef.tags = this.api.tags;
-        apiDef.description = this.api.description;
-        apiDef.id = this.api.id;
-        apiDef.spec = this._originalContent;
-        this.api = apiDef;
-        this.dirty = false;
+        this.onClose.emit();
     }
 
     public generate(): void {
