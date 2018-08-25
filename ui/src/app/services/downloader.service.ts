@@ -18,7 +18,7 @@
 
 import {Inject, Injectable} from "@angular/core";
 import {DOCUMENT} from "@angular/common";
-import {WindowRef} from "../window-ref";
+import {WindowRef} from "./window-ref.service";
 import {HttpClient} from "@angular/common/http";
 import {HttpHeaders} from "../../../node_modules/@angular/common/http/src/headers";
 import {HttpParams} from "../../../node_modules/@angular/common/http/src/params";
@@ -39,7 +39,7 @@ export class DownloaderService {
      * @param filename
      */
     public downloadToFS(content: string, contentType: string, filename: string): void {
-        let window: any = this.window.nativeWindow;
+        let window: any = this.window.window;
 
         if (window.chrome !== undefined) {
             // Chrome version
@@ -66,7 +66,7 @@ export class DownloaderService {
      */
     public generateAndDownload(content: string, filename: string): Promise<void> {
         let generateApiUrl: string = "http://localhost:8080/api/v1/generate/camel-project.zip";
-        let window: any = this.window.nativeWindow;
+        let window: any = this.window.window;
         return this.http.post(generateApiUrl, content, {
             headers: {
                 "Content-Type": "application/json",

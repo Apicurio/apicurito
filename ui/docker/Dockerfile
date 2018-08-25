@@ -5,7 +5,7 @@ ENV NGINX_VERSION 1.13.4-1.el7
 # This refers to the files copied by assembly configuration in pom.xml
 # Change this to e.g. "dist" if running the dockerfile from top-level e.g.
 # docker build --build-arg SRC_DIR=dist --build-arf CONTEXT_DIR=docker -f docker/Dockerfile
-ARG SRC_DIR="maven/dist"
+ARG SRC_DIR="maven/target/classes"
 ARG CONTEXT_DIR="."
 
 LABEL name="nginxinc/nginx" \
@@ -48,9 +48,6 @@ COPY licenses /opt/apicurito/licenses
 #VOLUME ["/var/cache/nginx"]
 
 EXPOSE 8080 8443
-
-# Add symbolic link to config.json to avoid mounting issues
-RUN ln -sf /usr/share/nginx/html/config/config.json /usr/share/nginx/html/config.json
 
 USER 998
 

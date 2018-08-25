@@ -79,7 +79,7 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>copy-dist</id>
+                        <id>copy-static</id>
                         <phase>process-resources</phase>
                         <goals>
                             <goal>copy-resources</goal>
@@ -90,13 +90,20 @@
                                 <resource>
                                     <directory>${basedir}/dist</directory>
                                     <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${basedir}/static</directory>
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>version.js</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>${basedir}/static</directory>
+                                    <filtering>true</filtering>
                                     <excludes>
                                         <exclude>version.js</exclude>
                                     </excludes>
-                                </resource>
-                                <resource>
-                                    <directory>${basedir}/config</directory>
-                                    <filtering>true</filtering>
                                 </resource>
                             </resources>
                         </configuration>
@@ -109,13 +116,6 @@
                 <configuration>
                     <followSymLinks>false</followSymLinks>
                     <filesets>
-                        <fileset>
-                            <directory>src</directory>
-                            <includes>
-                                <include>config.json</include>
-                                <include>config.json.bak</include>
-                            </includes>
-                        </fileset>
                         <fileset>
                             <directory>node_modules</directory>
                             <includes>
@@ -169,11 +169,7 @@
                                         <assembly>
                                             <inline>
                                                 <fileSet>
-                                                    <directory>dist</directory>
-                                                </fileSet>
-                                                <fileSet>
-                                                    <directory>config</directory>
-                                                    <filtered>true</filtered>
+                                                    <directory>target/classes</directory>
                                                 </fileSet>
                                             </inline>
                                         </assembly>

@@ -22,13 +22,15 @@ import {ApicurioCommonComponentsModule, ApicurioEditorModule} from 'apicurio-des
 import {AppComponent} from './app.component';
 import {BsDropdownModule, ModalModule} from 'ngx-bootstrap';
 import {FormsModule} from '@angular/forms';
-import {WindowRef} from './window-ref';
+import {WindowRef} from './services/window-ref.service';
 import {NavHeaderComponent} from "./nav/nav-header.component";
 import {EmptyStateComponent} from "./empty/empty-state.component";
 import {EditorComponent} from "./editor/editor.component";
 import {DownloaderService} from "./services/downloader.service";
 import {HttpClientModule} from "@angular/common/http";
 import {ConfirmationModalComponent} from "./common/confirmation-modal.component";
+import { AppInfoService } from './services/app-info.service';
+import { ConfigService } from './services/config.service';
 
 @NgModule({
     imports: [
@@ -47,7 +49,7 @@ import {ConfirmationModalComponent} from "./common/confirmation-modal.component"
         EditorComponent, 
         ConfirmationModalComponent
     ],
-    providers: [WindowRef, DownloaderService],
+    providers: [WindowRef, AppInfoService, ConfigService, DownloaderService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
