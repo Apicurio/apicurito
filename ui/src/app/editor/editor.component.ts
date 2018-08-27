@@ -15,12 +15,10 @@
  * limitations under the License.
  */
 
-import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from "@angular/core";
+import {Component, EventEmitter, Input, Output, ViewChild} from "@angular/core";
 import {ApiDefinition, ApiEditorComponent} from "apicurio-design-studio";
-import {OtCommand} from "oai-ts-commands";
 import {DownloaderService} from "../services/downloader.service";
-import {NgForm} from "@angular/forms";
-import { ConfigService } from "../services/config.service";
+import {ConfigService, GeneratorConfig} from "../services/config.service";
 
 @Component({
     moduleId: module.id,
@@ -46,19 +44,17 @@ export class EditorComponent {
     @ViewChild("apiEditor") apiEditor: ApiEditorComponent;
     dirty: boolean = false;
     generating: boolean = false;
+    generateError: string = null;
 
     constructor(private downloader: DownloaderService, public config:ConfigService) {}
 
-    public onUserSelection(selection: string): void {
-        console.log("User selection changed: ", selection);
-    }
-
-    public onUserChange(command: OtCommand): void {
-        console.log("Something happened! " + JSON.stringify(command));
+    public onUserChange(/*command: OtCommand*/): void {
         this.dirty = true;
     }
 
     public save(): void {
+        console.info("[EditorComponent] Saving the API definition.");
+        this.generateError = null;
         let spec: any = this.apiEditor.getValue().spec;
         if (typeof spec === "object") {
             spec = JSON.stringify(spec, null, 4);
@@ -70,11 +66,14 @@ export class EditorComponent {
     }
 
     public reset(): void {
+        console.info("[EditorComponent] Resetting the editor.");
+        this.generateError = null;
         this.onClose.emit();
     }
 
-    public generate(): void {
-        console.info("Generating project");
+    public generate(gconfig: GeneratorConfig): void {
+        console.info("[EditorComponent] Generating project: ", gconfig);
+        this.generateError = null;
         let spec: any = this.apiEditor.getValue().spec;
         if (typeof spec === "object") {
             spec = JSON.stringify(spec, null, 4);
@@ -82,8 +81,12 @@ export class EditorComponent {
         let content: string = spec;
         let filename: string = "camel-project.zip";
         this.generating = true;
-        this.downloader.generateAndDownload(content, filename).then( () => {
+        this.downloader.generateAndDownload(gconfig, content, filename).then( () => {
             this.generating = false;
+        }).catch( error => {
+            console.error("[EditorComponent] Error generating project: ", error);
+            this.generating = false;
+            this.generateError = error.message;
         });
     }
 

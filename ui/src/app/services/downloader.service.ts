@@ -20,8 +20,7 @@ import {Inject, Injectable} from "@angular/core";
 import {DOCUMENT} from "@angular/common";
 import {WindowRef} from "./window-ref.service";
 import {HttpClient} from "@angular/common/http";
-import {HttpHeaders} from "../../../node_modules/@angular/common/http/src/headers";
-import {HttpParams} from "../../../node_modules/@angular/common/http/src/params";
+import {GeneratorConfig} from "./config.service";
 
 /**
  * Implements a Downloader service that helps download content to the user's local file
@@ -39,6 +38,7 @@ export class DownloaderService {
      * @param filename
      */
     public downloadToFS(content: string, contentType: string, filename: string): void {
+        console.info("[DownloaderService] Downloading an API definition.");
         let window: any = this.window.window;
 
         if (window.chrome !== undefined) {
@@ -61,11 +61,13 @@ export class DownloaderService {
 
     /**
      * Called to generate a project and download the result.
+     * @param gconfig
      * @param content
      * @param filename
      */
-    public generateAndDownload(content: string, filename: string): Promise<void> {
-        let generateApiUrl: string = "http://localhost:8080/api/v1/generate/camel-project.zip";
+    public generateAndDownload(gconfig: GeneratorConfig, content: string, filename: string): Promise<void> {
+        console.info("[DownloaderService] Generating and downloading project: ", gconfig);
+        let generateApiUrl: string = gconfig.url;
         let window: any = this.window.window;
         return this.http.post(generateApiUrl, content, {
             headers: {

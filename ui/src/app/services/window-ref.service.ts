@@ -15,8 +15,8 @@
  * limitations under the License.
  */
 
-import {Injectable, Inject, PLATFORM_ID} from '@angular/core';
-import { isPlatformBrowser } from "@angular/common";
+import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
+import {isPlatformBrowser} from "@angular/common";
 
 function _window(): Window {
     return window;
@@ -25,8 +25,8 @@ function _window(): Window {
 @Injectable()
 export class WindowRef {
 
-    window:  Window | any;
-    
+    window: Window | any;
+
     constructor(@Inject(PLATFORM_ID) private platformId: any) {
         if (isPlatformBrowser(this.platformId)) {
             this.window = _window();
@@ -34,11 +34,4 @@ export class WindowRef {
             this.window = {};
         }
     }
-
-    // get window(): Window | any {
-    //     if (isPlatformBrowser(this.platformId)) {
-    //         return _window();
-    //     }
-    //     return {};
-    // }
 }

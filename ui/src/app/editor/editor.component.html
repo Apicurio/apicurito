@@ -4,33 +4,34 @@
         <button class="btn btn-lg btn-default btn-reset" [disabled]="!dirty" data-toggle="modal" data-target="#reset-modal">Reset</button>
         <span class="vertical-divider"></span>
 
-
         <div class="btn-group dropdown" dropdown>
-            <button type="button" class="btn btn-default dropdown-toggle" dropdownToggle>
-                <span *ngIf="!generating">Generate</span>
+            <button type="button" class="btn btn-lg btn-default dropdown-toggle" dropdownToggle title="{{ generateError }}">
+                <span *ngIf="!generating">
+                    <span *ngIf="generateError" class="pficon pficon-error-circle-o"></span>
+                    <span>Generate</span>
+                </span>
                 <span *ngIf="generating"><span class="spinner spinner-xs spinner-inline"></span> Generating</span>
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right" *dropdownMenu>
-                <li *ngFor="let g of config.generators"><a (click)="generate(g)">{{g.name}}</a></li>
+                <li *ngFor="let g of config.generators"><a (click)="generate(g)">{{ g.name }}</a></li>
             </ul>
         </div>
     </div>
     <div class="editor">
-        <api-editor #apiEditor [api]="api" [embedded]="true"
-                    (onCommandExecuted)="onUserChange($event)"
-                    (onSelectionChanged)="onUserSelection($event)"></api-editor>
+        <api-editor #apiEditor [api]="api" [embedded]="true" (onCommandExecuted)="onUserChange($event)"></api-editor>
     </div>
 </div>
 <div class="modal fade" id="reset-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content about-modal-pf">
-            <confirmation-modal 
-                (confirmation)="$event && reset()" 
-                title="Are You Sure?" 
+        <div class="modal-content">
+            <confirmation-modal
+                (confirmation)="$event && reset()"
+                title="Confirm API Reset"
+                message="Are you sure?"
                 okText="Reset">
                 <p>
-                    Are you sure you want to reset your API design? You will loose all unsaved changes.
+                    Are you sure you want to reset your API design? You will lose all unsaved changes.
                 </p>
             </confirmation-modal>
         </div>

@@ -39,13 +39,13 @@ export class ConfigService implements Config {
     }];
 
     constructor(private windowRef: WindowRef) {
-        var serverConfig = windowRef.window["ApicuritoConfig"]
+        let serverConfig: any = windowRef.window["ApicuritoConfig"]
 
         if (serverConfig) {
-            console.info("Loaded config from server.");
+            console.info("[ConfigService] Loaded config from server.");
             this.generators = serverConfig.generators;
         } else {
-            console.info("Could not load config from server, using defaults.");
+            console.warn("[ConfigService] Could not load config from server, using defaults.");
         }
     }
 }

@@ -14,45 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- import { Component, Output, EventEmitter, Input } from '@angular/core';
+import {Component, Output, EventEmitter, Input} from '@angular/core';
 
 @Component({
-  selector: 'confirmation-modal',
-  template: `
-<div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-      <span class="pficon pficon-close"></span>
-  </button>
-</div>
-<div class="modal-body">
-  <h1 class="about-title">{{ title }}</h1>
-    <div>
-      <ng-content></ng-content>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button"
-            class="btn btn-default"
-            (click)="onModalClick(false)"
-            data-dismiss="modal">
-      {{ cancelText }}
-    </button>
-    <button type="button"
-            class="btn btn-danger"
-            (click)="onModalClick(true)"
-            data-dismiss="modal">
-      {{ okText }}
-    </button>
-  </div>
-  `
+    selector: 'confirmation-modal',
+    templateUrl: "confirmation-modal.component.html"
 })
 export class ConfirmationModalComponent {
-  @Input() title = 'Warning';
-  @Input() okText = 'OK';
-  @Input() cancelText = 'Cancel';
-  @Output() confirmation = new EventEmitter<boolean>();
+    @Input() title = 'Confirmation';
+    @Input() message = 'Are you sure?';
+    @Input() okText = 'OK';
+    @Input() cancelText = 'Cancel';
+    @Output() confirmation = new EventEmitter<boolean>();
 
-  onModalClick(confirmation: boolean): void {
-    this.confirmation.emit(confirmation);
-  }
+    onModalClick(confirmation: boolean): void {
+        this.confirmation.emit(confirmation);
+    }
 }
