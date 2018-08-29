@@ -11,10 +11,6 @@
     <packaging>jar</packaging>
     <name>apicurito-ui</name>
 
-    <properties>
-        <image.ui>apicurio/apicurito-ui:%l</image.ui>
-    </properties>
-
     <build>
         <plugins>
             <plugin>
