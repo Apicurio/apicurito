@@ -1,7 +1,7 @@
 <div class="app-editor">
     <div class="actionbar">
         <button class="btn btn-lg btn-primary btn-save" (click)="save()">Save</button>
-        <button class="btn btn-lg btn-default btn-reset" [disabled]="!dirty" data-toggle="modal" data-target="#reset-modal">Reset</button>
+        <button class="btn btn-lg btn-default btn-reset" data-toggle="modal" data-target="#reset-modal">Reset</button>
         <span class="vertical-divider"></span>
 
         <div class="btn-group dropdown" dropdown>
@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="editor">
-        <api-editor #apiEditor [api]="api" [embedded]="true" (onCommandExecuted)="onUserChange()"></api-editor>
+        <api-editor #apiEditor [api]="api" [embedded]="true"></api-editor>
     </div>
 </div>
 <div class="modal fade" id="reset-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -42,15 +42,10 @@ export class EditorComponent {
     @Output() onClose: EventEmitter<void> = new EventEmitter<void>();
 
     @ViewChild("apiEditor") apiEditor: ApiEditorComponent;
-    dirty: boolean = false;
     generating: boolean = false;
     generateError: string = null;
 
     constructor(private downloader: DownloaderService, public config:ConfigService) {}
-
-    public onUserChange(/*command: OtCommand*/): void {
-        this.dirty = true;
-    }
 
     public save(): void {
         console.info("[EditorComponent] Saving the API definition.");
