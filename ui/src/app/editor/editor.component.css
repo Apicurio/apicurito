@@ -35,3 +35,7 @@
 .app-editor .btn-group .dropdown-menu li a {
   cursor: pointer;
 }
+
+.confirm-close-modal .modal-footer .btn-danger {
+  float: left;
+}

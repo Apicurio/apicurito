@@ -28,7 +28,6 @@ import {EmptyStateComponent} from "./empty/empty-state.component";
 import {EditorComponent} from "./editor/editor.component";
 import {DownloaderService} from "./services/downloader.service";
 import {HttpClientModule} from "@angular/common/http";
-import {ConfirmationModalComponent} from "./common/confirmation-modal.component";
 import { AppInfoService } from './services/app-info.service';
 import { ConfigService } from './services/config.service';
 
@@ -46,8 +45,7 @@ import { ConfigService } from './services/config.service';
         AppComponent, 
         NavHeaderComponent, 
         EmptyStateComponent, 
-        EditorComponent, 
-        ConfirmationModalComponent
+        EditorComponent
     ],
     providers: [WindowRef, AppInfoService, ConfigService, DownloaderService],
     bootstrap: [AppComponent]

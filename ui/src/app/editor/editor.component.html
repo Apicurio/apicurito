@@ -1,7 +1,7 @@
 <div class="app-editor">
     <div class="actionbar">
         <button class="btn btn-lg btn-primary btn-save" (click)="save()">Save</button>
-        <button class="btn btn-lg btn-default btn-reset" data-toggle="modal" data-target="#reset-modal">Close</button>
+        <button class="btn btn-lg btn-default btn-close" data-toggle="modal" data-target="#close-modal">Close</button>
         <span class="vertical-divider"></span>
 
         <div class="btn-group dropdown" dropdown>
@@ -22,19 +22,30 @@
         <api-editor #apiEditor [api]="api" [embedded]="true"></api-editor>
     </div>
 </div>
-<div class="modal fade" id="reset-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="confirm-close-modal modal fade" id="close-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <confirmation-modal
-                (confirmation)="$event && reset()"
-                title="Confirm Close"
-                message="Are you sure?"
-                cancelText="No"
-                okText="Yes">
-                <p>
-                    Are you sure you want to close your API design? You will lose all unsaved changes.
-                </p>
-            </confirmation-modal>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="pficon pficon-close"></span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Close API</h4>
+            </div>
+            <div class="modal-body">
+                <h2 class="about-title">Save changes before closing?</h2>
+                <div>
+                    Save changes to the API before closing?
+                    Not saving changes will result in any changes being lost.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger"
+                        (click)="close()" data-dismiss="modal">Don't Save</button>
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary"
+                        (click)="saveAndClose()" data-dismiss="modal">Save</button>
+            </div>
         </div>
     </div>
 </div>

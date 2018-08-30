@@ -47,7 +47,7 @@ export class EditorComponent {
 
     constructor(private downloader: DownloaderService, public config:ConfigService) {}
 
-    public save(): void {
+    public save(): Promise<boolean> {
         console.info("[EditorComponent] Saving the API definition.");
         this.generateError = null;
         let spec: any = this.apiEditor.getValue().spec;
@@ -57,13 +57,20 @@ export class EditorComponent {
         let content: string = spec;
         let ct: string = "application/json";
         let filename: string = "openapi-spec.json";
-        this.downloader.downloadToFS(content, ct, filename);
+        return this.downloader.downloadToFS(content, ct, filename);
     }
 
-    public reset(): void {
-        console.info("[EditorComponent] Resetting the editor.");
+    public close(): void {
+        console.info("[EditorComponent] Closing the editor.");
         this.generateError = null;
         this.onClose.emit();
+    }
+
+    public saveAndClose(): void {
+        console.info("[EditorComponent] Saving and then closing the editor.");
+        this.save().then( () => {
+            this.close();
+        });
     }
 
     public generate(gconfig: GeneratorConfig): void {
