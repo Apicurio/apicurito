@@ -19,6 +19,7 @@ import {Component, EventEmitter, Input, Output, ViewChild} from "@angular/core";
 import {ApiDefinition, ApiEditorComponent} from "apicurio-design-studio";
 import {DownloaderService} from "../services/downloader.service";
 import {ConfigService, GeneratorConfig} from "../services/config.service";
+import * as YAML from "yamljs";
 
 @Component({
     moduleId: module.id,
@@ -47,16 +48,22 @@ export class EditorComponent {
 
     constructor(private downloader: DownloaderService, public config:ConfigService) {}
 
-    public save(): Promise<boolean> {
+    public save(format: string = "json"): Promise<boolean> {
         console.info("[EditorComponent] Saving the API definition.");
         this.generateError = null;
+        let ct: string = "application/json";
+        let filename: string = "openapi-spec";
         let spec: any = this.apiEditor.getValue().spec;
         if (typeof spec === "object") {
-            spec = JSON.stringify(spec, null, 4);
+            if (format === "json") {
+                spec = JSON.stringify(spec, null, 4);
+                filename += ".json";
+            } else {
+                spec = YAML.stringify(spec, 100, 4);
+                filename += ".yaml";
+            }
         }
         let content: string = spec;
-        let ct: string = "application/json";
-        let filename: string = "openapi-spec.json";
         return this.downloader.downloadToFS(content, ct, filename);
     }
 

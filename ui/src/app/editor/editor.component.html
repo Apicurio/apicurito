@@ -1,9 +1,24 @@
 <div class="app-editor">
     <div class="actionbar">
-        <button class="btn btn-lg btn-primary btn-save" (click)="save()">Save</button>
+        <!-- Save Button -->
+        <!--<button class="btn btn-lg btn-primary btn-save" (click)="save()">Save</button>-->
+        <div class="btn-group">
+            <button type="button" class="btn btn-lg btn-primary" (click)="save('yaml')">Save As...</button>
+            <button type="button" class="btn btn-lg btn-primary dropdown-toggle btn-save" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a (click)="save('yaml')">Save as YAML</a></li>
+                <li><a (click)="save('json')">Save as JSON</a></li>
+            </ul>
+        </div>
+
+        <!-- Close Button -->
         <button class="btn btn-lg btn-default btn-close" data-toggle="modal" data-target="#close-modal">Close</button>
         <span class="vertical-divider"></span>
 
+        <!-- Generate Project Button -->
         <div class="btn-group dropdown" dropdown>
             <button type="button" class="btn btn-lg btn-default dropdown-toggle" dropdownToggle title="{{ generateError }}">
                 <span *ngIf="!generating">
