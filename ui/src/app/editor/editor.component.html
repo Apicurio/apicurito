@@ -20,9 +20,8 @@
 
         <!-- Generate Project Button -->
         <div class="btn-group dropdown" dropdown>
-            <button type="button" class="btn btn-lg btn-default dropdown-toggle" dropdownToggle title="{{ generateError }}">
+            <button type="button" class="btn btn-lg btn-default dropdown-toggle" dropdownToggle>
                 <span *ngIf="!generating">
-                    <span *ngIf="generateError" class="pficon pficon-error-circle-o"></span>
                     <span>Generate</span>
                 </span>
                 <span *ngIf="generating"><span class="spinner spinner-xs spinner-inline"></span> Generating</span>
@@ -36,6 +35,25 @@
     <div class="editor">
         <api-editor #apiEditor [api]="api" [embedded]="true"></api-editor>
     </div>
+
+    <!-- Toast Notification: Generation Success -->
+    <div class="toast-pf alert alert-success alert-dismissable" [class.shown]="showSuccessToast">
+        <button type="button" class="close" (click)="closeSuccessToast()">
+            <span class="pficon pficon-close"></span>
+        </button>
+        <span class="pficon pficon-ok"></span>
+        <strong>Success!</strong> The project has been successfully generated.
+    </div>
+
+    <!-- Toast Notification: Generation Failed -->
+    <div class="toast-pf alert alert-danger alert-dismissable" [class.shown]="showErrorToast">
+        <button type="button" class="close" (click)="closeErrorToast()">
+            <span class="pficon pficon-close"></span>
+        </button>
+        <span class="pficon pficon-error-circle-o"></span>
+        Failed to generate the project.
+    </div>
+
 </div>
 <div class="confirm-close-modal modal fade" id="close-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

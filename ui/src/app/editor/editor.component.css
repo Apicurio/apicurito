@@ -39,3 +39,21 @@
 .confirm-close-modal .modal-footer .btn-danger {
   float: left;
 }
+
+.toast-pf {
+  position: absolute;
+  max-width: 500px;
+  top: -100px;
+  left: 20px;
+  opacity: 0;
+  -webkit-transition: all .25s ease-out;
+  -moz-transition: all .25s ease-out;
+  -ms-transition: all .25s ease-out;
+  -o-transition: all .25s ease-out;
+  transition: all .25s ease-out;
+}
+.toast-pf.shown {
+  top: 4px;
+  left: 20px;
+  opacity: 1;
+}

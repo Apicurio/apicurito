@@ -46,6 +46,10 @@ export class EditorComponent {
     generating: boolean = false;
     generateError: string = null;
 
+    showSuccessToast: boolean = false;
+    showErrorToast: boolean = false;
+    toastTimeoutId: number = null;
+
     constructor(private downloader: DownloaderService, public config:ConfigService) {}
 
     public save(format: string = "json"): Promise<boolean> {
@@ -82,7 +86,11 @@ export class EditorComponent {
 
     public generate(gconfig: GeneratorConfig): void {
         console.info("[EditorComponent] Generating project: ", gconfig);
+
         this.generateError = null;
+        this.showErrorToast = false;
+        this.showSuccessToast = false;
+
         let spec: any = this.apiEditor.getValue().spec;
         if (typeof spec === "object") {
             spec = JSON.stringify(spec, null, 4);
@@ -92,11 +100,30 @@ export class EditorComponent {
         this.generating = true;
         this.downloader.generateAndDownload(gconfig, content, filename).then( () => {
             this.generating = false;
+            this.showSuccessToast = true;
+            this.toastTimeoutId = setTimeout(() => {
+                this.showSuccessToast = false;
+            }, 5000);
         }).catch( error => {
             console.error("[EditorComponent] Error generating project: ", error);
             this.generating = false;
             this.generateError = error.message;
+            this.showErrorToast = true;
+            // Only fade-away automatically for successful generation.  Error stays until dismissed.
+            // this.toastTimeoutId = setTimeout(() => {
+            //     this.showErrorToast = false;
+            // }, 5000);
         });
+    }
+
+    public closeSuccessToast(): void {
+        this.showSuccessToast = false;
+        clearTimeout(this.toastTimeoutId);
+    }
+
+    public closeErrorToast(): void {
+        this.showErrorToast = false;
+        clearTimeout(this.toastTimeoutId);
     }
 
 }
