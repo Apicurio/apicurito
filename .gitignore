@@ -7,3 +7,4 @@ node_modules
 dist/
 node/
 target/
+bindata_assetfs.go

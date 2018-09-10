@@ -141,6 +141,40 @@
             <build>
                 <plugins>
                     <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.6.0</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <phase>package</phase>
+                                <configuration>
+                                    <workingDirectory>${project.basedir}/cmd</workingDirectory>
+                                    <executable>make</executable>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>package-binaries</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                                <configuration>
+                                    <descriptorSourceDirectory>${project.basedir}/assembly-descriptors</descriptorSourceDirectory>
+                                    <finalName>${project.name}-${project.version}</finalName>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
                         <groupId>io.fabric8</groupId>
                         <artifactId>fabric8-maven-plugin</artifactId>
                         <executions>
@@ -165,7 +199,7 @@
                                         <assembly>
                                             <inline>
                                                 <fileSet>
-                                                    <directory>target/classes</directory>
+                                                    <directory>target/go/linux-amd64</directory>
                                                 </fileSet>
                                             </inline>
                                         </assembly>
