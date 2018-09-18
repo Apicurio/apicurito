@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/Apicurio/apicurito.svg?style=svg)](https://circleci.com/gh/Apicurio/apicurito)
+
 # Apicurito (Apicurio Lite)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
