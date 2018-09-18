@@ -17,19 +17,27 @@ package main
 
 import (
 	"fmt"
+	"os"
+
 	"github.com/elazarl/go-bindata-assetfs"
 	"github.com/jboss-fuse/simble/v1/cmd/http"
 	"github.com/jboss-fuse/simble/v1/pkg/simble/static"
-	"os"
 )
-
-//go:generate go-bindata-assetfs -prefix ../dist ../dist/...
 
 func main() {
 	static.DefaultAssetFS = &assetfs.AssetFS{Asset: Asset, AssetDir: AssetDir, AssetInfo: AssetInfo, Prefix: ""}
 	// Lets update our root command be named what the
 	// executable is actually called
 	http.Command.Use = os.Args[0]
+	http.Command.Flags().MarkHidden("prefix")
+	http.Command.Flags().MarkHidden("etags")
+	http.Command.Flags().Set("etags", "true")
+	http.Command.Flags().MarkHidden("spa")
+
+	// Can't enable spa mode yet, as /config/config.js is an optional
+	// file we want a 404 on.
+	// http.Command.Flags().Set("spa", "true")
+
 	if err := http.Command.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
