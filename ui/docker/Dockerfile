@@ -24,6 +24,6 @@ EXPOSE 8080
 
 COPY licenses /licenses
 COPY ${SRC_DIR}/apicurito-ui /apicurito-ui
-CMD [  "/apicurito-ui", "--port", "8080", "--path", "/html"]
+CMD [  "/apicurito-ui", "--port", "8080", "--path", "/html", "--spa", "--etags"]
 
 

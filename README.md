@@ -15,11 +15,6 @@ reload if you change any of the source files.
 To run on a different port, try `ng serve --port 8888` for example.  And if you want AOT enabled, 
 you can run `ng serve --aot --port 8888`.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. 
-Use the `-prod` flag for a production build.
-
 
 ## Running On Openshift
 
@@ -40,3 +35,7 @@ into the current project, then run the following to configure Apicurito to use i
 
 	./enable-fuse-generator.sh 
 
+## Publishing the Image
+
+    mvn clean install -P image -Dfabric8.mode=kubernetes
+    docker push apicurio/apicurito-ui:latest

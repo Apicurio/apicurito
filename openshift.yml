@@ -24,8 +24,10 @@ items:
     labels:
       app: apicurito
   data:
-    config.json: |
-      {
+    config.js: |
+      var ApicuritoConfig = {
+          "generators": [
+          ]
       }
 
 - apiVersion: v1
@@ -106,7 +108,7 @@ items:
           ports:
           - containerPort: 8080
           volumeMounts:
-          - mountPath: /usr/share/nginx/html/config
+          - mountPath: /html/config
             name: config-volume
           # Set to burstable with a low memory footprint to start (50 Mi)
           resources:
