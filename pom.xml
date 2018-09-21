@@ -90,6 +90,7 @@
         <version.docker.plugin>0.11.2</version.docker.plugin>
         <version.frontend-maven.plugin>1.6</version.frontend-maven.plugin>
         <version.scala-maven.plugin>3.2.2</version.scala-maven.plugin>
+        <version.fabric8.maven.plugin>3.5.33</version.fabric8.maven.plugin>
 
         <!-- Dependency Versions -->
         <version.com.fasterxml.jackson>2.9.4</version.com.fasterxml.jackson>
@@ -264,6 +265,11 @@
                             </configuration>
                         </execution>
                     </executions>
+                </plugin>
+                <plugin>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>fabric8-maven-plugin</artifactId>
+                    <version>${version.fabric8.maven.plugin}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>

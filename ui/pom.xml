@@ -81,12 +81,8 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                            <outputDirectory>${basedir}/dist</outputDirectory>
                             <resources>
-                                <resource>
-                                    <directory>${basedir}/dist</directory>
-                                    <filtering>false</filtering>
-                                </resource>
                                 <resource>
                                     <directory>${basedir}/static</directory>
                                     <filtering>true</filtering>
@@ -152,7 +148,7 @@
                                 <phase>package</phase>
                                 <configuration>
                                     <workingDirectory>${project.basedir}/cmd</workingDirectory>
-                                    <executable>make</executable>
+                                    <executable>${project.basedir}/cmd/build.sh</executable>
                                 </configuration>
                             </execution>
                         </executions>
@@ -168,7 +164,10 @@
                                     <goal>single</goal>
                                 </goals>
                                 <configuration>
-                                    <descriptorSourceDirectory>${project.basedir}/assembly-descriptors</descriptorSourceDirectory>
+                                    <!-- <descriptorSourceDirectory>${project.basedir}/assembly-descriptors</descriptorSourceDirectory> -->
+                                    <descriptors>
+                                        <descriptor>${project.basedir}/assembly-descriptors/linux-amd64.xml</descriptor>
+                                    </descriptors>
                                     <finalName>${project.name}-${project.version}</finalName>
                                 </configuration>
                             </execution>
