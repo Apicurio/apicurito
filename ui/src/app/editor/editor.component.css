@@ -40,7 +40,7 @@
   float: left;
 }
 
-.toast-pf {
+.alert-global {
   position: absolute;
   max-width: 500px;
   top: -100px;
@@ -52,7 +52,7 @@
   -o-transition: all .25s ease-out;
   transition: all .25s ease-out;
 }
-.toast-pf.shown {
+.alert-global.shown {
   top: 4px;
   left: 20px;
   opacity: 1;

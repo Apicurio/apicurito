@@ -36,8 +36,8 @@
         <api-editor #apiEditor [api]="api" [embedded]="true"></api-editor>
     </div>
 
-    <!-- Toast Notification: Generation Success -->
-    <div class="toast-pf alert alert-success alert-dismissable" [class.shown]="showSuccessToast">
+    <!-- Inline Notification: Generation Success -->
+    <div class="alert-global alert alert-success alert-dismissable" [class.shown]="showSuccessToast">
         <button type="button" class="close" (click)="closeSuccessToast()">
             <span class="pficon pficon-close"></span>
         </button>
@@ -45,8 +45,8 @@
         <strong>Success!</strong> The project has been successfully generated.
     </div>
 
-    <!-- Toast Notification: Generation Failed -->
-    <div class="toast-pf alert alert-danger alert-dismissable" [class.shown]="showErrorToast">
+    <!-- Inline Notification: Generation Failed -->
+    <div class="alert-global alert alert-danger alert-dismissable" [class.shown]="showErrorToast">
         <button type="button" class="close" (click)="closeErrorToast()">
             <span class="pficon pficon-close"></span>
         </button>
