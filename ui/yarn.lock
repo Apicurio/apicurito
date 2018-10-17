@@ -504,9 +504,9 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-apicurio-design-studio@0.2.15:
-  version "0.2.15"
-  resolved "https://registry.yarnpkg.com/apicurio-design-studio/-/apicurio-design-studio-0.2.15.tgz#fe5d3fc9910e9f19eb2ecd15a1edb8143bdda1ab"
+apicurio-design-studio@0.2.17:
+  version "0.2.17"
+  resolved "https://registry.yarnpkg.com/apicurio-design-studio/-/apicurio-design-studio-0.2.17.tgz#aad76be4cfa9d2227f15f9de108fdf8b084ef350"
   dependencies:
     tslib "^1.7.1"
 
@@ -3790,16 +3790,16 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
-oai-ts-commands@^0.2.41:
-  version "0.2.41"
-  resolved "https://registry.yarnpkg.com/oai-ts-commands/-/oai-ts-commands-0.2.41.tgz#7f164a1e29ae82329649acb38a6ddc83081f0a67"
+oai-ts-commands@^0.2.48:
+  version "0.2.48"
+  resolved "https://registry.yarnpkg.com/oai-ts-commands/-/oai-ts-commands-0.2.48.tgz#59d00549bbfb4f3fc32ea1f6dd3f8eccdf1c6e5a"
   dependencies:
     core-js "2.4.1"
-    oai-ts-core "0.2.23"
+    oai-ts-core "0.2.26"
 
-oai-ts-core@0.2.23, oai-ts-core@^0.2.23:
-  version "0.2.23"
-  resolved "https://registry.yarnpkg.com/oai-ts-core/-/oai-ts-core-0.2.23.tgz#080c2855fde11ee3fd2649cc1e2594cf6e3f21b1"
+oai-ts-core@0.2.26, oai-ts-core@^0.2.26:
+  version "0.2.26"
+  resolved "https://registry.yarnpkg.com/oai-ts-core/-/oai-ts-core-0.2.26.tgz#152083bddfdb8ebe13e15df4e33ad05fe4848bb4"
   dependencies:
     core-js "2.4.1"
 
@@ -4072,9 +4072,9 @@ patternfly-bootstrap-treeview@~2.1.0:
     bootstrap "3.3.x"
     jquery ">= 2.1.x"
 
-patternfly@3.54.1:
-  version "3.54.1"
-  resolved "https://registry.yarnpkg.com/patternfly/-/patternfly-3.54.1.tgz#a0f8b52076aa405486e77ecb504460b1ff35fe92"
+patternfly@3.54.8:
+  version "3.54.8"
+  resolved "https://registry.yarnpkg.com/patternfly/-/patternfly-3.54.8.tgz#fd6c69714dc460575d2534c9f29017a58b442a83"
   dependencies:
     bootstrap "~3.3.7"
     font-awesome "^4.7.0"
