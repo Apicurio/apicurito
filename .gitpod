@@ -1,0 +1,6 @@
+image: "gitpod/workspace-full"
+tasks:
+    - command: "cd ui && yarn install"
+ports:
+    - port: 4200
+      protocol: "http"
