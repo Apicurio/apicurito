@@ -1,0 +1,59 @@
+kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
+metadata:
+  labels:
+    app: {{ .Values.name | quote }}
+    component: {{ .Values.component | quote }}
+  name: {{ .Values.component | quote }}
+spec:
+  replicas: 2
+  selector:
+    app: {{ .Values.name | quote }}
+    component: {{ .Values.component | quote }}
+  strategy:
+    type: Rolling
+  triggers:
+  - type: ImageChange
+    imageChangeParams:
+      automatic: true
+      containerNames:
+      - {{ .Values.component | quote }}
+      from:
+        kind: ImageStreamTag
+        name: {{ print .Values.component ":latest" | quote }}
+  - type: ConfigChange
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name | quote }}
+        component: {{ .Values.component | quote }}
+    spec:
+      containers:
+      - name: {{ .Values.component | quote }}
+        image: ' '
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          httpGet:
+            path: "/"
+            port: 8080
+          initialDelaySeconds: 30
+        readinessProbe:
+          httpGet:
+            path: "/"
+            port: 8080
+          initialDelaySeconds: 1
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: /html/config
+          name: config-volume
+        # Set to burstable with a low memory footprint to start (50 Mi)
+        resources:
+          limits:
+            memory:  {{ .Values.resource_memory_limit | quote }}
+          requests:
+            memory: {{ .Values.resource_memory_request | quote }}
+      volumes:
+      - name: config-volume
+        configMap:
+          name: {{ print .Values.component "-config" | quote }}

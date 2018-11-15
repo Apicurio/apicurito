@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ print .Values.component "-config" | quote }}
+  labels:
+    app: {{ .Values.name | quote }}
+data:
+  config.js: |
+    var ApicuritoConfig = {
+        "generators": [
+        ]
+    }

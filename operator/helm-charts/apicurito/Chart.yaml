@@ -1,0 +1,8 @@
+description: A small/minimal version of Apicurio used for standalone editing of API designs
+home: http://www.apicur.io/
+keywords:
+- apicurito
+name: apicurito
+sources:
+- https://github.com/Apicurio/apicurito
+version: "0.0.1"

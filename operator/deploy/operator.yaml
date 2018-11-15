@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apicurito-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: apicurito-operator
+  template:
+    metadata:
+      labels:
+        name: apicurito-operator
+    spec:
+      containers:
+        - name: apicurito-operator
+          image: REPLACE_OPERATOR_IMAGE
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
