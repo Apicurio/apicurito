@@ -25,6 +25,7 @@
     "core-js": "^2.4.1",
     "marked": "0.5.0",
     "ngx-bootstrap": "2.0.2",
+    "ngx-clipboard": "11.1.9",
     "oai-ts-commands": "^0.2.48",
     "oai-ts-core": "^0.2.26",
     "patternfly": "3.54.8",
