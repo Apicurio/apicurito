@@ -17,6 +17,7 @@
 
 import {Component, EventEmitter, Output} from "@angular/core";
 import {NewApiTemplates} from "./empty-state.data";
+import * as YAML from "yamljs";
 
 @Component({
     moduleId: module.id,
@@ -70,7 +71,13 @@ export class EmptyStateComponent {
                     me.error = "Error parsing OpenAPI file.  Perhaps it is not valid JSON?";
                 }
             } else {
-                // TODO add support for YAML files
+                try {
+                    jsObj = YAML.parse(content);
+                    me.onOpen.emit(jsObj);
+                } catch (e) {
+                    console.error("Error parsing file.", e);
+                    me.error = "Error parsing OpenAPI file.  Perhaps it is not valid YAML?";
+                }
                 me.error = "YAML not yet supported.";
             }
         };
