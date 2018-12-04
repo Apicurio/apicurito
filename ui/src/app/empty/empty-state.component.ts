@@ -78,7 +78,6 @@ export class EmptyStateComponent {
                     console.error("Error parsing file.", e);
                     me.error = "Error parsing OpenAPI file.  Perhaps it is not valid YAML?";
                 }
-                me.error = "YAML not yet supported.";
             }
         };
         reader.onerror = function(e) {
