@@ -8,9 +8,7 @@
         Welcome to Apicurito
     </h1>
     <p>
-        Design beautiful, functional APIs
-        with zero coding, using a visual designer for 
-        OpenAPI documents.
+        Design beautiful, functional APIs with zero coding, using a visual designer for OpenAPI documents.
     </p>
     <p>
         Learn more about the <a href="https://www.apicur.io/">Apicurio project</a>.
@@ -18,6 +16,15 @@
     <div class="blank-slate-pf-main-action">
         <button class="btn btn-primary btn-lg btn-new" (click)="createNewApi()">New API</button>
         <button class="btn btn-default btn-lg btn-load" (click)="loadfile.click()">Open API</button>
+
+        <div class="recovery-notice" *ngIf="hasRecoverableApi()">
+            <div class="alert alert-warning">
+                <span class="pficon pficon-warning-triangle-o"></span>
+                <strong>In-Progress API Detected!</strong> It looks like you have an unfinished API.
+                <a (click)="reoverApi()" class="alert-link">Recover my API</a>
+            </div>
+        </div>
+
         <div class="dnd-notification">Or drag and drop a file onto the page...</div>
         <div>
             <div class="alert alert-danger" *ngIf="error !== null">

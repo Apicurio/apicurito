@@ -20,6 +20,7 @@ import {ApiDefinition, ApiEditorComponent} from "apicurio-design-studio";
 import {DownloaderService} from "../services/downloader.service";
 import {ConfigService, GeneratorConfig} from "../services/config.service";
 import * as YAML from "yamljs";
+import {StorageService} from "../services/storage.service";
 
 @Component({
     moduleId: module.id,
@@ -50,7 +51,25 @@ export class EditorComponent {
     showErrorToast: boolean = false;
     toastTimeoutId: number = null;
 
-    constructor(private downloader: DownloaderService, public config:ConfigService) {}
+    persistenceTimeout: number;
+
+    constructor(private downloader: DownloaderService, public config: ConfigService,
+                private storage: StorageService) {}
+
+    /**
+     * Called whenever the API definition is changed by the user.
+     */
+    public documentChanged(): any {
+        console.info("[EditorComponent] Detected a document change, scheduling disaster recovery persistence");
+        if (this.persistenceTimeout) {
+            clearTimeout(this.persistenceTimeout);
+            this.persistenceTimeout = null;
+        }
+        this.persistenceTimeout = setTimeout( () => {
+            this.storage.store(this.apiEditor.getValue());
+            this.persistenceTimeout = null;
+        }, 5000);
+    }
 
     public save(format: string = "json"): Promise<boolean> {
         console.info("[EditorComponent] Saving the API definition.");
@@ -68,12 +87,16 @@ export class EditorComponent {
             }
         }
         let content: string = spec;
-        return this.downloader.downloadToFS(content, ct, filename);
+        return this.downloader.downloadToFS(content, ct, filename).then( rval => {
+            this.storage.clear();
+            return rval;
+        });
     }
 
     public close(): void {
         console.info("[EditorComponent] Closing the editor.");
         this.generateError = null;
+        this.storage.clear();
         this.onClose.emit();
     }
 

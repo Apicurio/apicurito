@@ -18,6 +18,8 @@
 import {Component, EventEmitter, Output} from "@angular/core";
 import {NewApiTemplates} from "./empty-state.data";
 import * as YAML from "yamljs";
+import {StorageService} from "../services/storage.service";
+import {ApiDefinition} from "apicurio-design-studio";
 
 @Component({
     moduleId: module.id,
@@ -33,7 +35,18 @@ export class EmptyStateComponent {
     error: string = null;
     templates: NewApiTemplates = new NewApiTemplates();
 
-    constructor() {}
+    constructor(private storage: StorageService) {}
+
+    public hasRecoverableApi(): boolean {
+        return this.storage.exists();
+    }
+
+    public reoverApi(): void {
+        console.info("[EmptyStateComponent] Recovering an API definition that was in-progress");
+        let apiDef: ApiDefinition = this.storage.recover();
+        let api: any = apiDef.spec;
+        this.onOpen.emit(api);
+    }
 
     public createNewApi(): void {
         this.error = null;

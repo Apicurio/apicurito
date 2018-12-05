@@ -28,8 +28,9 @@ import {EmptyStateComponent} from "./empty/empty-state.component";
 import {EditorComponent} from "./editor/editor.component";
 import {DownloaderService} from "./services/downloader.service";
 import {HttpClientModule} from "@angular/common/http";
-import { AppInfoService } from './services/app-info.service';
-import { ConfigService } from './services/config.service';
+import {AppInfoService} from './services/app-info.service';
+import {ConfigService} from './services/config.service';
+import {StorageService} from "./services/storage.service";
 
 @NgModule({
     imports: [
@@ -47,7 +48,7 @@ import { ConfigService } from './services/config.service';
         EmptyStateComponent, 
         EditorComponent
     ],
-    providers: [WindowRef, AppInfoService, ConfigService, DownloaderService],
+    providers: [WindowRef, AppInfoService, ConfigService, DownloaderService, StorageService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
