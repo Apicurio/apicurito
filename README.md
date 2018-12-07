@@ -6,13 +6,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Before running the dev server you must install `node` and `yarn`.  Once these tools are installed
-you must run `yarn install` to download all of the project's dependencies.
+Before running the dev server you must install `node` and `yarn`. Once these tools are installed
+you must run `yarn install` to download all of the project's dependencies from `ui` folder.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically 
+Run `ng serve` from `ui` folder for a dev server. Navigate to `http://localhost:4200/`. The app will automatically 
 reload if you change any of the source files.
 
-To run on a different port, try `ng serve --port 8888` for example.  And if you want AOT enabled, 
+To run on a different port, try `ng serve --port 8888` for example. And if you want AOT enabled, 
 you can run `ng serve --aot --port 8888`.
 
 
