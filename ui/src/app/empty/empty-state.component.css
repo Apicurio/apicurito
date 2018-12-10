@@ -1,6 +1,9 @@
 .blank-slate-pf {
   margin: 40px;
 }
+.blank-slate-pf .blank-slate-pf-main-action .alert-link {
+  cursor: pointer;
+}
 
 .blank-slate-pf.dragging {
   border: 1px dashed #39a5dc;

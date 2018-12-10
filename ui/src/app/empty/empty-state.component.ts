@@ -17,6 +17,9 @@
 
 import {Component, EventEmitter, Output} from "@angular/core";
 import {NewApiTemplates} from "./empty-state.data";
+import * as YAML from "yamljs";
+import {StorageService} from "../services/storage.service";
+import {ApiDefinition} from "apicurio-design-studio";
 
 @Component({
     moduleId: module.id,
@@ -32,7 +35,18 @@ export class EmptyStateComponent {
     error: string = null;
     templates: NewApiTemplates = new NewApiTemplates();
 
-    constructor() {}
+    constructor(private storage: StorageService) {}
+
+    public hasRecoverableApi(): boolean {
+        return this.storage.exists();
+    }
+
+    public reoverApi(): void {
+        console.info("[EmptyStateComponent] Recovering an API definition that was in-progress");
+        let apiDef: ApiDefinition = this.storage.recover();
+        let api: any = apiDef.spec;
+        this.onOpen.emit(api);
+    }
 
     public createNewApi(): void {
         this.error = null;
@@ -70,8 +84,13 @@ export class EmptyStateComponent {
                     me.error = "Error parsing OpenAPI file.  Perhaps it is not valid JSON?";
                 }
             } else {
-                // TODO add support for YAML files
-                me.error = "YAML not yet supported.";
+                try {
+                    jsObj = YAML.parse(content);
+                    me.onOpen.emit(jsObj);
+                } catch (e) {
+                    console.error("Error parsing file.", e);
+                    me.error = "Error parsing OpenAPI file.  Perhaps it is not valid YAML?";
+                }
             }
         };
         reader.onerror = function(e) {

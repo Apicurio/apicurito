@@ -33,7 +33,8 @@
         </div>
     </div>
     <div class="editor">
-        <api-editor #apiEditor [api]="api" [embedded]="true"></api-editor>
+        <api-editor #apiEditor [api]="api" [embedded]="true" (onCommandExecuted)="documentChanged()"
+                    (onUndo)="documentChanged()" (onRedo)="documentChanged()"></api-editor>
     </div>
 
     <!-- Inline Notification: Generation Success -->
