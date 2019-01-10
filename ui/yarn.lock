@@ -580,10 +580,10 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-apicurio-design-studio@0.2.17:
-  version "0.2.17"
-  resolved "https://registry.yarnpkg.com/apicurio-design-studio/-/apicurio-design-studio-0.2.17.tgz#aad76be4cfa9d2227f15f9de108fdf8b084ef350"
-  integrity sha512-FtEZ94dWfktoqfQeD9Wj1/8A+9P/2KutuQ5z6hxU3L31f+zhS8R97LcQCz30mzvgnFPKPTt9/okGNfhqkBYzzQ==
+apicurio-design-studio@0.2.19:
+  version "0.2.19"
+  resolved "https://registry.yarnpkg.com/apicurio-design-studio/-/apicurio-design-studio-0.2.19.tgz#66c417460794a9d86506ac89e7b6b1bfdc0e7bff"
+  integrity sha512-OT1RlnbkzCOTskqXHRXHWap56FYiG+d6y1y38Qb5iAS+0dggF7CQlbCKG6t/9y0WvFl6CZGxaGcbQ4yS3PchAQ==
   dependencies:
     tslib "^1.7.1"
 
@@ -4412,18 +4412,18 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-oai-ts-commands@^0.2.48:
-  version "0.2.48"
-  resolved "https://registry.yarnpkg.com/oai-ts-commands/-/oai-ts-commands-0.2.48.tgz#59d00549bbfb4f3fc32ea1f6dd3f8eccdf1c6e5a"
-  integrity sha512-Wc698xgqKtERG1XqWsngskwyK4OkjAvPzCVxy5BclLL6NO/HRISx5fxDIsT01+jR9hgWvcYTOC55kk6pjmvgWg==
+oai-ts-commands@0.2.59:
+  version "0.2.59"
+  resolved "https://registry.yarnpkg.com/oai-ts-commands/-/oai-ts-commands-0.2.59.tgz#30ccd8cd7e2de18191f3ba823a29ebd29f7ead87"
+  integrity sha512-Y+yYEzefHzq0XWy4HX2MdL4O1x77big441Dxgt1cTwbisdYg4C6W9YqmRA6fdExi9dN2wiNWrEJgtLvujf713w==
   dependencies:
     core-js "2.4.1"
-    oai-ts-core "0.2.26"
+    oai-ts-core "0.2.33"
 
-oai-ts-core@0.2.26, oai-ts-core@^0.2.26:
-  version "0.2.26"
-  resolved "https://registry.yarnpkg.com/oai-ts-core/-/oai-ts-core-0.2.26.tgz#152083bddfdb8ebe13e15df4e33ad05fe4848bb4"
-  integrity sha512-pGauPaSbNfV4JcL/Tb5GB2+bQnD3enAJM6ZvhbwU4MqQTmTSwv7Mxdvj+4EgdGrTYxTQHhJpm4DzGUTGt0a5Iw==
+oai-ts-core@0.2.33:
+  version "0.2.33"
+  resolved "https://registry.yarnpkg.com/oai-ts-core/-/oai-ts-core-0.2.33.tgz#274b1219d5222a61150f91fff9ea0bf4ede4b7d8"
+  integrity sha512-B4BHb2dJWJxwT/Hi8hLsRy4xTis4MgfkwqEpoLqr5ilra8Zo+PYF34RTrlTnR54RSMHU4lql35hkgFt+IgbBdg==
   dependencies:
     core-js "2.4.1"
 
