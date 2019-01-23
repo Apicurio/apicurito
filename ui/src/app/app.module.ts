@@ -31,6 +31,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {AppInfoService} from './services/app-info.service';
 import {ConfigService} from './services/config.service';
 import {StorageService} from "./services/storage.service";
+import {ConfigureValidationComponent} from "./editor/configure-validation.dialog";
 
 @NgModule({
     imports: [
@@ -46,7 +47,8 @@ import {StorageService} from "./services/storage.service";
         AppComponent, 
         NavHeaderComponent, 
         EmptyStateComponent, 
-        EditorComponent
+        EditorComponent,
+        ConfigureValidationComponent
     ],
     providers: [WindowRef, AppInfoService, ConfigService, DownloaderService, StorageService],
     bootstrap: [AppComponent]

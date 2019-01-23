@@ -21,6 +21,17 @@ import {DownloaderService} from "../services/downloader.service";
 import {ConfigService, GeneratorConfig} from "../services/config.service";
 import * as YAML from "yamljs";
 import {StorageService} from "../services/storage.service";
+import {IOasValidationSeverityRegistry, OasValidationProblemSeverity} from "oai-ts-core";
+
+
+export class DisableValidationRegistry implements IOasValidationSeverityRegistry {
+
+    public lookupSeverity(ruleCode: string): OasValidationProblemSeverity {
+        return OasValidationProblemSeverity.ignore;
+    }
+
+}
+
 
 @Component({
     moduleId: module.id,
@@ -53,6 +64,14 @@ export class EditorComponent {
 
     persistenceTimeout: number;
 
+    validation: IOasValidationSeverityRegistry = null;
+
+    /**
+     * Constructor.
+     * @param downloader
+     * @param config
+     * @param storage
+     */
     constructor(private downloader: DownloaderService, public config: ConfigService,
                 private storage: StorageService) {}
 
@@ -147,6 +166,14 @@ export class EditorComponent {
     public closeErrorToast(): void {
         this.showErrorToast = false;
         clearTimeout(this.toastTimeoutId);
+    }
+
+    public setValidation(enabled: boolean): void {
+        if (enabled) {
+            this.validation = null;
+        } else {
+            this.validation = new DisableValidationRegistry();
+        }
     }
 
 }
