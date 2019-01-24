@@ -34,7 +34,8 @@
     </div>
     <div class="editor">
         <api-editor #apiEditor [api]="api" [embedded]="true" (onCommandExecuted)="documentChanged()"
-                    (onUndo)="documentChanged()" (onRedo)="documentChanged()"></api-editor>
+                    (onUndo)="documentChanged()" (onRedo)="documentChanged()"
+                    [validationRegistry]="validation" (onConfigureValidation)="configureValidationDialog.open()" ></api-editor>
     </div>
 
     <!-- Inline Notification: Generation Success -->
@@ -83,3 +84,5 @@
         </div>
     </div>
 </div>
+<configure-validation-dialog #configureValidationDialog [validationEnabled]="validation === null"
+                             (onChange)="setValidation($event)"></configure-validation-dialog>
