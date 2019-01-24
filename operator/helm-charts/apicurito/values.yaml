@@ -1,0 +1,17 @@
+# Name: The name assigned to all of the frontend objects defined in this template, including app name
+name: apicurito
+
+# Component: Component name
+component: apicurito-ui
+
+# Namespace: The OpenShift Namespace where the ImageStream, Service and ConfigMaps resides.
+namespace: REPLACE_NAMESPACE
+
+# Image: Docker project with apicurito image, see apicurito build documentation for more details
+image: REPLACE_APP_IMAGE
+
+# Resource Memory Request: Initial ammount of memory commited for the container.
+resource_memory_request: 64Mi
+
+# Git Repository URL: The URL of the repository with your application source code.
+resource_repository_url: https://github.com/Apicurio/apicurito

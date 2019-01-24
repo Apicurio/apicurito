@@ -1,0 +1,5 @@
+---
+- group: apicur.io
+  version: v1alpha1
+  kind: Apicurito
+  chart: /helm-charts/apicurito
