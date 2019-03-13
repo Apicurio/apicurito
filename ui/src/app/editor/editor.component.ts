@@ -19,7 +19,7 @@ import {Component, EventEmitter, Input, Output, ViewChild} from "@angular/core";
 import {ApiDefinition, ApiEditorComponent} from "apicurio-design-studio";
 import {DownloaderService} from "../services/downloader.service";
 import {ConfigService, GeneratorConfig} from "../services/config.service";
-import * as YAML from "yamljs";
+import * as YAML from 'js-yaml';
 import {StorageService} from "../services/storage.service";
 import {IOasValidationSeverityRegistry, OasValidationProblemSeverity} from "oai-ts-core";
 
@@ -101,7 +101,12 @@ export class EditorComponent {
                 spec = JSON.stringify(spec, null, 4);
                 filename += ".json";
             } else {
-                spec = YAML.stringify(spec, 100, 4);
+                //spec = YAML.stringify(spec, 100, 4);
+                spec = YAML.safeDump(spec, {
+                    indent: 4,
+                    lineWidth: 110,
+                    noRefs: true
+                });
                 filename += ".yaml";
             }
         }

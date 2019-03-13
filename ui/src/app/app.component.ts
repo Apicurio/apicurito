@@ -18,7 +18,6 @@
 import {Component} from '@angular/core';
 import {ApiDefinition} from 'apicurio-design-studio';
 import {WindowRef} from './services/window-ref.service';
-import * as YAML from 'yamljs';
 
 @Component({
     selector: 'app-root',
@@ -30,7 +29,7 @@ export class AppComponent {
     apiDef: ApiDefinition = null;
 
     constructor(private winRef: WindowRef) {
-        this.winRef.window.dump = YAML.dump;
+        //this.winRef.window.dump = YAML.dump;
     }
 
     public openEditor(content: any): void {
