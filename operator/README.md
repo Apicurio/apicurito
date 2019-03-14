@@ -21,17 +21,14 @@ $ cd operator
 $ export NAMESPACE_NAME=ns-apicurito
 $ oc new-project $NAMESPACE_NAME
 $ sed -i "s|REPLACE_NAMESPACE|$NAMESPACE_NAME|" helm-charts/apicurito/values.yaml
-```
-
-Grant admin role to default Service Account
-```
-oc adm policy add-role-to-user admin system:serviceaccount:$NAMESPACE_NAME:default
+$ sed -i "s|REPLACE_NAMESPACE|$NAMESPACE_NAME|" deploy/rbac.yaml
 ```
 
 Deploy your operator:
 ```
 # As a simple deployment
 $ kubectl create -f deploy/crd.yaml
+$ kubectl create -f deploy/rbac.yaml
 $ kubectl create -n $NAMESPACE_NAME -f deploy/operator.yaml
 ```
 
