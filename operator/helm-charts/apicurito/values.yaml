@@ -8,9 +8,10 @@ component: apicurito-ui
 namespace: REPLACE_NAMESPACE
 
 # Image: Docker project with apicurito image, see apicurito build documentation for more details
-image: REPLACE_APP_IMAGE
+image: apicurio/apicurito-ui
 
 # Resource Memory Request: Initial ammount of memory commited for the container.
+resource_memory_limit: 128Mi
 resource_memory_request: 64Mi
 
 # Git Repository URL: The URL of the repository with your application source code.

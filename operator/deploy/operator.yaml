@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: apicurito-operator
-          image: REPLACE_OPERATOR_IMAGE
+          image: apicurio/apicurito-operator
           imagePullPolicy: Always
           env:
             - name: WATCH_NAMESPACE
