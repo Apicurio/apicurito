@@ -91,11 +91,181 @@
         <version.frontend-maven.plugin>1.6</version.frontend-maven.plugin>
         <version.scala-maven.plugin>3.2.2</version.scala-maven.plugin>
         <version.fabric8.maven.plugin>3.5.33</version.fabric8.maven.plugin>
+
+        <!-- Dependency Versions -->
+        <version.com.fasterxml.jackson>2.9.4</version.com.fasterxml.jackson>
+        <version.com.google.inject>4.1.0</version.com.google.inject>
+        <version.com.sun.codemodel>2.6</version.com.sun.codemodel>
+        <version.commons-beanutils>1.9.2</version.commons-beanutils>
+        <version.commons-cli>1.3.1</version.commons-cli>
+        <version.commons-codec>1.10</version.commons-codec>
+        <version.commons-io>2.4</version.commons-io>
+        <version.commons-lang>2.6</version.commons-lang>
+        <version.javax.enterprise>1.2</version.javax.enterprise>
+        <version.junit>4.11</version.junit>
+        <version.org.apache.httpcomponents>4.5.3</version.org.apache.httpcomponents>
+        <version.org.apache.httpcore>4.4.8</version.org.apache.httpcore>
+        <version.org.apache.commons.commons-pool2>2.4.3</version.org.apache.commons.commons-pool2>
+        <version.org.jboss.resteasy>3.0.19.Final</version.org.jboss.resteasy>
+        <version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.0_spec>1.0.2.Final</version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.0_spec>
+        <version.org.jboss.spec.javax.websocket.jboss-websocket-api_1.1_spec>1.1.1.Final</version.org.jboss.spec.javax.websocket.jboss-websocket-api_1.1_spec>
+        <version.org.jboss.spec.javax.ws.jboss-jaxrs-api_2.0_spec>1.0.1.Beta1</version.org.jboss.spec.javax.ws.jboss-jaxrs-api_2.0_spec>
+        <version.org.json>20160212</version.org.json>
+        <version.org.slf4j>1.7.7</version.org.slf4j>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- Third Party Libraries -->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${version.commons-io}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${version.commons-codec}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-cli</groupId>
+                <artifactId>commons-cli</artifactId>
+                <version>${version.commons-cli}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>${version.org.apache.commons.commons-pool2}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.json</groupId>
+                <artifactId>json</artifactId>
+                <version>${version.org.json}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${version.com.fasterxml.jackson}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${version.com.fasterxml.jackson}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${version.com.fasterxml.jackson}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-yaml</artifactId>
+                <version>${version.com.fasterxml.jackson}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${version.commons-beanutils}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${version.org.slf4j}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${version.commons-lang}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${version.com.h2database}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>${version.org.apache.httpcore}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${version.org.apache.httpcomponents}</version>
+            </dependency>
+
+            <!-- Spec Libraries -->
+            <dependency>
+                <groupId>org.jboss.spec.javax.ws.rs</groupId>
+                <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.ws.jboss-jaxrs-api_2.0_spec}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.servlet</groupId>
+                <artifactId>jboss-servlet-api_3.0_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.0_spec}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.enterprise</groupId>
+                <artifactId>cdi-api</artifactId>
+                <version>${version.javax.enterprise}</version>
+            </dependency>
+
+            <!-- Test -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${version.junit}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>${version.enforcer.plugin}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>de.is24.maven.enforcer.rules</groupId>
+                            <artifactId>illegal-transitive-dependency-check</artifactId>
+                            <version>1.7.4</version>
+                        </dependency>
+                    </dependencies>
+                    <executions>
+                        <execution>
+                            <id>enforcer-transitives-check</id>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                            <phase>process-classes</phase>
+                            <configuration>
+                                <fail>true</fail>
+                                <rules>
+                                    <illegalTransitiveDependencyCheck
+                                        implementation="de.is24.maven.enforcer.rules.IllegalTransitiveDependencyCheck">
+                                        <reportOnly>false</reportOnly>
+                                        <regexIgnoredClasses>
+                                            <regexIgnoredClass>javax\..+</regexIgnoredClass>
+                                            <regexIgnoredClass>org.w3c.dom\..+</regexIgnoredClass>
+                                        </regexIgnoredClasses>
+                                        <useClassesFromLastBuild>true</useClassesFromLastBuild>
+                                    </illegalTransitiveDependencyCheck>
+                                </rules>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
                 <plugin>
                     <groupId>io.fabric8</groupId>
                     <artifactId>fabric8-maven-plugin</artifactId>
@@ -122,6 +292,11 @@
                     <version>${version.buildnumber.plugin}</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>${version.bundle.plugin}</version>
+                </plugin>
+                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>${version.clean.plugin}</version>
@@ -138,6 +313,11 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${version.deploy.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-install-plugin</artifactId>
                     <version>${version.install.plugin}</version>
                 </plugin>
@@ -148,6 +328,11 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${version.javadoc.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>${version.resources.plugin}</version>
                 </plugin>
@@ -155,6 +340,11 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
                     <version>${version.source.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>${version.war.plugin}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -168,8 +358,43 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${version.surefire.plugin}</version>
+                    <configuration>
+                        <systemProperties>
+                            <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
+                        </systemProperties>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-report-plugin</artifactId>
+                    <version>${version.surefire-report.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${version.failsafe.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>${version.nexus-staging-maven-plugin.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>
                     <version>${version.maven-gpg-plugin.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>io.gatling</groupId>
+                    <artifactId>gatling-maven-plugin</artifactId>
+                    <version>${version.gatling.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>net.alchim31.maven</groupId>
+                    <artifactId>scala-maven-plugin</artifactId>
+                    <version>${version.scala-maven.plugin}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -209,6 +434,10 @@
                     </gitDescribe>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+            </plugin>
             <!-- Include the maven-compiler-plugin settings here so that Eclipse/m2e will properly import the projects. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -233,12 +462,78 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <additionalDependencies>
+                        <additionalDependency>
+                            <groupId>org.jboss.spec.javax.annotation</groupId>
+                            <artifactId>jboss-annotations-api_1.2_spec</artifactId>
+                            <version>1.0.1.Final</version>
+                        </additionalDependency>
+                    </additionalDependencies>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>**/*TestCase.java</include>
+                        <include>**/*Test.java</include>
+                    </includes>
+                    <systemProperties>
+                        <property>
+                            <name>java.io.tmpdir</name>
+                            <value>${basedir}/target</value>
+                        </property>
+                    </systemProperties>
+                    <argLine>-Xmx512m -XX:MaxPermSize=256m</argLine>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${basedir}</directory>
+                            <includes>
+                                <include>www-test/**</include>
+                                <include>src/main/webapp/app/**</include>
+                                <include>src/main/webapp/WEB-INF/deploy/**</include>
+                                <include>src/main/webapp/WEB-INF/lib/**</include>
+                                <include>src/main/webapp/WEB-INF/classes/**</include>
+                                <include>**/*.JUnit/**</include>
+                            </includes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>${version.frontend-maven.plugin}</version>
             </plugin>
         </plugins>
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>${version.surefire-report.plugin}</version>
+            </plugin>
+        </plugins>
+    </reporting>
 
     <distributionManagement>
         <snapshotRepository>
@@ -278,6 +573,23 @@
                                 </goals>
                             </execution>
                         </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>java8</id>
+            <activation>
+                <jdk>[1.8,)</jdk>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <configuration>
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
