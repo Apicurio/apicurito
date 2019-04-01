@@ -1,15 +1,8 @@
-.app-wrapper {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-}
-.app-wrapper .app-masthead {
-}
-.app-wrapper .app-body {
-  flex-grow: 1;
+.app-body {
+  grid-column-start: m;
+  grid-column-end: k;
+  grid-row-start: m;
+  grid-row-end: k;
+  background-color: white;
   position: relative;
 }

@@ -1,3 +1,7 @@
+#app-editor {
+  font-size: 13px;
+}
+
 .app-editor {
   display: flex;
   flex-direction: column;

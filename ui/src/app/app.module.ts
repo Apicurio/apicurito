@@ -23,7 +23,6 @@ import {AppComponent} from './app.component';
 import {BsDropdownModule, ModalModule} from 'ngx-bootstrap';
 import {FormsModule} from '@angular/forms';
 import {WindowRef} from './services/window-ref.service';
-import {NavHeaderComponent} from "./nav/nav-header.component";
 import {EmptyStateComponent} from "./empty/empty-state.component";
 import {EditorComponent} from "./editor/editor.component";
 import {DownloaderService} from "./services/downloader.service";
@@ -45,8 +44,7 @@ import {ConfigureValidationComponent} from "./editor/configure-validation.dialog
     ],
     declarations: [
         AppComponent, 
-        NavHeaderComponent, 
-        EmptyStateComponent, 
+        EmptyStateComponent,
         EditorComponent,
         ConfigureValidationComponent
     ],
