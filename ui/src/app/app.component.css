@@ -6,3 +6,7 @@
   background-color: white;
   position: relative;
 }
+
+.pf-c-page .pf-c-page__header {
+  background-color: #151515;
+}
