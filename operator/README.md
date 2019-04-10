@@ -18,10 +18,7 @@ $ git clone https://github.com/Apicurio/apicurito.git \
 Create the namespace / openshift project where the operator and apicurito will be installed and replace the placeholder in values.yaml:
 ```
 $ cd operator
-$ export NAMESPACE_NAME=ns-apicurito
-$ oc new-project $NAMESPACE_NAME
-$ sed -i "s|REPLACE_NAMESPACE|$NAMESPACE_NAME|" helm-charts/apicurito/values.yaml
-$ sed -i "s|REPLACE_NAMESPACE|$NAMESPACE_NAME|" deploy/rbac.yaml
+$ oc new-project NAMESPACE_NAME
 ```
 
 Deploy your operator:
@@ -29,14 +26,14 @@ Deploy your operator:
 # As a simple deployment
 $ kubectl create -f deploy/crd.yaml
 $ kubectl create -f deploy/rbac.yaml
-$ kubectl create -n $NAMESPACE_NAME -f deploy/operator.yaml
+$ kubectl create -f deploy/operator.yaml
 ```
 
 At this point the operator is deployed in the choosen namespace.
 
 Create an instance of the Helm Chart
 ```                                                                 
-$ kubectl create -n $NAMESPACE_NAME -f deploy/cr.yaml
+$ kubectl create -f deploy/cr.yaml
 ```
 ### Development
 If you wish to use different sdk or operator images, you can:
