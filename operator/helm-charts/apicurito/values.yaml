@@ -4,9 +4,6 @@ name: apicurito
 # Component: Component name
 component: apicurito-ui
 
-# Namespace: The OpenShift Namespace where the ImageStream, Service and ConfigMaps resides.
-namespace: REPLACE_NAMESPACE
-
 # Image: Docker project with apicurito image, see apicurito build documentation for more details
 image: apicurio/apicurito-ui
 
