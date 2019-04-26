@@ -1,4 +1,4 @@
-FROM scratch 
+FROM alpine
 
 # This refers to the files copied by assembly configuration in pom.xml
 # Change this to e.g. "dist" if running the dockerfile from top-level e.g.
