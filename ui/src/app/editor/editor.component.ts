@@ -21,12 +21,12 @@ import {DownloaderService} from "../services/downloader.service";
 import {ConfigService, GeneratorConfig} from "../services/config.service";
 import * as YAML from 'js-yaml';
 import {StorageService} from "../services/storage.service";
-import {IOasValidationSeverityRegistry, OasValidationProblemSeverity} from "oai-ts-core";
+import {IOasValidationSeverityRegistry, OasValidationProblemSeverity, ValidationRuleMetaData} from "oai-ts-core";
 
 
 export class DisableValidationRegistry implements IOasValidationSeverityRegistry {
 
-    public lookupSeverity(ruleCode: string): OasValidationProblemSeverity {
+    public lookupSeverity(rule: ValidationRuleMetaData): OasValidationProblemSeverity {
         return OasValidationProblemSeverity.ignore;
     }
 

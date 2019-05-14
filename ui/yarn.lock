@@ -797,10 +797,10 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-apicurio-design-studio@0.2.25:
-  version "0.2.25"
-  resolved "https://registry.yarnpkg.com/apicurio-design-studio/-/apicurio-design-studio-0.2.25.tgz#5c9f43bae1deece26b4b4e7853237739f649022f"
-  integrity sha512-qjBHohUr9u5IHo//bLpdUHDF7T5TjkIRHiSUuoYOEcSAATO8XAaCZ0nLmFWJreescDnvaAgEestZmOhiHdK27g==
+apicurio-design-studio@0.2.26:
+  version "0.2.26"
+  resolved "https://registry.yarnpkg.com/apicurio-design-studio/-/apicurio-design-studio-0.2.26.tgz#f2f65a56ee432c3a4a839d23741904dc66188e96"
+  integrity sha512-IXg/Bx4bld9eU0bwlY0LTf4JCH3R+BWQ+8DtneHJszQoNCCNA/6AP1flzZt6/123LKBdR/MeESm4uPFr1S6nPw==
   dependencies:
     tslib "^1.9.0"
 
@@ -4635,18 +4635,18 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-oai-ts-commands@0.2.62:
-  version "0.2.62"
-  resolved "https://registry.yarnpkg.com/oai-ts-commands/-/oai-ts-commands-0.2.62.tgz#c069aa39315e2e758d28a9d751f20e9320ad42aa"
-  integrity sha512-W8350ZnSfuxq26FdYV+BPg8XuZMvYcl26sXyu2FzsB2IPwQGKkfKJiMMJq5WogLGfXDcbWIXbkuDigbymt1nRg==
+oai-ts-commands@0.2.66:
+  version "0.2.66"
+  resolved "https://registry.yarnpkg.com/oai-ts-commands/-/oai-ts-commands-0.2.66.tgz#e97ce8bc61fe12fda2ece44b4a73fae92f013be8"
+  integrity sha512-VxiuQkWJrmCJp2GBeJEQo1OVa+9PoQiww/IGq8fESB5pIYUR9NVEsBSdxnNUYiETpnAGPTXm7kgWvLDV1kkyUQ==
   dependencies:
     core-js "2.6.5"
-    oai-ts-core "0.2.36"
+    oai-ts-core "0.2.38"
 
-oai-ts-core@0.2.36:
-  version "0.2.36"
-  resolved "https://registry.yarnpkg.com/oai-ts-core/-/oai-ts-core-0.2.36.tgz#16904e4ecec91a931d3f3b9dcfe3b2e6f9cc8f40"
-  integrity sha512-QIEfhP8WUMNGgWlbO6qzQ1vO8ArMJ04wFQg7ra8I2osnf5VuCCOhrFvxL747j2tXD40cOf8qG6JEN5A+JeKPjg==
+oai-ts-core@0.2.38:
+  version "0.2.38"
+  resolved "https://registry.yarnpkg.com/oai-ts-core/-/oai-ts-core-0.2.38.tgz#e6848cb1cfc8fbc2bb29be87ca544947c392e167"
+  integrity sha512-ljfnoz1nQMKCi7lM1/fWbXKNylctKcBPa4+VW8CJTmwKDuR08YepQLzKr8FWxZ4Yp0WYy3ZK8GMvwdsd1BrSXA==
   dependencies:
     core-js "2.6.5"
 

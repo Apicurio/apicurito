@@ -34,7 +34,7 @@
     </div>
     <div class="editor">
         <api-editor #apiEditor [api]="api" [embedded]="true" (onCommandExecuted)="documentChanged()"
-                    (onUndo)="documentChanged()" (onRedo)="documentChanged()"
+                    (onUndo)="documentChanged()" (onRedo)="documentChanged()" [features]="{ validationSettings: true }"
                     [validationRegistry]="validation" (onConfigureValidation)="configureValidationDialog.open()" ></api-editor>
     </div>
 
