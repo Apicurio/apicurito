@@ -7,24 +7,6 @@
         </div>
         <div class="pf-c-page__header-tools">
             <div class="pf-c-page__header-tools-group">
-                <div class="pf-c-dropdown">
-                    <button class="pf-c-dropdown__toggle pf-m-mobile  pf-m-plain" id="dropdown-kebab-right-aligned-1-button"
-                            aria-expanded="false" aria-label="Actions">
-                        <i class="fas fa-ellipsis-v" aria-hidden="true"></i></button>
-                    <ul class="pf-c-dropdown__menu pf-m-align-right" aria-labelledby="dropdown-kebab-right-aligned-1-button" hidden="">
-                        <li><a class="pf-c-dropdown__menu-item" href="#">Link</a></li>
-                        <li>
-                            <button class="pf-c-dropdown__menu-item">Action</button>
-                        </li>
-                        <li><a class="pf-c-dropdown__menu-item pf-m-disabled" aria-disabled="true" tabindex="-1" href="#">Disabled
-                            Link</a></li>
-                        <li>
-                            <button class="pf-c-dropdown__menu-item" disabled="">Disabled Action</button>
-                        </li>
-                        <li class="pf-c-dropdown__separator" role="separator"></li>
-                        <li><a class="pf-c-dropdown__menu-item" href="#">Separated Link</a></li>
-                    </ul>
-                </div>
                 <div class="pf-m-user pf-screen-reader">
                     <div class="pf-c-dropdown">
                         <button class="pf-c-dropdown__toggle pf-m-plain" id="page-layout-default-nav-dropdown-button"
@@ -34,9 +16,8 @@
                         </button>
                         <ul class="pf-c-dropdown__menu pf-m-align-right" aria-labelledby="helpDropdownButton" *ngIf="helpExpanded">
                             <li>
-                                <a class="pf-c-dropdown__menu-item" data-toggle="modal" data-target="#about-modal" rel="nofollow"
-                                   role="link" target="_blank" (click)="helpExpanded = false">About
-                                </a>
+                                <a class="pf-c-dropdown__menu-item" rel="nofollow"
+                                   role="link" target="_blank" (click)="showAbout = true; helpExpanded = false">About</a>
                             </li>
                         </ul>
                     </div>
@@ -53,37 +34,44 @@
 
 </div>
 
-<div class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content about-modal-pf">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <span class="pficon pficon-close"></span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h1 class="about-title">Apicurito</h1>
-                <div class="product-versions-pf">
-                    <table>
-                        <tr>
-                            <td><strong>Version</strong></td>
-                            <td>{{ appInfo.version }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Built On</strong></td>
-                            <td>{{ appInfo.builtOn | date }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Project URL</strong><span>&nbsp;</span></td>
-                            <td><a href="{{ appInfo.projectUrl }}" target="_blank">{{ appInfo.projectUrl }} <span class="fa fa-external-link"></span></a></td>
-                        </tr>
-                    </table>
+
+<div *ngIf="showAbout">
+    <div class="pf-c-backdrop">
+        <div class="pf-l-bullseye">
+            <div aria-labelledby="pf-about-modal-title-6" aria-describedby="pf-about-modal-content-7" role="dialog" aria-modal="true"
+                 class="pf-c-about-modal-box">
+                <div class="pf-c-about-modal-box__brand"><img class="pf-c-about-modal-box__brand-image"
+                                                              src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIwLjEuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAzMTEuMyAyOTkuNSIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMzExLjMgMjk5LjUiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0xMDksMjI4LjlsLTQ3LjEsMTAuOEwwLDE1Mi4xTDE1NS42LDBsMTU1LjYsMTUyLjFsLTYxLjksODcuNmwtNDcuMS0xMC44bC00Ni43LDY1LjZMMTA5LDIyOC45egoJCSBNMTU1LjYsMjg2bDQxLjQtNTguM2wtMTYuMS0zLjdsLTI0LjQsMzZsLTI2LjQtMzZsLTE2LjEsMy43TDE1NS42LDI4NnogTTE1Ni41LDI1MS41bDIwLjQtMzAuMUwxNTUuNiwxNWwtMjEuMiwyMDYuNEwxNTYuNSwyNTEuNQoJCXogTTY0LDIzNC4ybDQxLjktOS42bC0zMC42LTQzLjFsOS4xLTIwLjZsLTI4LjMtMzguN2w3My04OS4yTDYuNSwxNTIuN0w2NCwyMzQuMnogTTI0Ny4zLDIzNC4ybDM2LjItNTEuM2wyMS4zLTMwLjFMMTgyLjQsMzMuMQoJCWw3Myw4OS4yTDIyNywxNjAuOWw5LjEsMjAuNmwtMzAuNiw0My4xTDI0Ny4zLDIzNC4yeiBNMjAwLjIsMjIzLjRsMzAuMi00Mi40bC02LjgtMTUuNGwtMzkuNyw1NC4xTDIwMC4yLDIyMy40eiBNMTExLjEsMjIzLjQKCQlsMTYuMy0zLjdsLTM5LjctNTQuMWwtNi44LDE1LjRMMTExLjEsMjIzLjR6IE0xODIuMSwyMTMuOGwzOS4yLTUzLjVMMTYyLDI1LjdMMTgyLjEsMjEzLjh6IE0xMjkuMiwyMTMuOGwyMC4xLTE4OC4xTDkwLDE2MC4zCgkJTDEyOS4yLDIxMy44eiBNODYuNiwxNTUuN2w2MC4zLTEzNi44TDYyLjIsMTIyLjRMODYuNiwxNTUuN3ogTTIyNC43LDE1NS43bDI0LjQtMzMuM0wxNjQuNCwxOC45TDIyNC43LDE1NS43eiIvPgo8L2c+Cjwvc3ZnPgo="
+                                                              alt="Patternfly Logo"></div>
+                <div class="pf-c-about-modal-box__close">
+                    <button aria-label="Close Dialog" class="pf-c-button pf-m-plain" type="button" (click)="showAbout = false">
+                        <svg fill="currentColor" height="1em" width="1em" viewBox="0 0 352 512" aria-hidden="true" role="img"
+                             style="vertical-align: -0.125em;">
+                            <path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                                  transform=""></path>
+                        </svg>
+                    </button>
                 </div>
-                <div class="trademark-pf">
-                    &copy; 2019 Red Hat, Inc
+                <div class="pf-c-about-modal-box__header"><h1 id="pf-about-modal-title-6" class="pf-c-title pf-m-4xl">Apicurito (Little Apicurio)</h1>
                 </div>
-            </div>
-            <div class="modal-footer">
+                <div class="pf-c-about-modal-box__content" id="pf-about-modal-content-7">
+                    <div class="pf-c-about-modal-box__body">
+                        <div class="pf-c-content">
+                            <div class="pf-c-content">
+                                <dl data-pf-content="true" class="">
+                                    <dt data-pf-content="true" class="">Version</dt>
+                                    <dd data-pf-content="true" class="">{{ appInfo.version }}</dd>
+                                    <dt data-pf-content="true" class="">Built On</dt>
+                                    <dd data-pf-content="true" class="">{{ appInfo.builtOn | date }}</dd>
+                                    <dt data-pf-content="true" class="">Project URL</dt>
+                                    <dd data-pf-content="true" class=""><a href="{{ appInfo.projectUrl }}" target="_blank">{{ appInfo.projectUrl }} <span class="fa fa-external-link"></span></a></dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pf-c-about-modal-box__strapline"><p class="pf-c-title pf-m-md">&copy; 2019 Red Hat</p></div>
+                </div>
+                <div class="pf-c-about-modal-box__hero"></div>
             </div>
         </div>
     </div>

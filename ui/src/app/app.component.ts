@@ -28,6 +28,7 @@ import {AppInfoService} from "./services/app-info.service";
 export class AppComponent {
 
     helpExpanded: boolean = false;
+    showAbout: boolean = false;
 
     apiDef: ApiDefinition = null;
 
