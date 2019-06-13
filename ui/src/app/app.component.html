@@ -1,29 +1,26 @@
 <div class="pf-c-page" id="page-layout-default-nav">
+
     <header role="banner" class="pf-c-page__header">
         <div class="pf-c-page__header-brand">
             <a class="pf-c-page__header-brand-link">
-                <img class="pf-c-brand" src="assets/apicurio_logo_darkbkg_200px.png" alt="Patternfly Logo">
+                <img class="pf-c-brand" src="assets/apicurio_logo_darkbkg_200px.png" alt="Apicurito">
             </a>
         </div>
-        <div class="pf-c-page__header-tools">
-            <div class="pf-c-page__header-tools-group">
-                <div class="pf-m-user pf-screen-reader">
-                    <div class="pf-c-dropdown">
-                        <button class="pf-c-dropdown__toggle pf-m-plain" id="page-layout-default-nav-dropdown-button"
-                                aria-expanded="false" (click)="helpExpanded = !helpExpanded">
-                            <span class="pf-c-dropdown__toggle-text"><img class="pf-c-avatar" src="assets/pf/img_avatar.svg" alt="Avatar Image"></span>
-                            <i class="fas fa-caret-down pf-c-dropdown__toggle-icon" aria-hidden="true"></i>
-                        </button>
-                        <ul class="pf-c-dropdown__menu pf-m-align-right" aria-labelledby="helpDropdownButton" *ngIf="helpExpanded">
-                            <li>
-                                <a class="pf-c-dropdown__menu-item" rel="nofollow"
-                                   role="link" target="_blank" (click)="showAbout = true; helpExpanded = false">About</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
 
+        <div class="pf-c-page__header-tools">
+            <div class="pf-c-dropdown">
+                <button class="pf-c-dropdown__toggle pf-m-plain" id="page-layout-default-nav-dropdown-button"
+                        aria-expanded="false" (click)="helpExpanded = !helpExpanded">
+                    <span class="pf-c-dropdown__toggle-text"><img class="pf-c-avatar" src="assets/pf/img_avatar.svg" alt="Avatar Image"></span>
+                    <i class="fas fa-caret-down pf-c-dropdown__toggle-icon" aria-hidden="true"></i>
+                </button>
+                <ul class="pf-c-dropdown__menu pf-m-align-right" aria-labelledby="helpDropdownButton" *ngIf="helpExpanded">
+                    <li>
+                        <a class="pf-c-dropdown__menu-item" rel="nofollow"
+                           role="link" target="_blank" (click)="showAbout = true; helpExpanded = false">About</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </header>
 
@@ -41,8 +38,8 @@
             <div aria-labelledby="pf-about-modal-title-6" aria-describedby="pf-about-modal-content-7" role="dialog" aria-modal="true"
                  class="pf-c-about-modal-box">
                 <div class="pf-c-about-modal-box__brand"><img class="pf-c-about-modal-box__brand-image"
-                                                              src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIwLjEuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAzMTEuMyAyOTkuNSIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMzExLjMgMjk5LjUiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0xMDksMjI4LjlsLTQ3LjEsMTAuOEwwLDE1Mi4xTDE1NS42LDBsMTU1LjYsMTUyLjFsLTYxLjksODcuNmwtNDcuMS0xMC44bC00Ni43LDY1LjZMMTA5LDIyOC45egoJCSBNMTU1LjYsMjg2bDQxLjQtNTguM2wtMTYuMS0zLjdsLTI0LjQsMzZsLTI2LjQtMzZsLTE2LjEsMy43TDE1NS42LDI4NnogTTE1Ni41LDI1MS41bDIwLjQtMzAuMUwxNTUuNiwxNWwtMjEuMiwyMDYuNEwxNTYuNSwyNTEuNQoJCXogTTY0LDIzNC4ybDQxLjktOS42bC0zMC42LTQzLjFsOS4xLTIwLjZsLTI4LjMtMzguN2w3My04OS4yTDYuNSwxNTIuN0w2NCwyMzQuMnogTTI0Ny4zLDIzNC4ybDM2LjItNTEuM2wyMS4zLTMwLjFMMTgyLjQsMzMuMQoJCWw3Myw4OS4yTDIyNywxNjAuOWw5LjEsMjAuNmwtMzAuNiw0My4xTDI0Ny4zLDIzNC4yeiBNMjAwLjIsMjIzLjRsMzAuMi00Mi40bC02LjgtMTUuNGwtMzkuNyw1NC4xTDIwMC4yLDIyMy40eiBNMTExLjEsMjIzLjQKCQlsMTYuMy0zLjdsLTM5LjctNTQuMWwtNi44LDE1LjRMMTExLjEsMjIzLjR6IE0xODIuMSwyMTMuOGwzOS4yLTUzLjVMMTYyLDI1LjdMMTgyLjEsMjEzLjh6IE0xMjkuMiwyMTMuOGwyMC4xLTE4OC4xTDkwLDE2MC4zCgkJTDEyOS4yLDIxMy44eiBNODYuNiwxNTUuN2w2MC4zLTEzNi44TDYyLjIsMTIyLjRMODYuNiwxNTUuN3ogTTIyNC43LDE1NS43bDI0LjQtMzMuM0wxNjQuNCwxOC45TDIyNC43LDE1NS43eiIvPgo8L2c+Cjwvc3ZnPgo="
-                                                              alt="Patternfly Logo"></div>
+                                                              src="assets/apicurio_icon_darkbkg_200px.png"
+                                                              alt="Apicurito"></div>
                 <div class="pf-c-about-modal-box__close">
                     <button aria-label="Close Dialog" class="pf-c-button pf-m-plain" type="button" (click)="showAbout = false">
                         <svg fill="currentColor" height="1em" width="1em" viewBox="0 0 352 512" aria-hidden="true" role="img"
@@ -69,7 +66,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pf-c-about-modal-box__strapline"><p class="pf-c-title pf-m-md">&copy; 2019 Red Hat</p></div>
                 </div>
                 <div class="pf-c-about-modal-box__hero"></div>
             </div>

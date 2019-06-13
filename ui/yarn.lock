@@ -208,10 +208,10 @@
     tree-kill "1.2.1"
     webpack-sources "1.3.0"
 
-"@patternfly/patternfly@1.0.250":
-  version "1.0.250"
-  resolved "https://registry.yarnpkg.com/@patternfly/patternfly/-/patternfly-1.0.250.tgz#02952d55039891ab4796b6e78e677ecd01c25855"
-  integrity sha512-Ew9m5sRTjb68ewzD1gk/QMgJYZl/0jyXtSSYaSdXyzpzB+0Yj+46qhcKDCGql6MzXxO7kZ8vjt4gmBRqfV+OnA==
+"@patternfly/patternfly@2.27.7":
+  version "2.12.7"
+  resolved "https://registry.yarnpkg.com/@patternfly/patternfly/-/patternfly-2.12.7.tgz#350c0a1a6abdef54bb6cfe4cf988b0167e29f8ae"
+  integrity sha512-x5OYa4jR2oJ2+bU5piN/k/mU8HuSpMJutvzgZm4ZvkzRsfq4FvbOMZREEjTRn1ni45bGgmfHa9wTCrgIHF00cA==
 
 "@schematics/angular@7.3.3":
   version "7.3.3"
@@ -797,10 +797,10 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-apicurio-design-studio@0.2.26:
-  version "0.2.26"
-  resolved "https://registry.yarnpkg.com/apicurio-design-studio/-/apicurio-design-studio-0.2.26.tgz#f2f65a56ee432c3a4a839d23741904dc66188e96"
-  integrity sha512-IXg/Bx4bld9eU0bwlY0LTf4JCH3R+BWQ+8DtneHJszQoNCCNA/6AP1flzZt6/123LKBdR/MeESm4uPFr1S6nPw==
+apicurio-design-studio@0.2.27:
+  version "0.2.27"
+  resolved "https://registry.yarnpkg.com/apicurio-design-studio/-/apicurio-design-studio-0.2.27.tgz#35fc234cbf8e9973e0a2a4157158801ec60545ef"
+  integrity sha512-7SljGr5NWsHRFjz6ejTtSlu53Nwp8IWOI3X32jyntVpbXCb4NUXNOx7P+9IHEHD093ymFTV54G183BAK+AdAVQ==
   dependencies:
     tslib "^1.9.0"
 
@@ -1803,6 +1803,11 @@ core-js@2.6.5:
   version "2.6.5"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.5.tgz#44bc8d249e7fb2ff5d00e0341a7ffb94fbf67895"
   integrity sha512-klh/kDpwX8hryYL14M9w/xei6vrv6sE8gTHDG7/T/+SEovB/G4ejwcfE/CBzO6Edsu+OETZMZ3wcX/EjUkrl5A==
+
+core-js@2.6.6:
+  version "2.6.6"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.6.tgz#00eb6d6bf815471cc16d8563edd7d38786dec50b"
+  integrity sha512-Mt/LaAym54NXnrjEMdo918cT2h70tqb/Yl7T3uPHQHRm5SxVoqlKmerUy4mL11k8saSBDWQ7ULIHxmeFyT3pfg==
 
 core-js@^2.4.0:
   version "2.5.7"
@@ -4635,12 +4640,12 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-oai-ts-commands@0.2.66:
-  version "0.2.66"
-  resolved "https://registry.yarnpkg.com/oai-ts-commands/-/oai-ts-commands-0.2.66.tgz#e97ce8bc61fe12fda2ece44b4a73fae92f013be8"
-  integrity sha512-VxiuQkWJrmCJp2GBeJEQo1OVa+9PoQiww/IGq8fESB5pIYUR9NVEsBSdxnNUYiETpnAGPTXm7kgWvLDV1kkyUQ==
+oai-ts-commands@0.2.67:
+  version "0.2.67"
+  resolved "https://registry.yarnpkg.com/oai-ts-commands/-/oai-ts-commands-0.2.67.tgz#eb769a89fbb3bb9c0aa9327dc6675ee285552107"
+  integrity sha512-CEiDKlXqvnUTYQkK+ZkVdmNg3kp3XS1gKEO/LK9C5QTLJh9LgMF7N6iIN0o09LJ26yf2MvaUD68kijmElHXZQw==
   dependencies:
-    core-js "2.6.5"
+    core-js "2.6.6"
     oai-ts-core "0.2.38"
 
 oai-ts-core@0.2.38:
