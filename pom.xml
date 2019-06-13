@@ -60,9 +60,6 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
 
-        <!-- Wildfly Version -->
-        <version.wildfly>10.1.0.Final</version.wildfly>
-
         <!-- Plugin Versions -->
         <version.antrun.plugin>1.8</version.antrun.plugin>
         <version.assembly.plugin>2.5</version.assembly.plugin>
@@ -93,7 +90,6 @@
         <version.fabric8.maven.plugin>3.5.33</version.fabric8.maven.plugin>
 
         <!-- Dependency Versions -->
-        <version.com.fasterxml.jackson>2.9.4</version.com.fasterxml.jackson>
         <version.com.google.inject>4.1.0</version.com.google.inject>
         <version.com.sun.codemodel>2.6</version.com.sun.codemodel>
         <version.commons-beanutils>1.9.2</version.commons-beanutils>
@@ -142,26 +138,6 @@
                 <groupId>org.json</groupId>
                 <artifactId>json</artifactId>
                 <version>${version.org.json}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-                <version>${version.com.fasterxml.jackson}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>${version.com.fasterxml.jackson}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${version.com.fasterxml.jackson}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.dataformat</groupId>
-                <artifactId>jackson-dataformat-yaml</artifactId>
-                <version>${version.com.fasterxml.jackson}</version>
             </dependency>
             <dependency>
                 <groupId>commons-beanutils</groupId>
