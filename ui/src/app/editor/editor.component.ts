@@ -21,13 +21,13 @@ import {DownloaderService} from "../services/downloader.service";
 import {ConfigService, GeneratorConfig} from "../services/config.service";
 import * as YAML from 'js-yaml';
 import {StorageService} from "../services/storage.service";
-import {IOasValidationSeverityRegistry, OasValidationProblemSeverity, ValidationRuleMetaData} from "oai-ts-core";
+import {IValidationSeverityRegistry, ValidationProblemSeverity} from "apicurio-data-models";
 
 
-export class DisableValidationRegistry implements IOasValidationSeverityRegistry {
+export class DisableValidationRegistry implements IValidationSeverityRegistry {
 
-    public lookupSeverity(rule: ValidationRuleMetaData): OasValidationProblemSeverity {
-        return OasValidationProblemSeverity.ignore;
+    public lookupSeverity(): ValidationProblemSeverity {
+        return ValidationProblemSeverity.high;
     }
 
 }
@@ -64,7 +64,7 @@ export class EditorComponent {
 
     persistenceTimeout: number;
 
-    validation: IOasValidationSeverityRegistry = null;
+    validation: IValidationSeverityRegistry = null;
 
     /**
      * Constructor.
