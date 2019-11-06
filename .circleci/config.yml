@@ -45,4 +45,5 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
         
       # build and run tests
-      - run: mvn clean package --batch-mode  -P image -Dfabric8.mode=kubernetes
+      #- run: mvn clean package --batch-mode  -P image -Dfabric8.mode=kubernetes
+      - run: mvn clean package
