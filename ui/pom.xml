@@ -203,6 +203,9 @@
                                             </inline>
                                         </assembly>
                                         <dockerFile>${basedir}/docker/Dockerfile</dockerFile>
+                                        <tags combine.children="append">
+                                            <tag>latest</tag>
+                                        </tags>
                                     </build>
                                 </image>
                             </images>
