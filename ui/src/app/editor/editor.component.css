@@ -18,7 +18,7 @@
   padding-right: 20px;
   text-align: right;
 }
-.app-editor .actionbar .btn-save {
+.app-editor .actionbar .btn-save, .app-editor .actionbar .btn-convert {
   margin-right: 5px;
 }
 

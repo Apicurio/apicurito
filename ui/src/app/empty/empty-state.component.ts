@@ -48,9 +48,12 @@ export class EmptyStateComponent {
         this.onOpen.emit(api);
     }
 
-    public createNewApi(): void {
+    public createNewApi(version: string = "3.0.2"): void {
         this.error = null;
-        let api: any = JSON.parse(this.templates.EMPTY_API);
+        let api: any = JSON.parse(this.templates.EMPTY_API_30);
+        if (version == "2.0") {
+            api = JSON.parse(this.templates.EMPTY_API_20);
+        }
         this.onOpen.emit(api);
     }
 

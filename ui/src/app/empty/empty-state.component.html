@@ -14,7 +14,17 @@
         Learn more about the <a href="https://www.apicur.io/">Apicurio project</a>.
     </p>
     <div class="blank-slate-pf-main-action">
-        <button class="btn btn-primary btn-lg btn-new" (click)="createNewApi()">New API</button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-lg btn-primary" (click)="createNewApi()">New API</button>
+            <button type="button" class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a (click)="createNewApi('2.0')">New (OpenAPI 2)</a></li>
+                <li><a (click)="createNewApi()">New (OpenAPI 3)</a></li>
+            </ul>
+        </div>
         <span>&nbsp;</span>
         <button class="btn btn-default btn-lg btn-load" (click)="loadfile.click()">Open API</button>
 

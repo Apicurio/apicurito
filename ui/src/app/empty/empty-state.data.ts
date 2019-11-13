@@ -17,18 +17,31 @@
 
 export class NewApiTemplates {
 
-    public EMPTY_API: string = `
+    public EMPTY_API_20: string = `
 {
   "swagger": "2.0",
   "info": {
     "title": "New API",
     "description": "A brand new API with no content.  Go nuts!",
-    "version": "1.0"
+    "version": "1.0.0"
   },
   "paths": {
   },
   "consumes": [ "application/json" ],
   "produces": [ "application/json" ]
 }`;
+
+    public EMPTY_API_30: string = `
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "New API",
+    "description": "A brand new API with no content.  Go nuts!",
+    "version": "1.0.0"
+  },
+  "paths": {
+  }
+}
+`;
 
 }

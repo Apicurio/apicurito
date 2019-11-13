@@ -1,7 +1,6 @@
 <div class="app-editor" id="app-editor">
     <div class="actionbar">
         <!-- Save Button -->
-        <!--<button class="btn btn-lg btn-primary btn-save" (click)="save()">Save</button>-->
         <div class="btn-group">
             <button type="button" class="btn btn-lg btn-primary" (click)="save('yaml')">Save As...</button>
             <button type="button" class="btn btn-lg btn-primary dropdown-toggle btn-save" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -13,6 +12,9 @@
                 <li><a (click)="save('json')">Save as JSON</a></li>
             </ul>
         </div>
+
+        <!-- Convert Button -->
+        <button *ngIf="isOpenAPI2()" class="btn btn-lg btn-default btn-convert" data-toggle="modal" data-target="#convert-modal">Convert to OpenAPI 3</button>
 
         <!-- Close Button -->
         <button class="btn btn-lg btn-default btn-close" data-toggle="modal" data-target="#close-modal">Close</button>
@@ -80,6 +82,32 @@
                         data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-primary"
                         (click)="saveAndClose()" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="confirm-convert-modal modal fade" id="convert-modal" tabindex="-1" role="dialog" aria-labelledby="convertModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="pficon pficon-close"></span>
+                </button>
+                <h4 class="modal-title" id="convertModalLabel">Convert API to OpenAPI 3.0</h4>
+            </div>
+            <div class="modal-body">
+                <h2 class="about-title">Really convert from OpenAPI/Swagger 2 to OpenAPI 3?</h2>
+                <div>
+                    If you have made changes to the API, those changes <em>will</em> be
+                    included in the conversion.  However, you may still want to save the
+                    design before converting it...just in case.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary"
+                        (click)="convert()" data-dismiss="modal">Convert</button>
             </div>
         </div>
     </div>

@@ -21,7 +21,13 @@ import {DownloaderService} from "../services/downloader.service";
 import {ConfigService, GeneratorConfig} from "../services/config.service";
 import * as YAML from 'js-yaml';
 import {StorageService} from "../services/storage.service";
-import {IValidationSeverityRegistry, ValidationProblemSeverity} from "apicurio-data-models";
+import {
+    IValidationSeverityRegistry,
+    Library,
+    Oas20Document,
+    Oas30Document,
+    ValidationProblemSeverity
+} from "apicurio-data-models";
 
 
 export class DisableValidationRegistry implements IValidationSeverityRegistry {
@@ -88,6 +94,27 @@ export class EditorComponent {
             this.storage.store(this.apiEditor.getValue());
             this.persistenceTimeout = null;
         }, 5000);
+    }
+
+    /**
+     * Called to convert from OpenAPI 2 to 3.
+     */
+    public convert(): void {
+        let currentApi: ApiDefinition = this.apiEditor.getValue();
+        let doc20: Oas20Document = <Oas20Document> Library.readDocument(currentApi.spec);
+        let doc30: Oas30Document = Library.transformDocument(doc20);
+
+        let api30: ApiDefinition = new ApiDefinition();
+        api30.spec = Library.writeNode(doc30);
+        api30.type = "OpenAPI30";
+        api30.name = currentApi.name;
+        api30.createdBy = currentApi.createdBy;
+        api30.createdOn = currentApi.createdOn;
+        api30.description = currentApi.description;
+        api30.id = currentApi.id;
+        api30.tags = currentApi.tags;
+
+        this._api = api30;
     }
 
     public save(format: string = "json"): Promise<boolean> {
@@ -179,6 +206,11 @@ export class EditorComponent {
         } else {
             this.validation = new DisableValidationRegistry();
         }
+    }
+
+    public isOpenAPI2(): boolean {
+        console.info(this._api.type);
+        return this._api.type == "OpenAPI20";
     }
 
 }

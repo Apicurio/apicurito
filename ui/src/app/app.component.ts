@@ -43,5 +43,9 @@ export class AppComponent {
         this.apiDef.description = '';
         this.apiDef.id = 'api-1';
         this.apiDef.spec = content;
+        this.apiDef.type = "OpenAPI30";
+        if (content && content.swagger && content.swagger == "2.0") {
+            this.apiDef.type = "OpenAPI20";
+        }
     }
 }
