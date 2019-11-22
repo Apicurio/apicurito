@@ -811,10 +811,10 @@ apicurio-data-models@1.0.17:
   dependencies:
     core-js "3.4.1"
 
-apicurio-design-studio@0.2.43:
-  version "0.2.43"
-  resolved "https://registry.yarnpkg.com/apicurio-design-studio/-/apicurio-design-studio-0.2.43.tgz#fdb1937e3afd841a9e94b22aada1284d05cb3d16"
-  integrity sha512-8nmYxrxfVGuaxEchBUUlKiTM6ud/6BB+ZuqDj2bKlTeK4WKwLRcuIam8qxPTJrd0Lguqi0MlQJKgHhsGW6W/kA==
+apicurio-design-studio@0.2.44:
+  version "0.2.44"
+  resolved "https://registry.yarnpkg.com/apicurio-design-studio/-/apicurio-design-studio-0.2.44.tgz#41ca43a799cb8465710c49a4c062527c48d09c7a"
+  integrity sha512-s4XwLz+TUXjf2jjvGK8aWrTVErGSoaTNFgMcvVw5xlAoHDF82H83NyhDvlMD8s5ljeb1+kraUNSixH6/vdbw2Q==
   dependencies:
     tslib "^1.9.0"
 
