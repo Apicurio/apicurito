@@ -39,7 +39,7 @@
     "@angular/cli": "7.3.3",
     "@angular/compiler-cli": "7.2.6",
     "@angular/language-service": "7.2.6",
-    "@types/node": "~8.9.4",
+    "@types/node": "~12.12.11",
     "@types/marked": "0.7.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
