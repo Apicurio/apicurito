@@ -34,10 +34,13 @@
             </ul>
         </div>
     </div>
-    <div class="editor">
+    <div class="editor" *ngIf="!converting">
         <api-editor #apiEditor [api]="api" [embedded]="true" (onCommandExecuted)="documentChanged()"
                     (onUndo)="documentChanged()" (onRedo)="documentChanged()" [features]="{ validationSettings: true }"
                     [validationRegistry]="validation" (onConfigureValidation)="configureValidationDialog.open()" ></api-editor>
+    </div>
+    <div class="converting" *ngIf="converting">
+        <div class="spinner spinner-lg"></div><span>Converting API Design to OpenAPI 3.0.  Please wait...</span>
     </div>
 
     <!-- Inline Notification: Generation Success -->

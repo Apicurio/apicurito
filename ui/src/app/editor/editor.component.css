@@ -22,6 +22,18 @@
   margin-right: 5px;
 }
 
+.app-editor .converting {
+  padding: 25px;
+}
+.app-editor .converting > .spinner {
+  float: left;
+}
+.app-editor .converting > span {
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+
 .app-editor .editor {
   flex-grow: 1;
   position: relative;

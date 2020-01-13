@@ -47,16 +47,7 @@ export class DisableValidationRegistry implements IValidationSeverityRegistry {
 })
 export class EditorComponent {
 
-    private _api: ApiDefinition;
-    private _originalContent: any;
-    @Input()
-    set api(apiDef: ApiDefinition) {
-        this._api = apiDef;
-        this._originalContent = apiDef.spec;
-    }
-    get api(): ApiDefinition {
-        return this._api;
-    }
+    @Input() api: ApiDefinition;
 
     @Output() onClose: EventEmitter<void> = new EventEmitter<void>();
 
@@ -71,6 +62,8 @@ export class EditorComponent {
     persistenceTimeout: number;
 
     validation: IValidationSeverityRegistry = null;
+
+    converting: boolean = false;
 
     /**
      * Constructor.
@@ -100,21 +93,31 @@ export class EditorComponent {
      * Called to convert from OpenAPI 2 to 3.
      */
     public convert(): void {
-        let currentApi: ApiDefinition = this.apiEditor.getValue();
-        let doc20: Oas20Document = <Oas20Document> Library.readDocument(currentApi.spec);
-        let doc30: Oas30Document = Library.transformDocument(doc20);
+        this.converting = true;
 
-        let api30: ApiDefinition = new ApiDefinition();
-        api30.spec = Library.writeNode(doc30);
-        api30.type = "OpenAPI30";
-        api30.name = currentApi.name;
-        api30.createdBy = currentApi.createdBy;
-        api30.createdOn = currentApi.createdOn;
-        api30.description = currentApi.description;
-        api30.id = currentApi.id;
-        api30.tags = currentApi.tags;
+        const me: EditorComponent = this;
+        let currentApi: ApiDefinition = me.apiEditor.getValue();
 
-        this._api = api30;
+        // Do this work in a timer to workaround this bug:  https://github.com/Apicurio/apicurio-studio/issues/1031
+        // Once that bug is fixed, we can remove this workaround.
+        setTimeout(() => {
+            console.debug("[EditorComponent] Converting from OpenAPI 2 to 3!");
+            let doc20: Oas20Document = <Oas20Document> Library.readDocument(currentApi.spec);
+            let doc30: Oas30Document = Library.transformDocument(doc20);
+
+            let api30: ApiDefinition = new ApiDefinition();
+            api30.spec = Library.writeNode(doc30);
+            api30.type = "OpenAPI30";
+            api30.name = currentApi.name;
+            api30.createdBy = currentApi.createdBy;
+            api30.createdOn = currentApi.createdOn;
+            api30.description = currentApi.description;
+            api30.id = currentApi.id;
+            api30.tags = currentApi.tags;
+
+            me.api = api30;
+            me.converting = false;
+        }, 500);
     }
 
     public save(format: string = "json"): Promise<boolean> {
@@ -209,8 +212,8 @@ export class EditorComponent {
     }
 
     public isOpenAPI2(): boolean {
-        console.info(this._api.type);
-        return this._api.type == "OpenAPI20";
+        console.info(this.api.type);
+        return this.api.type == "OpenAPI20";
     }
 
 }
