@@ -208,10 +208,10 @@
     tree-kill "1.2.1"
     webpack-sources "1.3.0"
 
-"@patternfly/patternfly@2.12.7":
-  version "2.12.7"
-  resolved "https://registry.yarnpkg.com/@patternfly/patternfly/-/patternfly-2.12.7.tgz#350c0a1a6abdef54bb6cfe4cf988b0167e29f8ae"
-  integrity sha512-x5OYa4jR2oJ2+bU5piN/k/mU8HuSpMJutvzgZm4ZvkzRsfq4FvbOMZREEjTRn1ni45bGgmfHa9wTCrgIHF00cA==
+"@patternfly/patternfly@2.48.1":
+  version "2.48.1"
+  resolved "https://registry.yarnpkg.com/@patternfly/patternfly/-/patternfly-2.48.1.tgz#6d0c4beb1742c68899a21bc2900c8cb5823d3c60"
+  integrity sha512-qYnYKVBtQWkluPHe+xudDp04HPOOtdSBozrigNmJ+6l27SzRspSeex0aKGMAdXaMcOO+TnPKrLq9I4TBZO+2Ww==
 
 "@schematics/angular@7.3.3":
   version "7.3.3"
