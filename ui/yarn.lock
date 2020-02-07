@@ -804,17 +804,17 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-apicurio-data-models@1.0.17:
-  version "1.0.17"
-  resolved "https://registry.yarnpkg.com/apicurio-data-models/-/apicurio-data-models-1.0.17.tgz#78a941ddf79bcee74c50abc5329d4d51bbc77265"
-  integrity sha512-sC7V7lvjrTbNJcqbo745tzWq/JMGwTJMVMb9JHfbxzghVr52Uu1Q37T5zt3yWEcINbKYWxUVbCkk/sUc89V5fA==
+apicurio-data-models@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/apicurio-data-models/-/apicurio-data-models-1.1.1.tgz#b8ce65f0a6d7ea6a63e457a4117d66f9ac88610d"
+  integrity sha512-3wkkL9X9j6QDvLfiAAZFH0pgi2Ht9w/CfJM+AkqSlJTlP4tlWH/RGi9Zf0RdYlCJvCG6p/zHCRF+3GS2IECvoQ==
   dependencies:
-    core-js "3.4.1"
+    core-js "3.6.4"
 
-apicurio-design-studio@0.2.44:
-  version "0.2.44"
-  resolved "https://registry.yarnpkg.com/apicurio-design-studio/-/apicurio-design-studio-0.2.44.tgz#41ca43a799cb8465710c49a4c062527c48d09c7a"
-  integrity sha512-s4XwLz+TUXjf2jjvGK8aWrTVErGSoaTNFgMcvVw5xlAoHDF82H83NyhDvlMD8s5ljeb1+kraUNSixH6/vdbw2Q==
+apicurio-design-studio@0.2.46:
+  version "0.2.46"
+  resolved "https://registry.yarnpkg.com/apicurio-design-studio/-/apicurio-design-studio-0.2.46.tgz#90b393e216ae92bc1d2f6047a93f8463a6afc75d"
+  integrity sha512-tONZEh7kUI37cOuloB72czQAiKMui7bkRtWiaGlxO9hHGzTxHMuz6Z9DFqbSNzuCpJ+DDkfit0O0618M447byw==
   dependencies:
     tslib "^1.9.0"
 
@@ -1813,10 +1813,10 @@ core-js@2.6.5, core-js@^2.4.0:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.5.tgz#44bc8d249e7fb2ff5d00e0341a7ffb94fbf67895"
   integrity sha512-klh/kDpwX8hryYL14M9w/xei6vrv6sE8gTHDG7/T/+SEovB/G4ejwcfE/CBzO6Edsu+OETZMZ3wcX/EjUkrl5A==
 
-core-js@3.4.1:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.4.1.tgz#76dd6828412900ab27c8ce0b22e6114d7ce21b18"
-  integrity sha512-KX/dnuY/J8FtEwbnrzmAjUYgLqtk+cxM86hfG60LGiW3MmltIc2yAmDgBgEkfm0blZhUrdr1Zd84J2Y14mLxzg==
+core-js@3.6.4:
+  version "3.6.4"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.4.tgz#440a83536b458114b9cb2ac1580ba377dc470647"
+  integrity sha512-4paDGScNgZP2IXXilaffL9X7968RuvwlkK3xWtZRVqgd8SYNiVKRJvkFd1aqqEuPfN7E68ZHEp9hDj6lHj4Hyw==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
