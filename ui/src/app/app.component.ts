@@ -19,6 +19,7 @@ import {Component} from '@angular/core';
 import {ApiDefinition} from 'apicurio-design-studio';
 import {WindowRef} from './services/window-ref.service';
 import {AppInfoService} from "./services/app-info.service";
+import {CrossNavApp, navigateToApp} from "@rh-uxd/integration-core";
 
 @Component({
     selector: 'app-root',
@@ -29,10 +30,15 @@ export class AppComponent {
 
     helpExpanded: boolean = false;
     showAbout: boolean = false;
+    crossConsoleExpanded: boolean = false;
 
     apiDef: ApiDefinition = null;
 
     constructor(private winRef: WindowRef, public appInfo: AppInfoService) {
+    }
+
+    public navigate(url: string): void {
+        window.location.href = url;
     }
 
     public openEditor(content: any): void {

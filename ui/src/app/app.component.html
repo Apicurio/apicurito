@@ -7,6 +7,28 @@
             </a>
         </div>
 
+        <div class="app-context-selector-wrapper">
+            <div class="pf-c-context-selector">
+                <button class="pf-c-context-selector__toggle"
+                    id="context-selector-collapsed-example-toggle"
+                    aria-labelledby="context-selector-collapsed-example-label"
+                    (click)="crossConsoleExpanded = !crossConsoleExpanded">
+                    <span class="pf-c-context-selector__toggle-text">API Designer</span>
+                    <i class="fas fa-caret-down pf-c-context-selector__toggle-icon" aria-hidden="true"></i>
+                </button>
+                <div class="pf-c-context-selector__menu" *ngIf="crossConsoleExpanded"> 
+                    <ul class="pf-c-context-selector__menu-list" style="overflow-y: unset;">
+                        <li>
+                          <button class="pf-c-context-selector__menu-list-item" (click)="navigate('http://localhost:3006')">Solution Explorer</button>
+                        </li>
+                        <li>
+                          <button class="pf-c-context-selector__menu-list-item" (click)="navigate('http://localhost:3000')">Red Hat Fuse Online</button>
+                        </li>
+                      </ul>
+                </div>
+            </div>
+        </div>
+
         <div class="pf-c-page__header-tools">
             <div class="pf-c-dropdown">
                 <button class="pf-c-dropdown__toggle pf-m-plain" id="page-layout-default-nav-dropdown-button"

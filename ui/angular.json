@@ -28,12 +28,14 @@
               "node_modules/@patternfly/patternfly/patternfly.min.css",
               "node_modules/patternfly/dist/css/patternfly.css",
               "node_modules/patternfly/dist/css/patternfly-additions.css",
+              "node_modules/@rh-uxd/integration-core/styles/core.css",
               "src/styles.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
               "node_modules/bootstrap/dist/js/bootstrap.js",
-              "node_modules/patternfly/dist/js/patternfly.js"
+              "node_modules/patternfly/dist/js/patternfly.js",
+              "node_modules/@rh-uxd/integration-core/dist/js/index.js"
             ],
             "es5BrowserSupport": true
           },
