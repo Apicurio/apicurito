@@ -7,15 +7,19 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@patternfly/patternfly/patternfly.css"/>
 
     <script type="text/javascript" src="./version.js"></script>
     <script type="text/javascript" src="./config/config.js"></script>
 
     <style>
-        #app-loading {
-            padding-top: 90px;
-            margin: auto;
-            text-align: center;
+        .container {
+            padding: 0;
+        }
+        
+        .app__loading-container {
+            height: 100vh;
+            width: 100%;
         }
     </style>
 
@@ -23,8 +27,21 @@
 <body>
 <app-root>
     <div class="container container-fluid" id="load-container">
-        <div id="app-loading">
-            <img src="assets/app-loading.gif">
+        <div class="app__loading-container">
+                <div class="pf-l-bullseye">
+                    <div class="pf-l-flex pf-m-column">
+                        <div class="pf-m-spacer-xl pf-m-align-self-center">
+                            <span class="pf-c-spinner pf-m-xl" role="progressbar" aria-valuetext="Loading...">
+                                <span class="pf-c-spinner__clipper"></span>
+                                <span class="pf-c-spinner__lead-ball"></span>
+                                <span class="pf-c-spinner__tail-ball"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="pf-c-title pf-m-xl">Loading Apicurio</p>
+                    </div>
+            </div>
         </div>
     </div>
 </app-root>
