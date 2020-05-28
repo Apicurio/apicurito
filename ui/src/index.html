@@ -7,19 +7,37 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="./styles.css"/>
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/@patternfly/patternfly/patternfly.css"/>
 
     <script type="text/javascript" src="./version.js"></script>
     <script type="text/javascript" src="./config/config.js"></script>
 
     <style>
-        .container {
+        .container,
+        .container-fluid,
+        #load-container {
             padding: 0;
+            margin: 0;
+        }
+
+        .container,
+        .container-fluid,
+        #load-container {
+            width: 100vw;
         }
         
-        .app__loading-container {
+        .apicurio__loading-container {
             height: 100vh;
             width: 100%;
+            background-color: #f0f0f0;
+        }
+
+        #loading-text {
+            margin-top: 30px;
+            z-index: 1000;
+            font-size: 20px;
+            font-weight: 600;
         }
     </style>
 
@@ -27,20 +45,20 @@
 <body>
 <app-root>
     <div class="container container-fluid" id="load-container">
-        <div class="app__loading-container">
-                <div class="pf-l-bullseye">
-                    <div class="pf-l-flex pf-m-column">
-                        <div class="pf-m-spacer-xl pf-m-align-self-center">
-                            <span class="pf-c-spinner pf-m-xl" role="progressbar" aria-valuetext="Loading...">
-                                <span class="pf-c-spinner__clipper"></span>
-                                <span class="pf-c-spinner__lead-ball"></span>
-                                <span class="pf-c-spinner__tail-ball"></span>
-                            </span>
-                        </div>
+        <div class="apicurio__loading-container">
+            <div class="pf-l-bullseye">
+                <div class="pf-l-flex pf-m-column">
+                    <div class="pf-m-spacer-xl pf-m-align-self-center">
+                        <span class="pf-c-spinner pf-m-xl" role="progressbar" aria-valuetext="Loading...">
+                            <span class="pf-c-spinner__clipper"></span>
+                            <span class="pf-c-spinner__lead-ball"></span>
+                            <span class="pf-c-spinner__tail-ball"></span>
+                        </span>
                     </div>
                     <div>
-                        <p class="pf-c-title pf-m-xl">Loading Apicurio</p>
+                        <p id="loading-text">Loading Apicurio</p>
                     </div>
+                </div>
             </div>
         </div>
     </div>
