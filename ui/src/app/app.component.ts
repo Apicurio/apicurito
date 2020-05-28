@@ -31,6 +31,7 @@ export class AppComponent {
     helpExpanded: boolean = false;
     showAbout: boolean = false;
     crossConsoleExpanded: boolean = false;
+    showCrossConsole = false;
 
     apiDef: ApiDefinition = null;
 

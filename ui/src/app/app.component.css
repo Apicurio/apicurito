@@ -10,3 +10,11 @@
 .pf-c-page .pf-c-page__header {
   background-color: #151515;
 }
+
+.pf-c-page__header-brand {
+  width: max-content!important;
+}
+
+.pf-c-context-selector__toggle {
+  width: 100%;
+}

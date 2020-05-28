@@ -3,7 +3,8 @@
     <header role="banner" class="pf-c-page__header">
         <div class="pf-c-page__header-brand">
             <a class="pf-c-page__header-brand-link">
-                <img class="pf-c-brand" src="assets/apicurio_logo_darkbkg_200px.png" alt="Apicurito">
+                <!-- <img class="pf-c-brand" src="assets/apicurio_logo_darkbkg_200px.png" alt="Apicurito"> -->
+                <img class="pf-c-brand" src="assets/Logo-Red_Hat-Managed_Integration-A-Reverse-RGB.png" alt="Apicurito">
             </a>
         </div>
 
@@ -19,10 +20,13 @@
                 <div class="pf-c-context-selector__menu" *ngIf="crossConsoleExpanded"> 
                     <ul class="pf-c-context-selector__menu-list" style="overflow-y: unset;">
                         <li>
-                          <button class="pf-c-context-selector__menu-list-item" (click)="navigate('http://localhost:3006')">Solution Explorer</button>
+                            <button class="pf-c-context-selector__menu-list-item" (click)="navigate('http://localhost:3003')">Red Hat AMQ Online</button>
                         </li>
                         <li>
-                          <button class="pf-c-context-selector__menu-list-item" (click)="navigate('http://localhost:3000')">Red Hat Fuse Online</button>
+                            <button class="pf-c-context-selector__menu-list-item" (click)="navigate('http://localhost:3000')">Red Hat Fuse Online</button>
+                        </li>
+                        <li>
+                          <button class="pf-c-context-selector__menu-list-item" (click)="navigate('http://localhost:3006')">Solution Explorer</button>
                         </li>
                       </ul>
                 </div>
