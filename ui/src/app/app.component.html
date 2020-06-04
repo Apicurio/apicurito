@@ -2,14 +2,16 @@
 
     <header role="banner" class="pf-c-page__header">
         <div class="pf-c-page__header-brand">
-            <a class="pf-c-page__header-brand-link">
-                <!-- <img class="pf-c-brand" src="assets/apicurio_logo_darkbkg_200px.png" alt="Apicurito"> -->
+            <a *ngIf = "showLogo" class="pf-c-page__header-brand-link">
+                <img class="pf-c-brand" src="assets/apicurio_logo_darkbkg_200px.png" alt="Apicurito"> 
+            </a>
+            <a *ngIf = "showCrossConsole" class="pf-c-page__header-brand-link">
                 <img class="pf-c-brand" src="assets/Logo-Red_Hat-Managed_Integration-A-Reverse-RGB.png" alt="Apicurito">
             </a>
         </div>
 
         <div class="app-context-selector-wrapper">
-            <div class="pf-c-context-selector">
+            <div *ngIf="showCrossConsole" class="pf-c-context-selector">
                 <button class="pf-c-context-selector__toggle"
                     id="context-selector-collapsed-example-toggle"
                     aria-labelledby="context-selector-collapsed-example-label"
@@ -19,14 +21,8 @@
                 </button>
                 <div class="pf-c-context-selector__menu" *ngIf="crossConsoleExpanded"> 
                     <ul class="pf-c-context-selector__menu-list" style="overflow-y: unset;">
-                        <li>
-                            <button class="pf-c-context-selector__menu-list-item" (click)="navigate('http://localhost:3003')">Red Hat AMQ Online</button>
-                        </li>
-                        <li>
-                            <button class="pf-c-context-selector__menu-list-item" (click)="navigate('http://localhost:3000')">Red Hat Fuse Online</button>
-                        </li>
-                        <li>
-                          <button class="pf-c-context-selector__menu-list-item" (click)="navigate('http://localhost:3006')">Solution Explorer</button>
+                        <li *ngFor="let app of apps">
+                            <button class="pf-c-context-selector__menu-list-item" (click)="navigate(app.rootUrl)">{{app.name}}</button>
                         </li>
                       </ul>
                 </div>

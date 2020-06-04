@@ -213,10 +213,10 @@
   resolved "https://registry.yarnpkg.com/@patternfly/patternfly/-/patternfly-2.31.6.tgz#32ded5693ed2dca64c50f2d74fa83f514bb452e5"
   integrity sha512-XRug8EvEnLjO03w4TU9fRiJ7ZPcWdr9CzWKUkXTsjVNdP8Gf29zArTqLr8InoLDuYi2449KVkwqV7zReeiY0iw==
 
-"@rh-uxd/integration-core@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@rh-uxd/integration-core/-/integration-core-1.0.2.tgz#e16beb678d6cbfb401a97ecc311d1a9941566180"
-  integrity sha512-K3tyX24W6lST+HA1Vnj+/KemvhVoYhbbfKRMV/WspIXImEvI580cj0mY41GE57rb++Nm2zYuLbayNWiM2FXk8g==
+"@rh-uxd/integration-core@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@rh-uxd/integration-core/-/integration-core-1.0.3.tgz#a838b477e2eac66ad9c9227a10fc0f46d10e159b"
+  integrity sha512-Qd2oD8/ydcW14+h5Dnx47T4deh03aqV0TdYL0BKcN6VTPSnOfkHEVVVph3aE1yeb1jRwPMAZXuzhMP5dfzDBtQ==
   dependencies:
     axios "0.19.2"
 
