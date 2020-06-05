@@ -1,12 +1,39 @@
 .app-body {
-  grid-column-start: m;
-  grid-column-end: k;
-  grid-row-start: m;
-  grid-row-end: k;
   background-color: white;
   position: relative;
 }
-
 .pf-c-page .pf-c-page__header {
   background-color: #151515;
+}
+.pf-c-page__header-brand {
+  width: max-content!important;
+}
+.pf-c-page .app-context-selector-wrapper {
+  grid-column: 2;
+}
+@media (min-width: 576px) {
+  .pf-c-page {
+    grid-template-columns: 1fr !important;
+  }
+  .pf-c-page__header {
+    grid-template-columns: minmax(auto, 301px) minmax(auto, 218px) auto auto !important;
+  }
+  .pf-c-context-selector__toggle {
+    width: 100% !important;
+  }
+}
+@media screen and (max-width: 576px) {
+  .pf-c-page .pf-c-page__header {
+    grid-template-columns: 1fr auto !important;
+  }
+  .pf-c-page .app-context-selector-wrapper {
+    grid-column: 1;
+  }
+  .pf-c-page .pf-c-context-selector__toggle::before {
+    border-top: var(--pf-global--BorderWidth--sm) solid var(--pf-global--BorderColor--200);
+    border-right: var(--pf-global--BorderWidth--sm) solid var(--pf-global--BorderColor--200);
+  }
+  .pf-c-page .pf-c-page__header-tools {
+    grid-column: 2 !important;
+  }
 }

@@ -15,24 +15,51 @@
  * limitations under the License.
  */
 
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ApiDefinition} from 'apicurio-design-studio';
 import {WindowRef} from './services/window-ref.service';
 import {AppInfoService} from "./services/app-info.service";
+import {environment} from '../environments/environment';
+import { CrossNavApp, getAvailableApps, getSolutionExplorerServer } from '@rh-uxd/integration-core';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
     helpExpanded: boolean = false;
     showAbout: boolean = false;
-
+    crossConsoleExpanded: boolean = false;
+    showCrossConsole: boolean = false;
+    showLogo: boolean = false;
+    apps: CrossNavApp[] = [];
     apiDef: ApiDefinition = null;
 
     constructor(private winRef: WindowRef, public appInfo: AppInfoService) {
+    }
+
+    public ngOnInit () {
+        getAvailableApps(
+            environment.production ? getSolutionExplorerServer() : 'http://localhost:5001',
+            undefined,
+            environment.production  ? undefined : 'localhost:3006',
+            ['3scale', 'apicurito'],
+            !!environment.production 
+          ).then(apps => {
+              if (apps.length > 0) {
+                this.apps = apps;
+                this.showCrossConsole = true;
+              } else {
+                this.showLogo = true;
+              }
+          });
+    }
+
+    public navigate(url: string): void {
+        const appUrl = !!environment.production ? `https://${url}` : `http://${url}`
+        window.location.href = appUrl;
     }
 
     public openEditor(content: any): void {
