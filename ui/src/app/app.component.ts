@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
             environment.production ? getSolutionExplorerServer() : 'http://localhost:5001',
             undefined,
             environment.production  ? undefined : 'localhost:3006',
-            ['3scale', 'apicurito'],
+            ['apicurito'],
             !!environment.production 
           ).then(apps => {
               if (apps.length > 0) {
