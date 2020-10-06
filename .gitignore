@@ -9,3 +9,4 @@ node/
 target/
 bindata_assetfs.go
 /ui/cmd/go-bindata
+website
