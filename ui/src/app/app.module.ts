@@ -31,6 +31,7 @@ import {AppInfoService} from './services/app-info.service';
 import {ConfigService} from './services/config.service';
 import {StorageService} from "./services/storage.service";
 import {ConfigureValidationComponent} from "./editor/configure-validation.dialog";
+import { FilesService } from './services/files.service';
 
 @NgModule({
     imports: [
@@ -48,7 +49,14 @@ import {ConfigureValidationComponent} from "./editor/configure-validation.dialog
         EditorComponent,
         ConfigureValidationComponent
     ],
-    providers: [WindowRef, AppInfoService, ConfigService, DownloaderService, StorageService],
+    providers: [
+        WindowRef,
+        AppInfoService,
+        ConfigService,
+        DownloaderService, 
+        StorageService,
+        FilesService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
