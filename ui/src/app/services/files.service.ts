@@ -17,11 +17,9 @@
 
 
 import {ElementRef, Injectable} from "@angular/core";
-import {WindowRef} from "./window-ref.service";
 
 export interface FileResult {
-    type: string;
-    name: string;
+    file: File;
     contents: string;
 }
 
@@ -31,46 +29,68 @@ export interface FileResult {
 @Injectable()
 export class FilesService {
 
-    constructor(private windowRef: WindowRef) { }
+    constructor() { }
 
     private get fileSystemAccessApiAvailable() {
-        return 'showOpenFilePicker' in this.windowRef.window
+        return 'showOpenFilePicker' in globalThis;
     }
 
-    public async loadFileFromHandle(fileHandle: File): Promise<FileResult> {
+    public async readFile(file: File): Promise<FileResult> {
+        // This is a new API which is not yet available on Safari.
+        // See: https://developer.mozilla.org/en-US/docs/Web/API/Blob/text#Browser_compatibility
+        if ('text' in file) {
+            return {
+                file,
+                contents: await file.text()
+            }
+        }
+
         return new Promise((resolve, reject) => {
             const reader: FileReader = new FileReader();
 
             reader.onload = (fileLoadedEvent) => {
                 resolve({
-                    type: fileHandle.type,
-                    name: fileHandle.name,
+                    file,
                     contents: fileLoadedEvent.target.result.toString()
                 });
             };
 
             reader.onerror = reject;
 
-            reader.readAsBinaryString(fileHandle);
+            reader.readAsBinaryString(file);
         });
     }
 
     private async loadFileWithElement(fileInputRef: ElementRef<HTMLInputElement>): Promise<FileResult> {
         return new Promise((resolve, reject) => {
             fileInputRef.nativeElement.onchange = (event: Event) => {
-                const fileHandle: File = (event.target as HTMLInputElement).files[0];
-                this.loadFileFromHandle(fileHandle).then(resolve).catch(reject);
+                const file: File = (event.target as HTMLInputElement).files[0];
+                this.readFile(file).then(resolve).catch(reject);
             };
             fileInputRef.nativeElement.click();
         });
     }
 
     public async loadFile(fileInputRef: ElementRef<HTMLInputElement>): Promise<FileResult> {
-        // if (!this.fileSystemAccessApiAvailable) {
+        if (!this.fileSystemAccessApiAvailable) {
             return this.loadFileWithElement(fileInputRef);
-        // }
+        }
 
-        // TODO: Load without element
+        const [fileHandle] = await globalThis.showOpenFilePicker({
+            multiple: false,
+            types: [
+                {
+                    description: 'OAS file',
+                    accept: {
+                        'application/json': ['.json'],
+                        'application/x-yaml': ['.yaml', '.yml']
+                    }
+                }
+            ]
+        });
+
+        const file: File = await fileHandle.getFile();
+        return this.readFile(file);
     }
 
 }

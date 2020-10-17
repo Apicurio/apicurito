@@ -74,9 +74,9 @@ export class EmptyStateComponent {
         this.loadFile(file);
     }
 
-    public loadFile(file: FileResult): void {
-        let isJson: boolean = file.type === "application/json";
-        let isYaml: boolean = file.name.endsWith(".yaml") || file.name.endsWith(".yml");
+    public loadFile(fileResult: FileResult): void {
+        let isJson: boolean = fileResult.file.type === "application/json";
+        let isYaml: boolean = fileResult.file.name.endsWith(".yaml") || fileResult.file.name.endsWith(".yml");
 
         if (!isJson && !isYaml) {
             this.error = "Only JSON and YAML files are supported.";
@@ -86,7 +86,7 @@ export class EmptyStateComponent {
         let jsObj: any;
         if (isJson) {
             try {
-                jsObj = JSON.parse(file.contents);
+                jsObj = JSON.parse(fileResult.contents);
                 this.onOpen.emit(jsObj);
             } catch (e) {
                 console.error("Error parsing file.", e);
@@ -94,7 +94,7 @@ export class EmptyStateComponent {
             }
         } else if (isYaml) {
             try {
-                jsObj = YAML.safeLoad(file.contents);
+                jsObj = YAML.safeLoad(fileResult.contents);
                 this.onOpen.emit(jsObj);
             } catch (e) {
                 console.error("Error parsing file.", e);
@@ -119,7 +119,7 @@ export class EmptyStateComponent {
             console.info("[ImportApiFormComponent] File was dropped.");
             let file: FileResult;
             try {
-                file = await this.files.loadFileFromHandle(files[0]);
+                file = await this.files.readFile(files[0]);
             } catch (e) {
                 console.error("Error detected: ", e);
                 this.error = "Error reading file.";
