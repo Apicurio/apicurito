@@ -111,7 +111,7 @@ export class ApiDefinitionFileService {
             file = await this.fileHandle.getFile();
         }
 
-        const contents = await this.readFile(file);
+        const contents = await this.readFile(file as File);
 
         let spec: any;
         try {
