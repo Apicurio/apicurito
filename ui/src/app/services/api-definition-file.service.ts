@@ -18,15 +18,40 @@
 
 import {Injectable} from "@angular/core";
 import {WindowRef} from './window-ref.service';
-import {safeLoad as parseYaml} from 'js-yaml';
+import {safeLoad as parseYaml, safeDump as stringifyYaml} from 'js-yaml';
+import {DownloaderService} from './downloader.service';
+
+export type FileFormat = "json" | "yaml" | undefined;
+
+interface SaveOptions {
+    mode: "save" | "save-as";
+    format?: FileFormat;
+}
 
 /**
  * Implements an API Definition File service that is used to manage the active API definition file
  */
 @Injectable()
 export class ApiDefinitionFileService {
+    public static filePickerAcceptTypes: FilePickerAcceptType[] = [
+        {
+            description: 'OpenAPI Spec File',
+            accept: {
+                "application/json": [".json"],
+                "application/x-yaml": [".yaml", ".yml"]
+            }
+        }
+    ];
 
-    constructor(private windowRef: WindowRef) { }
+    public static getFileFormat(file: File): FileFormat {
+        const isJson = file.type === "application/json" || file.name.endsWith(".json");
+        const isYaml = file.name.endsWith(".yaml") || file.name.endsWith(".yml");
+        return isJson ? "json" : isYaml ? "yaml" : undefined;
+    }
+
+    private fileHandle: FileSystemFileHandle;
+
+    constructor(private windowRef: WindowRef, private downloader: DownloaderService) { }
 
     public get fileSystemAccessApiAvailable() {
         return 'showOpenFilePicker' in this.windowRef.window;
@@ -61,44 +86,75 @@ export class ApiDefinitionFileService {
                 throw new Error('When file system access API is unavailable, a file must be specified.');
             }
 
-            let fileHandle: FileSystemFileHandle;
+            let fileHandles: FileSystemFileHandle[];
             try {
-                const fileHandles = await globalThis.showOpenFilePicker({
+                fileHandles = await this.windowRef.window.showOpenFilePicker({
                     multiple: false,
-                    types: [
-                        {
-                            description: 'OAS file',
-                            accept: {
-                                'application/json': ['.json'],
-                                'application/x-yaml': ['.yaml', '.yml']
-                            }
-                        }
-                    ]
+                    types: ApiDefinitionFileService.filePickerAcceptTypes
                 });
-                fileHandle = fileHandles[0];
             } catch (e) {
                 throw new Error("No file selected.");
             }
 
-            // TODO: Save `fileHandle` for later
-
-            file = await fileHandle.getFile();
+            this.fileHandle = fileHandles[0];
+            file = await this.fileHandle.getFile();
         }
 
         const contents = await this.readFile(file);
 
-        let data: any;
+        let spec: any;
         try {
-            data = parseYaml(contents);
+            spec = parseYaml(contents);
         } catch (e) {
             console.error("Error parsing file: ", e);
             throw new Error("Error parsing OpenAPI file. Perhaps it is not valid YAML or JSON?");
         }
 
-        return data;
+        return spec;
     }
 
-    public async save(data: any): Promise<void> {
-        throw new Error("Not implemented");
+    private getContents(spec: any, format: "json" | "yaml"): string {
+        let contents: string = spec;
+        if (typeof spec === "object") {
+            const indentCount = 4;
+            if (format === "json") {
+                contents = JSON.stringify(spec, null, indentCount);
+            } else if (format === "yaml") {
+                contents = stringifyYaml(spec, {
+                    indent: indentCount,
+                    lineWidth: 110,
+                    noRefs: true
+                });
+            }
+        }
+        return contents;
+    }
+
+    public async save(spec: any, options: SaveOptions): Promise<void> {
+        let { mode, format } = options;
+
+        const defaultFormat: "json" | "yaml" = "yaml";
+        if (this.fileHandle) {
+            let contents: string;
+
+            if (mode === 'save-as') {
+                this.fileHandle = await this.windowRef.window.showSaveFilePicker({
+                    types: ApiDefinitionFileService.filePickerAcceptTypes
+                });
+            }
+
+            format = ApiDefinitionFileService.getFileFormat(await this.fileHandle.getFile());
+
+            contents = this.getContents(spec, format || defaultFormat);
+
+            const writable = await this.fileHandle.createWritable();
+            await writable.write(contents);
+            await writable.close();
+        } else {
+            const contents = this.getContents(spec, format || defaultFormat);
+            const contentType: string = "application/json";
+            const fileName: string = `openapi-spec.${format}`;
+            await this.downloader.downloadToFS(contents, contentType, fileName);
+        }
     }
 }

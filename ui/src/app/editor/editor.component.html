@@ -1,17 +1,22 @@
 <div class="app-editor" id="app-editor">
     <div class="actionbar">
         <!-- Save Button -->
-        <div class="btn-group">
-            <button type="button" class="btn btn-lg btn-primary" (click)="save('yaml')">Save As...</button>
+        <div class="btn-group" *ngIf="apiDefinitionFile.fileSystemAccessApiAvailable; then apiAvailable else apiUnavailable"></div>
+        <ng-template #apiAvailable>
+            <button type="button" class="btn btn-lg btn-primary" (click)="save('save')">Save</button>
+            <button type="button" class="btn btn-lg btn-primary" (click)="save('save-as')">Save As...</button>
+        </ng-template>
+        <ng-template #apiUnavailable>
+            <button type="button" class="btn btn-lg btn-primary" (click)="save('save-as')">Save As...</button>
             <button type="button" class="btn btn-lg btn-primary dropdown-toggle btn-save" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="caret"></span>
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu">
-                <li><a (click)="save('yaml')">Save as YAML</a></li>
-                <li><a (click)="save('json')">Save as JSON</a></li>
+                <li><a (click)="save('save-as', 'yaml')">Save as YAML</a></li>
+                <li><a (click)="save('save-as', 'json')">Save as JSON</a></li>
             </ul>
-        </div>
+        </ng-template>
 
         <!-- Convert Button -->
         <button *ngIf="isOpenAPI2()" class="btn btn-lg btn-default btn-convert" data-toggle="modal" data-target="#convert-modal">Convert to OpenAPI 3</button>

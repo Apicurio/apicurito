@@ -62,10 +62,10 @@ export class EmptyStateComponent {
     public openExistingApi(): void {
         this.error = null;
 
-        if (!this.apiDefinitionFile.fileSystemAccessApiAvailable) {
-            this.loadFileRef.nativeElement.click();
-        } else {
+        if (this.apiDefinitionFile.fileSystemAccessApiAvailable) {
             this.loadFile();
+        } else {
+            this.loadFileRef.nativeElement.click();
         }
     }
 
@@ -73,11 +73,9 @@ export class EmptyStateComponent {
         this.error = null;
 
         const file: File = (event.target as HTMLInputElement).files[0];
+        const fileFormat = ApiDefinitionFileService.getFileFormat(file);
 
-        let isJson: boolean = file.type === "application/json";
-        let isYaml: boolean = file.name.endsWith(".yaml") || file.name.endsWith(".yml");
-
-        if (!isJson && !isYaml) {
+        if (!fileFormat) {
             this.error = "Only JSON and YAML files are supported.";
             return;
         }
@@ -89,8 +87,8 @@ export class EmptyStateComponent {
         this.error = null;
 
         try {
-            const data = await this.apiDefinitionFile.load(file);
-            this.onOpen.emit(data);
+            const spec = await this.apiDefinitionFile.load(file);
+            this.onOpen.emit(spec);
         } catch (e) {
             console.log(e);
             this.error = e.message;

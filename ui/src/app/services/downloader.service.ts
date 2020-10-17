@@ -37,7 +37,7 @@ export class DownloaderService {
      * @param contentType
      * @param filename
      */
-    public downloadToFS(content: string, contentType: string, filename: string): Promise<boolean> {
+    public async downloadToFS(content: string, contentType: string, filename: string): Promise<void> {
         console.info("[DownloaderService] Downloading an API definition.");
         let window: any = this.window.window;
 
@@ -57,8 +57,6 @@ export class DownloaderService {
             let file = new File([content], filename, { type: 'application/force-download' });
             window.open(URL.createObjectURL(file));
         }
-        // Not async right now - so just resolve to true
-        return Promise.resolve(true);
     }
 
     /**
