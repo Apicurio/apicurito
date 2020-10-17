@@ -64,15 +64,15 @@ export class ApiDefinitionFileService {
     private async readFile(file: File): Promise<string> {
         // This is a new API which is not yet available on Safari.
         // See: https://developer.mozilla.org/en-US/docs/Web/API/Blob/text#Browser_compatibility
-        if ('text' in file) {
-            return await file.text()
+        if ('text' in (file as any)) {
+            return await (file as any).text();
         }
 
         return new Promise((resolve, reject) => {
             const reader: FileReader = new FileReader();
 
             reader.onload = (fileLoadedEvent) => {
-                resolve(fileLoadedEvent.target.result.toString());
+                resolve((fileLoadedEvent.target as FileReader).result.toString());
             };
 
             reader.onerror = (e) => {

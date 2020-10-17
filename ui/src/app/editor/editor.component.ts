@@ -72,7 +72,7 @@ export class EditorComponent {
      * @param storage
      */
     constructor(private downloader: DownloaderService, public config: ConfigService,
-                private storage: StorageService, private apiDefinitionFile: ApiDefinitionFileService) {}
+                private storage: StorageService, public apiDefinitionFile: ApiDefinitionFileService) {}
 
     /**
      * Called whenever the API definition is changed by the user.
