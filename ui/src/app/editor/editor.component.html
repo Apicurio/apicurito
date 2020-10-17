@@ -1,12 +1,12 @@
 <div class="app-editor" id="app-editor">
     <div class="actionbar">
         <!-- Save Button -->
-        <div class="btn-group" *ngIf="apiDefinitionFile.fileSystemAccessApiAvailable; then apiAvailable else apiUnavailable"></div>
-        <ng-template #apiAvailable>
+        <div class="btn-group" *ngIf="apiDefinitionFile.hasFileHandle; then hasFileHandle else noFileHandle"></div>
+        <ng-template #hasFileHandle>
             <button type="button" class="btn btn-lg btn-primary" (click)="save('save')">Save</button>
             <button type="button" class="btn btn-lg btn-primary" (click)="save('save-as')">Save As...</button>
         </ng-template>
-        <ng-template #apiUnavailable>
+        <ng-template #noFileHandle>
             <button type="button" class="btn btn-lg btn-primary" (click)="save('save-as')">Save As...</button>
             <button type="button" class="btn btn-lg btn-primary dropdown-toggle btn-save" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="caret"></span>

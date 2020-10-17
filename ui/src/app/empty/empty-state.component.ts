@@ -83,7 +83,7 @@ export class EmptyStateComponent {
         this.loadFile(file);
     }
 
-    public async loadFile(file?: File): Promise<void> {
+    public async loadFile(file?: File | FileSystemFileHandle): Promise<void> {
         this.error = null;
 
         try {
@@ -106,12 +106,24 @@ export class EmptyStateComponent {
         this.dragging = false;
         event.preventDefault();
 
-        // TODO: Use new drag & drop file system access APIs
+        const items: DataTransferItemList = event.dataTransfer.items;
+        if (!items || items.length < 1) {
+            return;
+        }
 
-        let files: FileList = event.dataTransfer.files;
-        if (files && files.length == 1) {
-            console.info("[ImportApiFormComponent] File was dropped.");
-            await this.loadFile(files[0]);
+        const item = items[0];
+        let file: FileSystemFileHandle | File;
+        if (this.apiDefinitionFile.fileSystemAccessApiAvailable) {
+            const fileHandle = await item.getAsFileSystemHandle()
+            if (fileHandle.kind === "file") {
+                file = fileHandle;
+            }
+        } else {
+            file = item.getAsFile();
+        }
+
+        if (file) {
+            await this.loadFile(file);
         } else {
             this.error = "Only files are supported.";
         }

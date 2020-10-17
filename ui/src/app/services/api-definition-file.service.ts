@@ -57,6 +57,10 @@ export class ApiDefinitionFileService {
         return 'showOpenFilePicker' in this.windowRef.window;
     }
 
+    public get hasFileHandle() {
+        return Boolean(this.fileHandle);
+    }
+
     private async readFile(file: File): Promise<string> {
         // This is a new API which is not yet available on Safari.
         // See: https://developer.mozilla.org/en-US/docs/Web/API/Blob/text#Browser_compatibility
@@ -80,7 +84,12 @@ export class ApiDefinitionFileService {
         });
     }
 
-    public async load(file?: File): Promise<any> {
+    public async load(file?: File | FileSystemFileHandle): Promise<any> {
+        if (file instanceof FileSystemFileHandle) {
+            this.fileHandle = file;
+            file = await this.fileHandle.getFile();
+        }
+
         if (!file) {
             if (!this.fileSystemAccessApiAvailable) {
                 throw new Error('When file system access API is unavailable, a file must be specified.');
@@ -134,7 +143,7 @@ export class ApiDefinitionFileService {
         let { mode, format } = options;
 
         const defaultFormat: "json" | "yaml" = "yaml";
-        if (this.fileHandle) {
+        if (this.hasFileHandle) {
             let contents: string;
 
             if (mode === 'save-as') {
