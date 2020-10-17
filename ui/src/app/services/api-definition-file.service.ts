@@ -85,7 +85,9 @@ export class ApiDefinitionFileService {
     }
 
     public async load(file?: File | FileSystemFileHandle): Promise<any> {
-        if (file instanceof FileSystemFileHandle) {
+        // We cannot just use `file instanceof FileSystemFileHandle` because it will throw an
+        // exception if that type is not defined (in browsers that do not support the feature)
+        if (this.fileSystemAccessApiAvailable && file instanceof FileSystemFileHandle) {
             this.fileHandle = file;
             file = await this.fileHandle.getFile();
         }
