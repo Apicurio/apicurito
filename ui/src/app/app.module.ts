@@ -31,7 +31,7 @@ import {AppInfoService} from './services/app-info.service';
 import {ConfigService} from './services/config.service';
 import {StorageService} from "./services/storage.service";
 import {ConfigureValidationComponent} from "./editor/configure-validation.dialog";
-import { FilesService } from './services/files.service';
+import {ApiDefinitionFileService} from './services/api-definition-file.service';
 
 @NgModule({
     imports: [
@@ -55,7 +55,7 @@ import { FilesService } from './services/files.service';
         ConfigService,
         DownloaderService, 
         StorageService,
-        FilesService
+        ApiDefinitionFileService
     ],
     bootstrap: [AppComponent]
 })

@@ -50,6 +50,6 @@
         </div>
     </div>
     <div class="hidden">
-        <input #loadfile type="file" id="load-file" name="load-file">
+        <input #loadfile type="file" id="load-file" name="load-file" (change)="onFileOpened($event)">
     </div>
 </div>

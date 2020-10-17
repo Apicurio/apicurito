@@ -29,7 +29,6 @@ import {
     ValidationProblemSeverity
 } from "apicurio-data-models";
 
-
 export class DisableValidationRegistry implements IValidationSeverityRegistry {
 
     public lookupSeverity(): ValidationProblemSeverity {
@@ -120,7 +119,7 @@ export class EditorComponent {
         }, 500);
     }
 
-    public save(format: string = "json"): Promise<boolean> {
+    public save(format: string = "yaml"): Promise<boolean> {
         console.info("[EditorComponent] Saving the API definition.");
         this.generateError = null;
         let ct: string = "application/json";

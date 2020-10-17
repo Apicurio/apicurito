@@ -17,9 +17,8 @@
 
 import {Component, ElementRef, EventEmitter, Output, ViewChild} from "@angular/core";
 import {NewApiTemplates} from "./empty-state.data";
-import * as YAML from 'js-yaml';
 import {StorageService} from "../services/storage.service";
-import {FileResult, FilesService} from "../services/files.service";
+import {ApiDefinitionFileService} from "../services/api-definition-file.service";
 import {ApiDefinition} from "apicurio-design-studio";
 
 @Component({
@@ -38,7 +37,7 @@ export class EmptyStateComponent {
     error: string = null;
     templates: NewApiTemplates = new NewApiTemplates();
 
-    constructor(private storage: StorageService, private files: FilesService) {}
+    constructor(private storage: StorageService, private apiDefinitionFile: ApiDefinitionFileService) {}
 
     public hasRecoverableApi(): boolean {
         return this.storage.exists();
@@ -60,46 +59,41 @@ export class EmptyStateComponent {
         this.onOpen.emit(api);
     }
 
-    public async openExistingApi(): Promise<void> {
+    public openExistingApi(): void {
         this.error = null;
-        
-        let file: FileResult;
-        try {
-            file = await this.files.loadFile(this.loadFileRef);
-        } catch (e) {
-            console.error("Error detected: ", e);
-            this.error = "Error reading file.";
-        }
 
-        this.loadFile(file);
+        if (!this.apiDefinitionFile.fileSystemAccessApiAvailable) {
+            this.loadFileRef.nativeElement.click();
+        } else {
+            this.loadFile();
+        }
     }
 
-    public loadFile(fileResult: FileResult): void {
-        let isJson: boolean = fileResult.file.type === "application/json";
-        let isYaml: boolean = fileResult.file.name.endsWith(".yaml") || fileResult.file.name.endsWith(".yml");
+    public onFileOpened(event: Event): void {
+        this.error = null;
+
+        const file: File = (event.target as HTMLInputElement).files[0];
+
+        let isJson: boolean = file.type === "application/json";
+        let isYaml: boolean = file.name.endsWith(".yaml") || file.name.endsWith(".yml");
 
         if (!isJson && !isYaml) {
             this.error = "Only JSON and YAML files are supported.";
             return;
         }
 
-        let jsObj: any;
-        if (isJson) {
-            try {
-                jsObj = JSON.parse(fileResult.contents);
-                this.onOpen.emit(jsObj);
-            } catch (e) {
-                console.error("Error parsing file.", e);
-                this.error = "Error parsing OpenAPI file. Perhaps it is not valid JSON?";
-            }
-        } else if (isYaml) {
-            try {
-                jsObj = YAML.safeLoad(fileResult.contents);
-                this.onOpen.emit(jsObj);
-            } catch (e) {
-                console.error("Error parsing file.", e);
-                this.error = "Error parsing OpenAPI file. Perhaps it is not valid YAML?";
-            }
+        this.loadFile(file);
+    }
+
+    public async loadFile(file?: File): Promise<void> {
+        this.error = null;
+
+        try {
+            const data = await this.apiDefinitionFile.load(file);
+            this.onOpen.emit(data);
+        } catch (e) {
+            console.log(e);
+            this.error = e.message;
         }
     }
 
@@ -114,17 +108,12 @@ export class EmptyStateComponent {
         this.dragging = false;
         event.preventDefault();
 
+        // TODO: Use new drag & drop file system access APIs
+
         let files: FileList = event.dataTransfer.files;
         if (files && files.length == 1) {
             console.info("[ImportApiFormComponent] File was dropped.");
-            let file: FileResult;
-            try {
-                file = await this.files.readFile(files[0]);
-            } catch (e) {
-                console.error("Error detected: ", e);
-                this.error = "Error reading file.";
-            }
-            this.loadFile(file);
+            await this.loadFile(files[0]);
         } else {
             this.error = "Only files are supported.";
         }

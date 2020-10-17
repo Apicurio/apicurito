@@ -40,6 +40,7 @@
     "@angular/cli": "7.3.3",
     "@angular/compiler-cli": "7.2.6",
     "@angular/language-service": "7.2.6",
+    "@types/js-yaml": "^3.12.5",
     "@types/marked": "0.7.0",
     "@types/node": "~8.9.4",
     "@types/wicg-file-system-access": "^2020.9.1",
