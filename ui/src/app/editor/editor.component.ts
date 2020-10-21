@@ -28,7 +28,7 @@ import {
     Oas30Document,
     ValidationProblemSeverity
 } from "apicurio-data-models";
-
+import {ApiDefinitionFileService} from '../services/api-definition-file.service';
 
 export class DisableValidationRegistry implements IValidationSeverityRegistry {
 
@@ -72,7 +72,7 @@ export class EditorComponent {
      * @param storage
      */
     constructor(private downloader: DownloaderService, public config: ConfigService,
-                private storage: StorageService) {}
+                private storage: StorageService, public apiDefinitionFile: ApiDefinitionFileService) {}
 
     /**
      * Called whenever the API definition is changed by the user.
@@ -120,31 +120,16 @@ export class EditorComponent {
         }, 500);
     }
 
-    public save(format: string = "json"): Promise<boolean> {
+    public async save(mode: "save" | "save-as" = "save", format?: "json" | "yaml"): Promise<void> {
         console.info("[EditorComponent] Saving the API definition.");
         this.generateError = null;
-        let ct: string = "application/json";
-        let filename: string = "openapi-spec";
-        let spec: any = this.apiEditor.getValue().spec;
-        if (typeof spec === "object") {
-            if (format === "json") {
-                spec = JSON.stringify(spec, null, 4);
-                filename += ".json";
-            } else {
-                //spec = YAML.stringify(spec, 100, 4);
-                spec = YAML.safeDump(spec, {
-                    indent: 4,
-                    lineWidth: 110,
-                    noRefs: true
-                });
-                filename += ".yaml";
-            }
-        }
-        let content: string = spec;
-        return this.downloader.downloadToFS(content, ct, filename).then( rval => {
-            this.storage.clear();
-            return rval;
+
+        await this.apiDefinitionFile.save(this.apiEditor.getValue().spec, {
+            mode,
+            format
         });
+
+        this.storage.clear();
     }
 
     public close(): void {
@@ -154,11 +139,10 @@ export class EditorComponent {
         this.onClose.emit();
     }
 
-    public saveAndClose(): void {
+    public async saveAndClose(): Promise<void> {
         console.info("[EditorComponent] Saving and then closing the editor.");
-        this.save().then( () => {
-            this.close();
-        });
+        await this.save();
+        this.close();
     }
 
     public generate(gconfig: GeneratorConfig): void {

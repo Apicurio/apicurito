@@ -26,7 +26,7 @@
             </ul>
         </div>
         <span>&nbsp;</span>
-        <button class="btn btn-default btn-lg btn-load" (click)="loadfile.click()">Open API</button>
+        <button class="btn btn-default btn-lg btn-load" (click)="openExistingApi()">Open API</button>
 
         <div class="recovery-notice" *ngIf="hasRecoverableApi()">
             <div class="alert alert-warning">
@@ -50,6 +50,6 @@
         </div>
     </div>
     <div class="hidden">
-        <input #loadfile type="file" id="load-file" name="load-file" (change)="onFileLoaded($event)">
+        <input #loadfile type="file" id="load-file" name="load-file" (change)="onFileOpened($event)">
     </div>
 </div>

@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-import {Component, EventEmitter, Output} from "@angular/core";
+import {Component, ElementRef, EventEmitter, Output, ViewChild} from "@angular/core";
 import {NewApiTemplates} from "./empty-state.data";
-import * as YAML from 'js-yaml';
 import {StorageService} from "../services/storage.service";
+import {ApiDefinitionFileService} from "../services/api-definition-file.service";
 import {ApiDefinition} from "apicurio-design-studio";
 
 @Component({
@@ -29,13 +29,15 @@ import {ApiDefinition} from "apicurio-design-studio";
 })
 export class EmptyStateComponent {
 
+    @ViewChild('loadfile') loadFileRef: ElementRef<HTMLInputElement>;
+
     @Output() onOpen: EventEmitter<any> = new EventEmitter<any>();
 
     dragging: boolean;
     error: string = null;
     templates: NewApiTemplates = new NewApiTemplates();
 
-    constructor(private storage: StorageService) {}
+    constructor(private storage: StorageService, private apiDefinitionFile: ApiDefinitionFileService) {}
 
     public hasRecoverableApi(): boolean {
         return this.storage.exists();
@@ -57,51 +59,40 @@ export class EmptyStateComponent {
         this.onOpen.emit(api);
     }
 
-    public onFileLoaded(event): void {
+    public openExistingApi(): void {
         this.error = null;
-        let theFile: any = event.target.files[0];
-        this.loadFile(theFile);
+
+        if (this.apiDefinitionFile.fileSystemAccessApiAvailable) {
+            this.loadFile();
+        } else {
+            this.loadFileRef.nativeElement.click();
+        }
     }
 
-    public loadFile(theFile: any): void {
-        let isJson: boolean = theFile.type === "application/json";
-        let isYaml: boolean = theFile.name.endsWith(".yaml") || theFile.name.endsWith(".yml");
+    public onFileOpened(event: Event): void {
+        this.error = null;
 
-        if (!isJson && !isYaml) {
+        const file: File = (event.target as HTMLInputElement).files[0];
+        const fileFormat = ApiDefinitionFileService.getFileFormat(file);
+
+        if (!fileFormat) {
             this.error = "Only JSON and YAML files are supported.";
             return;
         }
 
-        let reader: FileReader = new FileReader();
-        let content: any = null;
-        let me: EmptyStateComponent = this;
-        let jsObj: any = null;
-        reader.onload = function(fileLoadedEvent) {
-            content = fileLoadedEvent.target["result"];
-            if (isJson) {
-                try {
-                    jsObj = JSON.parse(content);
-                    me.onOpen.emit(jsObj);
-                } catch (e) {
-                    console.error("Error parsing file.", e);
-                    me.error = "Error parsing OpenAPI file.  Perhaps it is not valid JSON?";
-                }
-            } else {
-                try {
-                    //jsObj = YAML.parse(content);
-                    jsObj = YAML.safeLoad(content);
-                    me.onOpen.emit(jsObj);
-                } catch (e) {
-                    console.error("Error parsing file.", e);
-                    me.error = "Error parsing OpenAPI file.  Perhaps it is not valid YAML?";
-                }
-            }
-        };
-        reader.onerror = function(e) {
-            console.info("Error detected: ", e);
-            me.error = "Error reading file.";
+        this.loadFile(file);
+    }
+
+    public async loadFile(file?: File | FileSystemFileHandle): Promise<void> {
+        this.error = null;
+
+        try {
+            const spec = await this.apiDefinitionFile.load(file);
+            this.onOpen.emit(spec);
+        } catch (e) {
+            console.log(e);
+            this.error = e.message;
         }
-        reader.readAsBinaryString(theFile);
     }
 
     public onDragOver(event: DragEvent): void {
@@ -111,15 +102,28 @@ export class EmptyStateComponent {
         event.preventDefault();
     }
 
-    public onDrop(event: DragEvent): void {
+    public async onDrop(event: DragEvent): Promise<void> {
         this.dragging = false;
         event.preventDefault();
 
-        let files: FileList = event.dataTransfer.files;
-        if (files && files.length == 1) {
-            console.info("[ImportApiFormComponent] File was dropped.");
-            let file: any = files[0];
-            this.loadFile(file);
+        const items: DataTransferItemList = event.dataTransfer.items;
+        if (!items || items.length < 1) {
+            return;
+        }
+
+        const item = items[0];
+        let file: FileSystemFileHandle | File;
+        if (this.apiDefinitionFile.fileSystemAccessApiAvailable) {
+            const fileHandle = await item.getAsFileSystemHandle()
+            if (fileHandle.kind === "file") {
+                file = fileHandle;
+            }
+        } else {
+            file = item.getAsFile();
+        }
+
+        if (file) {
+            await this.loadFile(file);
         } else {
             this.error = "Only files are supported.";
         }
