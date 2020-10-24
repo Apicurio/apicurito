@@ -32,6 +32,8 @@ import {ConfigService} from './services/config.service';
 import {StorageService} from "./services/storage.service";
 import {ConfigureValidationComponent} from "./editor/configure-validation.dialog";
 import {ApiDefinitionFileService} from './services/api-definition-file.service';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
 
 @NgModule({
     imports: [
@@ -41,7 +43,8 @@ import {ApiDefinitionFileService} from './services/api-definition-file.service';
         ApicurioEditorModule,
         ApicurioCommonComponentsModule,
         ModalModule.forRoot(),
-        BsDropdownModule.forRoot()
+        BsDropdownModule.forRoot(),
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     ],
     declarations: [
         AppComponent, 

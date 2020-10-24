@@ -22,7 +22,8 @@
               "src/favicon.ico",
               "src/assets",
               "src/config/config.js",
-              "src/version.js"
+              "src/version.js",
+              "src/manifest.json"
             ],
             "styles": [
               "node_modules/@patternfly/patternfly/patternfly.min.css",
@@ -62,7 +63,8 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ]
+              ],
+              "serviceWorker": true
             }
           }
         },
