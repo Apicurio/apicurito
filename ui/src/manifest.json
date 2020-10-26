@@ -8,43 +8,38 @@
   "start_url": "/",
   "icons": [
     {
-      "src": "assets/icons/icon-72x72.png",
-      "sizes": "72x72",
+      "src": "assets/icons/apicurio_icon_darkbkg_16px.png",
+      "sizes": "16x16",
       "type": "image/png"
     },
     {
-      "src": "assets/icons/icon-96x96.png",
-      "sizes": "96x96",
+      "src": "assets/icons/apicurio_icon_darkbkg_32px.png",
+      "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "assets/icons/icon-128x128.png",
+      "src": "assets/icons/apicurio_icon_darkbkg_64px.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/apicurio_icon_darkbkg_128px.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "assets/icons/icon-144x144.png",
-      "sizes": "144x144",
+      "src": "assets/icons/apicurio_icon_darkbkg_256px.png",
+      "sizes": "256x256",
       "type": "image/png"
     },
     {
-      "src": "assets/icons/icon-152x152.png",
-      "sizes": "152x152",
-      "type": "image/png"
-    },
-    {
-      "src": "assets/icons/icon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "assets/icons/icon-384x384.png",
-      "sizes": "384x384",
-      "type": "image/png"
-    },
-    {
-      "src": "assets/icons/icon-512x512.png",
+      "src": "assets/icons/apicurio_icon_darkbkg_512px.png",
       "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/apicurio_icon_darkbkg_1024px.png",
+      "sizes": "1024x1024",
       "type": "image/png"
     }
   ]
