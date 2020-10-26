@@ -7,7 +7,7 @@ on:
           required: true
           default: 'master'
 jobs:
-  release:
+  publish:
     runs-on: ubuntu-18.04
     if: github.repository_owner == 'Apicurio'
     steps:
