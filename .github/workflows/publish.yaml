@@ -1,0 +1,37 @@
+name: Publish to Dockerhub
+on:
+    workflow_dispatch:
+      inputs:
+        branch:
+          description: 'Branch to build from'
+          required: true
+          default: 'master'
+jobs:
+  release:
+    runs-on: ubuntu-18.04
+    if: github.repository_owner == 'Apicurio'
+    steps:
+      - name: Set up JDK 1.8
+        uses: AdoptOpenJDK/install-jdk@v1
+        with:
+            version: '8'
+            architecture: x64
+      - name: Apicurito Checkout
+        run: |
+          mkdir apicurito
+          cd apicurito
+          git init
+          git config --global user.name "apicurio-ci"
+          git config --global user.email "apicurio.ci@gmail.com"
+          git remote add origin "https://apicurio-ci:${{ secrets.ACCESS_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
+          git fetch
+          git checkout ${{ github.event.inputs.branch }}
+          git branch --set-upstream-to=origin/${{ github.event.inputs.branch }}
+          git pull
+      - name: Build Apicurito
+        run: |
+          cd apicurito
+          mvn clean install -D::image
+      - name: Push to Docker Hub
+        run: |
+          docker push apicurio/apicurito-ui:latest
