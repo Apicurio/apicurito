@@ -32,6 +32,8 @@ jobs:
         run: |
           cd apicurito
           mvn clean install -D::image
+      - name: Login to DockerHub Registry
+        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
       - name: Push to Docker Hub
         run: |
           docker push apicurio/apicurito-ui:latest
