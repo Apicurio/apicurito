@@ -49,7 +49,7 @@ jobs:
           cd apicurito/ui
           yarn install
           yarn build
-      - name: Build Apicurito
+      - name: Fix Base HREF
         run: |
           cd apicurito/ui/dist
           sed -i  "6s/\//\/apicurito\/pwa\//g" index.html
