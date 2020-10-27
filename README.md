@@ -15,6 +15,16 @@ reload if you change any of the source files.
 To run on a different port, try `ng serve --port 8888` for example. And if you want AOT enabled, 
 you can run `ng serve --aot --port 8888`.
 
+### Testing Service Worker
+
+The service worker is disabled for development builds but can still be easily tested locally.
+
+From the `ui` folder, first run `npm run build` or `ng build --prod` to build the production app.
+Then serve the `dist` folder with any web server on a different port from the dev server, and with
+caching disabled. The simplest way to do this is: `npx http-server -p 8080 -c-1 dist`
+
+You can also check out the [Angular docs](https://angular.io/guide/service-worker-getting-started)
+for more detailed docs.
 
 ## Running On Openshift
 

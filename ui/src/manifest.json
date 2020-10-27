@@ -1,0 +1,46 @@
+{
+  "name": "Apicurito",
+  "short_name": "Apicurito",
+  "theme_color": "#cc0000",
+  "background_color": "#f0f0f0",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "assets/icons/apicurio_icon_darkbkg_16px.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/apicurio_icon_darkbkg_32px.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/apicurio_icon_darkbkg_64px.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/apicurio_icon_darkbkg_128px.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/apicurio_icon_darkbkg_256px.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/apicurio_icon_darkbkg_512px.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/apicurio_icon_darkbkg_1024px.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ]
+}
