@@ -1,0 +1,66 @@
+name: Publish as PWA
+on:
+    workflow_dispatch:
+      inputs:
+        branch:
+          description: 'Branch to build from'
+          required: true
+          default: 'master'
+jobs:
+  publish:
+    runs-on: ubuntu-18.04
+    if: github.repository_owner == 'Apicurio'
+    steps:
+      - name: Set up JDK 1.8
+        uses: AdoptOpenJDK/install-jdk@v1
+        with:
+            version: '8'
+            architecture: x64
+      - name: Set up Node.js v12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Apicurito Checkout
+        run: |
+          mkdir apicurito
+          cd apicurito
+          git init
+          git config --global user.name "apicurio-ci"
+          git config --global user.email "apicurio.ci@gmail.com"
+          git remote add origin "https://apicurio-ci:${{ secrets.ACCESS_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
+          git fetch
+          git checkout ${{ github.event.inputs.branch }}
+          git branch --set-upstream-to=origin/${{ github.event.inputs.branch }}
+          git pull
+      - name: Apicurio Website Checkout
+        run: |
+          mkdir website
+          cd website
+          git init
+          git config --global user.name "apicurio-ci"
+          git config --global user.email "apicurio.ci@gmail.com"
+          git remote add origin "https://apicurio-ci:${{ secrets.ACCESS_TOKEN }}@github.com/Apicurio/apicurio.github.io.git"
+          git fetch
+          git checkout master
+          git branch --set-upstream-to=origin/master
+          git pull
+      - name: Build Apicurito
+        run: |
+          cd apicurito/ui
+          yarn install
+          yarn build
+      - name: Build Apicurito
+        run: |
+          cd apicurito/ui/dist
+          sed -i  "6s/\//\/apicurito\/pwa\//g" index.html
+      - name: Copy PWA to Website
+        run: |
+          cd apicurito/ui
+          rm -rf ../../website/apicurito/pwa
+          cp -rf dist ../../website/apicurito/pwa
+      - name: Push Changes to Website
+        run: |
+          cd apicurito
+          git add .
+          git commit -m 'Pushing a new version of Apicurito PWA to Website'
+          git push origin master
