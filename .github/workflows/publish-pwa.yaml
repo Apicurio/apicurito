@@ -56,7 +56,7 @@ jobs:
           cp -rf dist ../../website/apicurito/pwa
       - name: Push Changes to Website
         run: |
-          cd apicurito
+          cd website
           git add .
           git commit -m 'Pushing a new version of Apicurito PWA to Website'
           git push origin master
