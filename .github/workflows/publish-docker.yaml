@@ -2,7 +2,7 @@ name: Publish to Dockerhub
 on:
     workflow_dispatch: {}
 jobs:
-  publish:
+  publish-to-dockerhub:
     runs-on: ubuntu-18.04
     if: github.repository_owner == 'Apicurio'
     steps:

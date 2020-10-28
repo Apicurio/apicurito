@@ -2,7 +2,7 @@ name: Publish as PWA
 on:
     workflow_dispatch: {}
 jobs:
-  publish:
+  publish-as-pwa:
     runs-on: ubuntu-18.04
     if: github.repository_owner == 'Apicurio'
     steps:
