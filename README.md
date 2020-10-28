@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/Apicurio/apicurito.svg?style=svg)](https://circleci.com/gh/Apicurio/apicurito)
+[![Verify Build](https://github.com/Apicurio/apicurito/workflows/Verify%20Build/badge.svg)](https://github.com/Apicurio/apicurio-registry/actions?query=workflow%3A%22Verify+Build%22)
 
 # Apicurito (Apicurio Lite)
 
