@@ -52,7 +52,8 @@ jobs:
       - name: Fix Base HREF
         run: |
           cd apicurito/ui/dist
-          sed -i  "6s/\//\/apicurito\/pwa\//g" index.html
+          sed -i "6s/\//\/apicurito\/pwa\//g" index.html
+          sed -i "s/\"\/\"/\"\/apicurito\/pwa\/\"/g" manifest.json
       - name: Copy PWA to Website
         run: |
           cd apicurito/ui
