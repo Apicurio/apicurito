@@ -1,11 +1,6 @@
 name: Publish to Dockerhub
 on:
-    workflow_dispatch:
-      inputs:
-        branch:
-          description: 'Branch to build from'
-          required: true
-          default: 'master'
+    workflow_dispatch: {}
 jobs:
   publish:
     runs-on: ubuntu-18.04
@@ -25,8 +20,8 @@ jobs:
           git config --global user.email "apicurio.ci@gmail.com"
           git remote add origin "https://apicurio-ci:${{ secrets.ACCESS_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
           git fetch
-          git checkout ${{ github.event.inputs.branch }}
-          git branch --set-upstream-to=origin/${{ github.event.inputs.branch }}
+          git checkout master
+          git branch --set-upstream-to=origin/master
           git pull
       - name: Build Apicurito
         run: |
