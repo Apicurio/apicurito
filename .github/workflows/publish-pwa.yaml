@@ -53,13 +53,13 @@ jobs:
         with:
           file: apicurito/ui/dist/manifest.json
           field: scope
-          value: /apicurito/pwa
+          value: /apicurito/pwa/
       - name: Fix Manifest Start Url
         uses: jossef/action-set-json-field@v1
         with:
           file: apicurito/ui/dist/manifest.json
           field: start_url
-          value: /apicurito/pwa
+          value: /apicurito/pwa/
       - name: Copy PWA to Website
         run: |
           cd apicurito/ui
