@@ -1,4 +1,4 @@
-name: Verify Build Workflow
+name: Verify Build
 on:
   workflow_dispatch: {}
   push:
