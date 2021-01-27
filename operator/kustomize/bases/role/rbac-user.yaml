@@ -1,0 +1,24 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: apicurito-operator-installer
+rules:
+- apiGroups:
+  - "apicur.io"
+  resources:
+  - "*"
+  verbs: [ get, list, create, update, delete, deletecollection, watch, patch ]
+
+---
+
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: apicurito-operator-{{.User}}-installer
+subjects:
+- kind: User
+  name: {{.User}}
+roleRef:
+  kind: Role
+  name: apicurito-operator-installer
+  apiGroup: rbac.authorization.k8s.io

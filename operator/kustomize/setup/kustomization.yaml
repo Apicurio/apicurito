@@ -1,0 +1,5 @@
+bases:
+- ../bases/crd
+- ../bases/role
+commonLabels:
+  app: apicurito
