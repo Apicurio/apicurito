@@ -5,12 +5,12 @@ MK_OPTIONS := -s
 
 .PHONY: $(SUBDIRS)
 
-SYNCDIRS := ../app ../bases/crd ../bases/deployment ../bases/grant ../bases/role
+SYNCDIRS := ../app ../bases/crd ../bases/deployment ../bases/role
 
 sync:
 	for dir in $(SYNCDIRS); do \
-    $(MAKE) $(MK_OPTIONS) -C $$dir init; \
-  done
+		$(MAKE) $(MK_OPTIONS) -C $$dir init; \
+	done
 
 INSTALLDIR := $(RELEASE_NAME)-installer
 RELEASEDIRS := ../app ../bases ../operator ../setup
@@ -28,8 +28,8 @@ create:
 	mkdir -p $(INSTALLDIR)
 	#@ Copy directories into build directory
 	for dir in $(RELEASEDIRS); do \
-    cp -rf $$dir $(INSTALLDIR)/; \
-  done
+		cp -rf $$dir $(INSTALLDIR)/; \
+	done
 	#@ Remove any generated yaml files (need the tmpl files)
 	for f in `find $(INSTALLDIR) -name "*.gen.yaml"`; do \
 		rm -f $$f; \
