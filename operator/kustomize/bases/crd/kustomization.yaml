@@ -1,2 +1,2 @@
 resources:
-- crd.yml
+- apicurito-crd.gen.yaml

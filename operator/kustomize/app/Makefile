@@ -1,10 +1,20 @@
 ASSETS := ../../deploy
-APP := ./apicurio-cr.yml
+TMPL := tmpl
+YAML := yaml
 
-.PHONY: sync
+CR := ./apicurio-cr.gen
 
+.PHONY: sync init
+
+# start-sync
 #
-# Copy the deploy template from the deploy directory
+# Copy the template from the src directory
+# Convert the template to a formatted yaml file:
+# - Remove any range/end sections (not required)
 #
 sync:
-	cp $(ASSETS)/cr.yaml $(APP)
+	cp $(ASSETS)/cr.yaml $(CR).$(TMPL)
+# end-sync
+
+init: sync
+	cp $(CR).$(TMPL) $(CR).$(YAML)

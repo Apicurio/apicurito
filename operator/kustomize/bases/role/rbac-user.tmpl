@@ -14,10 +14,10 @@ rules:
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: apicurito-operator-{{.User}}-installer
+  name: apicurito-operator-{KUBE_USER}-installer
 subjects:
 - kind: User
-  name: {{.User}}
+  name: {KUBE_USER}
 roleRef:
   kind: Role
   name: apicurito-operator-installer

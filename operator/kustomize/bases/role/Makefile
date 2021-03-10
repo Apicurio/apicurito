@@ -1,15 +1,32 @@
 ASSETS := ../../../deploy
-RBAC := ./rbac.yml
-RBAC_USER := ./rbac-user.yml
+TMPL := tmpl
+YAML := yaml
+NAMESPACE_VAR := {NAMESPACE}
+USER_VAR := {KUBE_USER}
+
+RBAC := ./rbac.gen
+RBAC_USER := ./rbac-user.gen
 
 KUBE_USER ?= developer
+NAMESPACE ?= apicurito
 
-.PHONY: sync
+.PHONY: sync init
 
 #
-# Copy the deploy template from the deploy directory
+# start-sync
+#
+# Copy the template from the src directory
+# Convert the template to a formatted yaml file:
 #
 sync:
-	cp $(ASSETS)/rbac.yaml $(RBAC)
-	cp ./rbac-user.yaml $(RBAC_USER)
-	sed -i 's/{{.User}}/$(KUBE_USER)/' $(RBAC_USER)
+	cp $(ASSETS)/rbac.yaml $(RBAC).$(TMPL)
+	sed -i 's/REPLACE_NAMESPACE/$(NAMESPACE_VAR)/' $(RBAC).$(TMPL)
+	cp ./rbac-user.tmpl $(RBAC_USER).$(TMPL)
+# end-sync
+
+init: sync
+	for resource in $(RBAC) $(RBAC_USER); do \
+		cp $${resource}.$(TMPL) $${resource}.$(YAML); \
+		sed -i 's/$(NAMESPACE_VAR)/$(NAMESPACE)/' $${resource}.$(YAML); \
+		sed -i 's/$(USER_VAR)/$(KUBE_USER)/' $${resource}.$(YAML); \
+	done

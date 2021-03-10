@@ -1,10 +1,18 @@
 ASSETS := ../../../deploy
-CRD := ./crd.yml
+TMPL := tmpl
+YAML := yaml
 
-.PHONY: sync
+CRD := apicurito-crd.gen
 
+.PHONY: sync init
+
+# start-sync
 #
-# Copy the deploy template from the deploy directory
+# Copy the template from the src directory
 #
 sync:
-	cp $(ASSETS)/crd.yaml $(CRD)
+	cp $(ASSETS)/crd.yaml $(CRD).$(TMPL)
+# end-sync
+
+init: sync
+	cp $(CRD).$(TMPL) $(CRD).$(YAML)

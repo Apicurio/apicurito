@@ -1,3 +1,4 @@
-**/*.yml
-**/release/apicurito-*
-**/release/*.tar.gz
+**/*.gen.tmpl
+**/*.gen.yaml
+
+release/*-installer*

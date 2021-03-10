@@ -5,38 +5,43 @@ MK_OPTIONS := -s
 
 .PHONY: $(SUBDIRS)
 
-SYNCDIRS := ../app ../bases/crd ../bases/deployment ../bases/grant ../bases/role
+SYNCDIRS := ../app ../bases/crd ../bases/deployment ../bases/role
 
 sync:
 	for dir in $(SYNCDIRS); do \
-    $(MAKE) $(MK_OPTIONS) -C $$dir; \
-  done
+		$(MAKE) $(MK_OPTIONS) -C $$dir init; \
+	done
 
 INSTALLDIR := $(RELEASE_NAME)-installer
 RELEASEDIRS := ../app ../bases ../operator ../setup
 
-create:
-	#@ Make a new apicurito builddirectory
-	mkdir -p $(INSTALLDIR)
-	#@ Copy directories into build directory
-	for dir in $(RELEASEDIRS); do \
-    cp -rf $$dir $(INSTALLDIR)/; \
-  done
-	#@ Remove sync rules from Makefiles
-	for f in `find $(INSTALLDIR) -name Makefile`; do \
-		echo "sync:" > $$f; \
-		echo "  #@ Not required in release" >> $$f; \
-	done
-	#@ Copy the root Makefile into build directory
-	cp -f ../Makefile $(INSTALLDIR)/
-
-release: sync create
+check-vars:
 ifndef RELEASE_VERSION
 	$(error RELEASE_VERSION is not set)
 endif
 ifndef RELEASE_NAME
 	$(error RELEASE_NAME is not set)
 endif
+
+create:
+	#@ Make a new apicurito builddirectory
+	mkdir -p $(INSTALLDIR)
+	#@ Copy directories into build directory
+	for dir in $(RELEASEDIRS); do \
+		cp -rf $$dir $(INSTALLDIR)/; \
+	done
+	#@ Remove any generated yaml files (need the tmpl files)
+	for f in `find $(INSTALLDIR) -name "*.gen.yaml"`; do \
+		rm -f $$f; \
+	done
+	#@ Remove sync rules from Makefiles
+	for f in `find $(INSTALLDIR) -name Makefile`; do \
+		sed -i '/# start-sync/,/# end-sync/c sync:\n  # Not required in release' $$f; \
+	done
+	#@ Copy the root Makefile into build directory
+	cp -f ../Makefile $(INSTALLDIR)/
+
+release: check-vars sync create
 	tar zcvf $(INSTALLDIR)-$(RELEASE_VERSION).tar.gz $(INSTALLDIR)
 
 clean:
