@@ -1,3 +1,0 @@
-resources:
-- rbac.gen.yaml
-- rbac-user.gen.yaml

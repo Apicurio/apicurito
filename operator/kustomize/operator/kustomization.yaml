@@ -1,4 +1,0 @@
-bases:
-- ../bases/deployment
-commonLabels:
-  app: apicurito

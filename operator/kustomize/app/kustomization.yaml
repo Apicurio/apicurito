@@ -1,6 +1,0 @@
-bases:
-- ../operator
-resources:
-- ./apicurio-cr.gen.yaml
-commonLabels:
-  app: apicurito
