@@ -24,8 +24,8 @@ jobs:
           git config --global user.email "apicurio.ci@gmail.com"
           git remote add origin "https://apicurio-ci:${{ secrets.ACCESS_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
           git fetch
-          git checkout master
-          git branch --set-upstream-to=origin/master
+          git checkout main
+          git branch --set-upstream-to=origin/main
           git pull
       - name: Apicurio Website Checkout
         run: |
@@ -36,8 +36,8 @@ jobs:
           git config --global user.email "apicurio.ci@gmail.com"
           git remote add origin "https://apicurio-ci:${{ secrets.ACCESS_TOKEN }}@github.com/Apicurio/apicurio.github.io.git"
           git fetch
-          git checkout master
-          git branch --set-upstream-to=origin/master
+          git checkout main
+          git branch --set-upstream-to=origin/main
           git pull
       - name: Build Apicurito
         run: |
@@ -70,4 +70,4 @@ jobs:
           cd website
           git add .
           git commit -m 'Pushing a new version of Apicurito PWA to Website'
-          git push origin master
+          git push origin main
