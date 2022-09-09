@@ -1,4 +1,4 @@
-FROM golang:1.11.0
+FROM golang:1.17
 WORKDIR /src
 
 # Let vendor in our dependencies.. copy over the minimum number of files needed to
@@ -12,4 +12,3 @@ RUN go get github.com/go-bindata/go-bindata/go-bindata@v1.0.0
 COPY . /src
 RUN go-bindata -o bindata_assetfs.go -prefix dist dist/...
 RUN CGO_ENABLED=0 go build -mod=vendor -o /main *.go
-
