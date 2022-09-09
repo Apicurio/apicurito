@@ -1,15 +1,7 @@
-name: Verify Build
+name: Verify Push Build
 on:
   workflow_dispatch: {}
   push:
-    paths-ignore:
-      - '.github/**'
-      - '.gitignore'
-      - 'LICENSE'
-      - 'README*'
-      - 'CODE_OF_CONDUCT*'
-    branches: [main]
-  pull_request:
     paths-ignore:
       - '.github/**'
       - '.gitignore'
