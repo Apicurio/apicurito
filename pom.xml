@@ -103,7 +103,7 @@
         <version.commons-lang>2.6</version.commons-lang>
         <version.javax.enterprise>1.2</version.javax.enterprise>
         <version.junit>4.13.1</version.junit>
-        <version.org.apache.httpcomponents>4.5.3</version.org.apache.httpcomponents>
+        <version.org.apache.httpcomponents>4.5.13</version.org.apache.httpcomponents>
         <version.org.apache.httpcore>4.4.8</version.org.apache.httpcore>
         <version.org.apache.commons.commons-pool2>2.4.3</version.org.apache.commons.commons-pool2>
         <version.org.jboss.resteasy>3.0.19.Final</version.org.jboss.resteasy>
