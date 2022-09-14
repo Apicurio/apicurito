@@ -20,10 +20,8 @@ LABEL url="https://github.com/Apicurio/apicurito" \
 
 # Copy licenses
 USER 998
-EXPOSE 8080 
+EXPOSE 8080
 
 COPY licenses /licenses
 COPY ${SRC_DIR}/apicurito-ui /apicurito-ui
 CMD [  "/apicurito-ui", "--port", "8080", "--path", "/html", "--spa", "--etags"]
-
-

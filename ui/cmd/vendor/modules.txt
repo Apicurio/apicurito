@@ -1,0 +1,107 @@
+# github.com/BurntSushi/toml v0.3.0
+## explicit
+# github.com/davecgh/go-spew v1.1.1
+## explicit
+# github.com/dgrijalva/jwt-go v3.2.0+incompatible
+## explicit
+github.com/dgrijalva/jwt-go
+# github.com/elazarl/go-bindata-assetfs v1.0.0
+## explicit
+github.com/elazarl/go-bindata-assetfs
+# github.com/fsnotify/fsnotify v1.4.7
+## explicit
+github.com/fsnotify/fsnotify
+# github.com/go-bindata/go-bindata v1.0.0
+## explicit
+# github.com/hashicorp/hcl v1.0.0
+## explicit
+github.com/hashicorp/hcl
+github.com/hashicorp/hcl/hcl/ast
+github.com/hashicorp/hcl/hcl/parser
+github.com/hashicorp/hcl/hcl/printer
+github.com/hashicorp/hcl/hcl/scanner
+github.com/hashicorp/hcl/hcl/strconv
+github.com/hashicorp/hcl/hcl/token
+github.com/hashicorp/hcl/json/parser
+github.com/hashicorp/hcl/json/scanner
+github.com/hashicorp/hcl/json/token
+# github.com/inconshreveable/mousetrap v1.0.0
+## explicit
+github.com/inconshreveable/mousetrap
+# github.com/jboss-fuse/simble v1.0.3
+## explicit
+github.com/jboss-fuse/simble/v1/cmd/http
+github.com/jboss-fuse/simble/v1/pkg/simble
+github.com/jboss-fuse/simble/v1/pkg/simble/echo
+github.com/jboss-fuse/simble/v1/pkg/simble/static
+# github.com/labstack/echo v3.2.1+incompatible
+## explicit
+github.com/labstack/echo
+github.com/labstack/echo/middleware
+# github.com/labstack/gommon v0.2.1
+## explicit
+github.com/labstack/gommon/bytes
+github.com/labstack/gommon/color
+github.com/labstack/gommon/log
+github.com/labstack/gommon/random
+# github.com/magiconair/properties v1.8.0
+## explicit
+github.com/magiconair/properties
+# github.com/mattn/go-colorable v0.0.9
+## explicit
+github.com/mattn/go-colorable
+# github.com/mattn/go-isatty v0.0.4
+## explicit
+github.com/mattn/go-isatty
+# github.com/mitchellh/mapstructure v1.0.0
+## explicit
+github.com/mitchellh/mapstructure
+# github.com/pelletier/go-toml v1.2.0
+## explicit
+github.com/pelletier/go-toml
+# github.com/pmezard/go-difflib v1.0.0
+## explicit
+# github.com/spf13/afero v1.1.2
+## explicit
+github.com/spf13/afero
+github.com/spf13/afero/mem
+# github.com/spf13/cast v1.2.0
+## explicit
+github.com/spf13/cast
+# github.com/spf13/cobra v0.0.3
+## explicit
+github.com/spf13/cobra
+# github.com/spf13/jwalterweatherman v1.0.0
+## explicit
+github.com/spf13/jwalterweatherman
+# github.com/spf13/pflag v1.0.2
+## explicit
+github.com/spf13/pflag
+# github.com/spf13/viper v1.2.0
+## explicit
+github.com/spf13/viper
+# github.com/stretchr/testify v1.2.2
+## explicit
+# github.com/valyala/bytebufferpool v1.0.0
+## explicit
+github.com/valyala/bytebufferpool
+# github.com/valyala/fasttemplate v0.0.0-20170224212429-dcecefd839c4
+## explicit
+github.com/valyala/fasttemplate
+# golang.org/x/crypto v0.0.0-20180904163835-0709b304e793
+## explicit
+golang.org/x/crypto/acme
+golang.org/x/crypto/acme/autocert
+# golang.org/x/sys v0.0.0-20180906133057-8cf3aee42992
+## explicit
+golang.org/x/sys/unix
+# golang.org/x/text v0.3.0
+## explicit
+golang.org/x/text/transform
+golang.org/x/text/unicode/norm
+# gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405
+## explicit
+# gopkg.in/yaml.v2 v2.4.0 => gopkg.in/yaml.v2 v2.4.0
+## explicit; go 1.15
+gopkg.in/yaml.v2
+# gopkg.in/yaml.v2 => gopkg.in/yaml.v2 v2.4.0
